@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import app.novel.models
+from .. import models
 from flask import Flask, render_template, request, redirect, url_for
 
 from . import novel
