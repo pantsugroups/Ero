@@ -43,7 +43,7 @@ class Novel(BaseModel):
     # status = IntegerField(defualt=0)# 0 为未通过，1为已通过
 
 class Volume(BaseModel):
-    vid = PrimaryKeyField()
+    id = PrimaryKeyField()
     novel = ForeignKeyField(Novel, related_name="volume")
     title = TextField()
     update_time = DateTimeField(default=datetime.now)
