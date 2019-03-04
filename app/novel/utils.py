@@ -97,12 +97,6 @@ def datetime_handler(x):
     raise TypeError("Unknown type")
 
 
-# wtf表单转peewee模型
-def form_to_model(form, model):
-    for wtf in form:
-        print(wtf)
-        model.__setattr__(wtf.name, wtf.data)
-    return model
 
 # peewee模型转表单
 def model_to_form(model, form):
@@ -113,7 +107,6 @@ def model_to_form(model, form):
             field = form.__getitem__(k)
             field.data = v
             form.__setattr__(k, field)
-
 
 def flash_errors(form):
     for field, errors in form.errors.items():

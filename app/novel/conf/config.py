@@ -1,0 +1,5 @@
+# SMTP邮件发送类
+SMTP_SERVER = ''
+SMTP_PORT = 25
+SMTP_USERNAME = ''
+SMTP_PASSWD = ''

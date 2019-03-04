@@ -4,23 +4,23 @@ from flask_login import login_user, logout_user, login_required
 from .. import models
 
 from . import comment
-@comment.route("/api/comment/list")
-@comment.route("/api/comment/list/<int:page>")
+@comment.route("/list")
+@comment.route("/list/<int:page>")
 def commit_list(page=1):
     pass
 
 # 已完成
-@comment.route("/api/comment/post",methods=['POST'])
+@comment.route("/post",methods=['POST'])
 def post_comment():
     pass
 
 # 点赞，已完成
-@comment.route("/api/comment/like_comment")
+@comment.route("/like_comment")
 def like_comment():
     pass
 
 # 取消赞
-@comment.route("/api/comment/dislike_comment")
+@comment.route("/dislike_comment")
 
 def dislike_comment():
     pass

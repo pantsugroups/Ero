@@ -6,6 +6,7 @@ from config import *
 from peewee import *
 import json
 from datetime import datetime
+from hashlib import md5
 from app.novel import login_manager
 
 db = SqliteDatabase(DB_PATH) if CONFIG_DEBUG else MySQLDatabase(host=MYSQL_HOST, database=MYSQL_DATABASE,
@@ -26,7 +27,7 @@ class BaseModel(Model):
         # return str(r)
         return json.dumps(r, ensure_ascii=False)
 class Novel(BaseModel):
-    nid = PrimaryKeyField()
+    id = PrimaryKeyField()
     title = TextField()
     author = TextField()
     cover = TextField()
@@ -67,20 +68,21 @@ class NovelTag(BaseModel):
 class User(BaseModel):
     id = PrimaryKeyField()
     avatar = TextField(null=True)# remote http address
-    source_uid = IntegerField(unique=True, null=False)
+    # source_uid = IntegerField(unique=True, null=False)
     username = TextField()
+    password = TextField(null=False)
+    mail = TextField(null=False)
     register_time = DateTimeField(default=datetime.now)
-    qq = IntegerField()
+    qq = IntegerField(null=True)
     bio = TextField(null=True)
     describe = TextField(null=True)
-    default_token = IntegerField(default=-1)
+    # default_token = IntegerField(default=-1)
     downloads = IntegerField(default=250)
-    old_driver = IntegerField(default=0)#1 则为是
     pushmail = TextField(null=True)
-    admin = IntegerField(default=0)# 并不是用户等级，而是用户权限，
+    lv = IntegerField(default=0)# 0为未验证，1为普通，2为管理员
     hito = TextField(null=True)
     def verify_password(self, raw_password):
-        return
+        return md5(raw_password) == self.password
 
 class NovelSubscribe(BaseModel):
     novel = ForeignKeyField(Novel, related_name="novelsubscribe")
