@@ -4,6 +4,7 @@ from flask_login import login_user, logout_user, login_required
 from .. import models
 from . import stream
 @stream.route('/api/upload', methods=['POST'])
+@login_required
 def upload():
     pass
 @stream.route("/api/novel/download/<vid>")

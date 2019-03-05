@@ -57,13 +57,27 @@ def post_comment(nid):
     })
 
 # 点赞，已完成
-@comment.route("/like_comment")
+@comment.route("/like_comment/<int:cid")
 @login_required
-def like_comment():
-    pass
+def like_comment(cid):
+    try:
+        models.CommentLike.create(comment=cid,user=current_user.id)
+    except Exception as e:
+        return jsonresp({"code": -4, "msg": "内部错误", "error": str(e) if CONFIG_DEBUG else ""})
+    return jsonresp({
+            "code": 0,
+            "msg": "成功。"
+        })
 
 # 取消赞
-@comment.route("/dislike_comment")
+@comment.route("/dislike_comment/<int:cid>")
 @login_required
-def dislike_comment():
-    pass
+def dislike_comment(cid):
+    try:
+        models.CommentLike.get(comment=cid).delete_instance()
+    except Exception as e:
+        return jsonresp({"code": -4, "msg": "内部错误", "error": str(e) if CONFIG_DEBUG else ""})
+    return jsonresp({
+            "code": 0,
+            "msg": "成功。"
+        })

@@ -75,7 +75,7 @@ class User(BaseModel):
     register_time = DateTimeField(default=datetime.now)
     qq = IntegerField(null=True)
     bio = TextField(null=True)
-    describe = TextField(null=True)
+    # describe = TextField(null=True)
     # default_token = IntegerField(default=-1)
     downloads = IntegerField(default=250)
     pushmail = TextField(null=True)

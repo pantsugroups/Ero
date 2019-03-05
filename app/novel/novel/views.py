@@ -2,7 +2,7 @@
 import sys
 sys.path.append('../')
 from config import CONFIG_DEBUG
-from flask import Flask, render_template, request, redirect, url_for
+from flask import request
 from flask_login import login_required,current_user
 from json import dumps,loads
 from .. import models
@@ -26,7 +26,7 @@ def index(page=1):
     return jsonresp({
         "code": 0,
         "msg": "成功。",
-        "data": {"novel": result}
+        "data": {"novels": result}
     })
 @novel.route("/api/novel/detail/<int:nid>")
 def detail(nid=0):
@@ -76,7 +76,7 @@ def search(text="",page=1 ):
     return jsonresp({
         "code": 0,
         "msg": "成功。",
-        "data": {"novel": result}
+        "data": {"novels": result}
     })
 @novel.route("/volumes/<int:nid>")
 @novel.route("/volumes/<int:nid>/<int:page>")
@@ -101,9 +101,10 @@ def volumes(nid=0,page=1):
             "msg": "内部错误",
             "error": str(e) if CONFIG_DEBUG else ""
         })
-    return jsonresp({"code": 0, "msg": "成功","data":{"novel":results}})
+    return jsonresp({"code": 0, "msg": "成功","data":{"volumes":results}})
 @novel.route("/author/<name>")
-def author(name=""):
+@novel.route("/author/<name>/<int:page>")
+def author(name="",page=1):
     if not name:
         return jsonresp({"code": -2, "msg": "缺少参数"})
     try:
@@ -120,7 +121,7 @@ def author(name=""):
     return jsonresp({
         "code": 0,
         "msg": "成功。",
-        "data": {"novel": result}
+        "data": {"novels": result}
     })
 
 @novel.route("/subscribe/<nid>")
