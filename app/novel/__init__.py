@@ -9,12 +9,20 @@ def create(app):
 
     app.config['SECRET_KEY'] = '123456'
     login_manager.init_app(app)
+    from .admin import admin as admin_bluepring
+    app.register_blueprint(admin_bluepring, url_prefix="/admin")
 
-    # from .main import main as main_blueprint
-    # app.register_blueprint(main_blueprint,url_prefix="/admin")
-    #
-    # from .auth import auth as auth_blueprint
-    # app.register_blueprint(auth_blueprint,url_prefix="/admin")
+    from .auth import auth as auth_blueprint
+    app.register_blueprint(auth_blueprint,url_prefix="/auth")
+
+    from .novel import novel as novel_blueprint
+    app.register_blueprint(novel_blueprint,url_prefix="/novel")
+
+    from .user import user as user_blueprint
+    app.register_blueprint(user_blueprint, url_prefix="/user")
+
+    from .comment import comment as comment_blueprint
+    app.register_blueprint(comment_blueprint, url_prefix="/comment")
     return app
 
 

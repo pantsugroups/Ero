@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 
-import HTMLParser
 import datetime
 import json
 import urllib
 
 from flask import Response, flash
 
-from app.models import CfgNotify
+
 
 
 ## 字符串转字典
@@ -17,30 +16,6 @@ def str_to_dict(dict_str):
     else:
         new_dict = ""
     return new_dict
-
-
-## URL解码
-def urldecode(raw_str):
-    return urllib.quote(raw_str)
-
-
-# HTML解码
-def html_unescape(raw_str):
-    html =HTMLParser.HTMLParser()
-    return html.unescape(raw_str)
-
-
-## 键值对字符串转JSON字符串
-def kvstr_to_jsonstr(kvstr):
-    kvstr = urldecode(kvstr)
-    kvstr_list = kvstr.split('&')
-    json_dict = {}
-    for kvstr in kvstr_list:
-        key = kvstr.split('=')[0]
-        value = kvstr.split('=')[1]
-        json_dict[key] = value
-    json_str = json.dumps(json_dict, ensure_ascii=False, default=datetime_handler)
-    return json_str
 
 
 # 字典转对象
@@ -80,14 +55,6 @@ def jsonresp(jsonobj=None, status=200, errinfo=None):
     else:
         return Response('{"errinfo":"%s"}' % (errinfo,), mimetype='application/json', status=status)
 
-
-# 通过名称获取PEEWEE模型
-def get_model_by_name(model_name):
-    if model_name == 'notifies':
-        DynamicModel = CfgNotify
-    else:
-        DynamicModel = None
-    return DynamicModel
 
 
 # JSON中时间格式处理

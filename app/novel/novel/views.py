@@ -9,8 +9,8 @@ from .. import models
 from ..utils import *
 from ..conf.config import *
 from . import novel
-@novel.route("/novel")
-@novel.route("/novel/<int:page>")
+@novel.route("/")
+@novel.route("/<int:page>")
 def index(page=1):
     try:
         items = models.Novel.select()\
@@ -59,13 +59,13 @@ def search(text="",page=1 ):
                 .where(
                 models.Novel.title ** "%"+text+"%"
                 and models.Novel.description ** "%"+text+"%"
-            )
+            ).paginate(page, 20)
         else:
             items = models.Novel \
                 .select() \
                 .where(
                 models.Novel.title ** "%" + text + "%"
-            )
+            ).paginate(page, 20)
     except Exception as e:
         return jsonresp({
             "code": -4,
@@ -79,7 +79,8 @@ def search(text="",page=1 ):
         "data": {"novel": result}
     })
 @novel.route("/volumes/<int:nid>")
-def volumes(nid=0):
+@novel.route("/volumes/<int:nid>/<int:page>")
+def volumes(nid=0,page=1):
     if nid ==0:
         return jsonresp({"code": -2, "msg": "缺少参数"})
     try:
@@ -108,7 +109,7 @@ def author(name=""):
     try:
         items = models.Novel.select().where(
             models.Novel.author == name
-        )
+        ).paginate(page, 20)
     except Exception as e:
         return jsonresp({
             "code": -4,

@@ -135,8 +135,14 @@ def load_user(user_id):
 # 建表
 def create_table():
     db.connect()
-    db.create_tables([User,Comment])
-
+    db.create_tables([User,Novel,Volume,Tag,NovelTag,NovelSubscribe,Comment,CommentLike,UserMessage])
+    User.create(username="baka",password="pantsu",lv=2,mail="admin@admin.com")
+    Novel.create(title="胖次群的奇妙日常",author="everybody",cover="暂时木有",ended=1,volumes="[1]")
+    Volume.create(
+        novel=1,
+        title="你以为这是开始？其实这是结束daze",
+        chapters=__import__("json").dumps(["蚊子的肛与被肛"]),
+        )
 
 if __name__ == '__main__':
     create_table()

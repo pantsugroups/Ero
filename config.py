@@ -6,7 +6,7 @@ WEB_ADDRESS = "0.0.0.0"
 
 
 # 数据库配置
-DB_PATH = "novel.db"
+DB_PATH = "F:\\NOW\Ero\\app\\novelnovel.db"
 
 
 # DEBUG == False时下列才有效

@@ -1,20 +1,60 @@
 # -*- coding: utf-8 -*-
-from flask import render_template, redirect, request, url_for, flash
-from flask_login import login_user, logout_user, login_required
-from .. import models
+import sys
+from config import *
 
+from flask import render_template, redirect, request, url_for, flash
+from flask_login import current_user, login_required
+from .. import models
+from ..utils import *
 from . import comment
-@comment.route("/list")
-@comment.route("/list/<int:page>")
-@login_required
-def commit_list(page=1):
-    pass
+@comment.route("/list/<int:cid>")
+@comment.route("/list/<int:cid>/<int:page>")
+def commit_list(cid = 0,page=1):
+    if cid is 0 or cid <0:
+        return jsonresp({"code": -2, "msg": "缺少参数"})
+
+    try:
+        items = models.Comment\
+            .select()\
+            .where(models.Comment.cid == cid)\
+            .paginate(page, 20)
+    except Exception as e:
+        return jsonresp({"code": -4, "msg": "内部错误", "error": str(e) if CONFIG_DEBUG else ""})
+    result = query_to_list(items)
+    return jsonresp({
+        "code": 0,
+        "msg": "成功。",
+        "data": {"novel": result}
+    })
 
 # 已完成
-@comment.route("/post",methods=['POST'])
+@comment.route("/post/<int:nid>",methods=['POST'])
 @login_required
-def post_comment():
-    pass
+def post_comment(nid):
+    content = request.form["content"]
+    rep_cid = request.form['rep_cid']
+    if nid is 0 or nid <0 or not content:
+        return jsonresp({"code": -2, "msg": "缺少参数"})
+    try:
+        if rep_cid:
+            models.Comment.create(
+                novel=nid,
+                user=current_user.id,
+                content=content,
+                rep_cid=rep_cid
+            )
+        else:
+            models.Comment.create(
+                novel=nid,
+                user=current_user.id,
+                content=content
+            )
+    except Exception as e:
+        return jsonresp({"code": -4, "msg": "内部错误", "error": str(e) if CONFIG_DEBUG else ""})
+    return jsonresp({
+        "code": 0,
+        "msg": "成功。"
+    })
 
 # 点赞，已完成
 @comment.route("/like_comment")
