@@ -29,6 +29,17 @@ def download(vid, auto=""):
                  "code":-8,
                  "msg":"下载点数不足"
              })
+        models\
+            .User\
+            .update(
+            downloads=models
+                          .User\
+                          .downloads-1)\
+            .where(
+                models\
+                    .User\
+                    .id == current_user.id
+        )
         results = {"token": token,
                    "hash":  random_string(32),
                    "name":  models.Volume.get(models.Volume.id == vid).title }
