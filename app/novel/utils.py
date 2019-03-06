@@ -2,12 +2,18 @@
 
 import datetime
 import json
-import urllib
-
+import hashlib
+import time
+from config import *
 from flask import Response, flash
+import string,random
+def random_string(long):
+    return ''.join(random.sample(string.ascii_letters + string.digits, long))
 
-
-
+def generate_token(_hash):
+    ts = int(time.time()) // 600
+    raw = str(ts) + _hash + SALT
+    return hashlib.md5(raw.encode("ascii")).hexdigest()
 
 ## 字符串转字典
 def str_to_dict(dict_str):

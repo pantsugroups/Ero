@@ -8,7 +8,7 @@ import json
 from datetime import datetime
 from hashlib import md5
 from app.novel import login_manager
-
+from app.novel import utils
 db = SqliteDatabase(DB_PATH) if CONFIG_DEBUG else MySQLDatabase(host=MYSQL_HOST, database=MYSQL_DATABASE,
                                                                 user=MYSQL_USERNAME, password=MYSQL_PASSWD, port=3306)
 
@@ -82,7 +82,7 @@ class User(BaseModel):
     lv = IntegerField(default=0)# 0为未验证，1为普通，2为管理员
     hito = TextField(null=True)
     def verify_password(self, raw_password):
-        return md5(raw_password) == self.password
+        return md5(raw_password.encode()).hexdigest() == self.password
 
 class NovelSubscribe(BaseModel):
     novel = ForeignKeyField(Novel, related_name="novelsubscribe")
@@ -136,8 +136,19 @@ def load_user(user_id):
 def create_table():
     db.connect()
     db.create_tables([User,Novel,Volume,Tag,NovelTag,NovelSubscribe,Comment,CommentLike,UserMessage])
-    User.create(username="baka",password="pantsu",lv=2,mail="admin@admin.com")
-    Novel.create(title="胖次群的奇妙日常",author="everybody",cover="暂时木有",ended=1,volumes="[1]")
+    User.create(
+        username="baka",
+        password= md5("pantsu".encode()).hexdigest(),
+        lv=2,
+        mail="admin@admin.com"
+    )
+    Novel.create(
+        title="胖次群的奇妙日常",
+        author="everybody",
+        cover="暂时木有",
+        ended=1,
+        volumes="[1]"
+    )
     Volume.create(
         novel=1,
         title="你以为这是开始？其实这是结束daze",

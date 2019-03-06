@@ -6,7 +6,7 @@ WEB_ADDRESS = "0.0.0.0"
 
 
 # 数据库配置
-DB_PATH = "F:\\NOW\Ero\\app\\novelnovel.db"
+DB_PATH = "F:\\NOW\Ero\\novel.db"
 
 
 # DEBUG == False时下列才有效
@@ -20,7 +20,7 @@ SALT = "bakabie"
 ACCESS_KEY = "BAKABIE9BIE"
 
 # 储存类
-DL_SAVE_ADDRESS = "/NOVELS" #务必修改为DL服务器储存地址的全路径！！！！！
+DOWNLOAD_REMOTE_SERVER = "/NOVELS" #务必修改为DL服务器储存地址的全路径！！！！！
 
 # 错误代码表
 '''
@@ -28,6 +28,7 @@ DL_SAVE_ADDRESS = "/NOVELS" #务必修改为DL服务器储存地址的全路径�
 -1,用户名或者密码错误
 -2,缺少参数
 -4,内部错误（执行SQL操作时出错）
-
+-8,下载点数不足
+-10,权限不足
 
 '''

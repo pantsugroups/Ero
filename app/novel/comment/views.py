@@ -57,7 +57,7 @@ def post_comment(nid):
     })
 
 # 点赞，已完成
-@comment.route("/like_comment/<int:cid")
+@comment.route("/like_comment/<int:cid>")
 @login_required
 def like_comment(cid):
     try:
