@@ -83,6 +83,17 @@ class User(BaseModel):
     hito = TextField(null=True)
     def verify_password(self, raw_password):
         return md5(raw_password.encode()).hexdigest() == self.password
+    def get_id(self):
+        return self.id
+
+    def is_active(self):  # line 37
+        return True
+
+    def is_anonymous(self):
+        return False
+
+    def is_authenticated(self):
+        return True
 
 class NovelSubscribe(BaseModel):
     novel = ForeignKeyField(Novel, related_name="novelsubscribe")

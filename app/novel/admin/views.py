@@ -33,47 +33,95 @@ def novel_delete(nid):
     return jsonresp({"code": 0, "msg": "成功。", })
 
 # 已完成
-@admin.route("/comment_delete")
+@admin.route("/comment_delete/<int:cid>")
 @login_required
-def comment_delete(User):
-    pass
+def comment_delete(cid):
+    if not cid:
+        return jsonresp({"code": -2, "msg": "缺少参数"})
+    try:
+        models.Comment.get(models.Comment.cid == cid).delete_instance()
+    except Exception as e:
+        return jsonresp({"code": -4, "msg": "内部错误", "error": str(e) if CONFIG_DEBUG else ""})
+    return jsonresp({"code": 0, "msg": "成功。", })
 
-
-@admin.route('/novel_append_volume')
+@admin.route('/novel_append_volume/<int:nid>',methods=['POST'])
 @login_required
-def novel_append_volume(User):
-    pass
+def novel_append_volume(nid):
+    vid = request.form['vid']
+    if not nid or not vid:
+        return jsonresp({"code": -2, "msg": "缺少参数"})
+    try:
+        l = json.loads(
+            models.Novel.get(
+                models.Novel.id == nid
+            ).volumes
+        )
+        l.appent(vid)
+        models.Novel.update(
+            volumes = json.dumps(l)
+        ).where(
+            models.Novel.id == nid
+        ).execute()
+    except Exception as e:
+        return jsonresp({"code": -4, "msg": "内部错误", "error": str(e) if CONFIG_DEBUG else ""})
+    return jsonresp({"code": 0, "msg": "成功。", })
 
 
-@admin.route("/novel_info_change", methods=["POST"])
+@admin.route("/novel_info_change/<int:nid>", methods=["POST"])
 @login_required
-def novel_change_info(User):
-    pass
-
+def novel_change_info(nid):
+    description = request.form['description']
+    if not description:
+        return jsonresp({"code": -2, "msg": "缺少参数"})
+    try:
+        models.Novel.update(
+            description=description
+        ).where(
+            models.Novel.id == nid
+        ).execute()
+    except Exception as e:
+        return jsonresp({"code": -4, "msg": "内部错误", "error": str(e) if CONFIG_DEBUG else ""})
+    return jsonresp({"code": 0, "msg": "成功。", })
 
 @admin.route("/novel_create", methods=["POST"])
 @login_required
-def novel_create(User):
-    pass
-
+def novel_create():
+    title = request.form["title"]
+    author = request.form['author']
+    cover = request.form['cover']
+    description = request.form['description']
+    tags = request.form["tags"]
+    if not title or not author or not cover or not description or not tags:
+        return jsonresp({"code": -2, "msg": "缺少参数"})
+    try:
+        models.Novel.create(
+            title=title,
+            author=author,
+            cover=cover,
+            description=description,
+            tags=tags
+        )
+    except Exception as e:
+        return jsonresp({"code": -4, "msg": "内部错误", "error": str(e) if CONFIG_DEBUG else ""})
+    return jsonresp({"code": 0, "msg": "成功。", })
 
 @admin.route("/volume_create", methods=["POST"])
 @login_required
-def volume_create(User):
+def volume_create():
     pass
 
 
 
 @admin.route("/tag_create")
 @login_required
-def tag_create(User):
+def tag_create():
     pass
 
 
 @admin.route("/tag_list")
 @admin.route("/tag_list/<int:page>")
 @login_required
-def tag_list(User, page=1):
+def tag_list( page=1):
     pass
 
 

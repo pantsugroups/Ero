@@ -130,7 +130,20 @@ def subscribe(nid):
     if not nid:
         return jsonresp({"code": -2, "msg": "缺少参数"})
     try:
-        models.NovelSubscribe.create(novel=nid,user=current_user.id)
+        models\
+            .NovelSubscribe\
+            .create(
+            novel=nid,
+            user=current_user.id
+        )
+        models\
+            .Novel\
+            .update(subscribed = models\
+                    .Novel\
+                    .subscribed + 1)\
+            .where(models
+                   .Novel.id == nid)\
+            .execute()
     except Exception as e:
         return jsonresp({
             "code": -4,

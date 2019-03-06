@@ -44,7 +44,7 @@ def describe_change():
     try:
         models.User\
             .update(bio=bio)\
-            .where(models.User.id == current_user.id)
+            .where(models.User.id == current_user.id).execute()
     except Exception as e:
         return jsonresp({"code": -4, "msg": "内部错误", "error": str(e) if CONFIG_DEBUG else ""})
     return jsonresp({
