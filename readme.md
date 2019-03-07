@@ -188,6 +188,68 @@ page为页数，每页请求20个。
 订阅小说。
 
 ### 文件类
+上传？下载？
+####  stream/upload_cover
+请求方式：POST
+
+上传封面or头像之类的东西。
+
+返回样例:
+```json
+    {
+            "coded":0,
+            "msg":"成功",
+            "downloads":"link"
+        }
+```
+#### stream/upload_volume
+请求方式：POST
+
+上传分卷，不能使用rar之类的东西
+
+返回样例:
+```json
+    {
+            "coded":0,
+            "msg":"成功",
+            "downloads":"link"
+        }
+```
+
+#### 
+
+#### stream/download/<vid>
+请求方式：GET
+
+参数： servers   服务器节点
+
+在app/conf/config.py中配置
+
+执行后会扣除下载点数之后，返回
+
+真实下载地址请请求拼接后的返回结果。
+
+```json
+          {
+                   "token": "token",
+                   "hash":  "xxxx",
+                   "name":  "xxxxx",
+                   "server":"xxxx"
+           }
+```
+ 
+#### /<file>
+请求方式：GET
+参数：
+  - token
+  - hash
+  - name
+  
+都是上边那个的参数hhhh
+
+
+主站下载接口，请在 app/conf/config 中配置该地址的路由。
+
 
 ### 用户类
 #### user/info/<uid>
@@ -209,7 +271,7 @@ page为页数，每页请求20个。
                           "downloads":"xxx",
                           "pushmail":"xxx",
                           "lv":"xxx",
-                          "hito":"xxx",
+                          "hito":"xxx"
                           
                           }}
     }

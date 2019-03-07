@@ -41,7 +41,7 @@ def upload_cover():
             "msg":"成功",
             "downloads":upload_path
         })
-@stream.route('/upload_', methods=['POST'])
+@stream.route('/upload_volume', methods=['POST'])
 @login_required
 def upload_volume():
     if request.method == 'POST':
@@ -58,8 +58,7 @@ def upload_volume():
             "downloads":upload_path
         })
 @stream.route("/download/<vid>")
-@stream.route("/download/<vid>/<auto>")
-def download(vid, auto=""):
+def download(vid ):
     servers = int(request.args.get("servers"))
     if not vid:
         return jsonresp({"code": -2, "msg": "缺少参数"})

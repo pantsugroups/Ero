@@ -8,6 +8,7 @@ login_manager.login_view = 'auth.login'
 def create(app):
 
     app.config['SECRET_KEY'] = '123456'
+    app.config['MAX_CONTENT_LENGTH'] = 20 * 1024 * 1024
     login_manager.init_app(app)
     from .admin import admin as admin_blueprint
     app.register_blueprint(admin_blueprint, url_prefix="/admin")
