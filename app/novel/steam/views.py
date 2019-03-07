@@ -62,10 +62,10 @@ def download(vid ):
     servers = int(request.args.get("servers"))
     if not vid:
         return jsonresp({"code": -2, "msg": "缺少参数"})
-    if not servers or int(servers) > DOWNLOAD_REMOTE_SERVER:
-        servers = DOWNLOAD_REMOTE_SERVER[0]
+    if not servers or int(servers) > config.DOWNLOAD_REMOTE_SERVER:
+        servers = config.DOWNLOAD_REMOTE_SERVER[0]
     else:
-        servers = DOWNLOAD_REMOTE_SERVER[servers]
+        servers = config.DOWNLOAD_REMOTE_SERVER[servers]
     try:
         links = models.Volume.get(models.Volume.id == vid).files
         token = generate_token(links[links.rfind("/") + 1:])

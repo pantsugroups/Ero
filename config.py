@@ -19,8 +19,6 @@ MYSQL_PASSWD = "bakabie"
 SALT = "bakabie"
 ACCESS_KEY = "BAKABIE9BIE"
 
-# 储存类
-DOWNLOAD_REMOTE_SERVER = "/NOVELS" #务必修改为DL服务器储存地址的全路径！！！！！
 
 # 错误代码表
 '''
