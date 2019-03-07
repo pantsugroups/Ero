@@ -30,7 +30,7 @@ def novel_delete(nid):
         models.Novel.get(models.Novel.id == nid).delete_instance()
     except Exception as e:
         return jsonresp({"code": -4, "msg": "内部错误", "error": str(e) if CONFIG_DEBUG else ""})
-    return jsonresp({"code": 0, "msg": "成功。", })
+    return jsonresp({"code": 0, "msg": "成功。" })
 
 # 已完成
 @admin.route("/comment_delete/<int:cid>")
@@ -67,7 +67,7 @@ def novel_append_volume(nid):
     return jsonresp({"code": 0, "msg": "成功。", })
 
 
-@admin.route("/novel_info_change/<int:nid>", methods=["POST"])
+@admin.route("/novel_description_change/<int:nid>", methods=["POST"])
 @login_required
 def novel_change_info(nid):
     description = request.form['description']
@@ -105,10 +105,27 @@ def novel_create():
         return jsonresp({"code": -4, "msg": "内部错误", "error": str(e) if CONFIG_DEBUG else ""})
     return jsonresp({"code": 0, "msg": "成功。", })
 
-@admin.route("/volume_create", methods=["POST"])
+@admin.route("/volume_create/<int:nid>", methods=["POST"])
 @login_required
-def volume_create():
-    pass
+def volume_create(nid):
+    title = request.form['title']
+    chapters = request.form["chapters"]
+    files = request.form["files"]
+    if not nid or not chapters or not files or not title:
+        return jsonresp({"code": -2, "msg": "缺少参数"})
+    if type(__import__("json").loads(chapters)) is not list:
+        return jsonresp({"code": -2, "msg": "参数错误"})
+    try:
+        models.Volume.create(
+            novel = nid,
+            title = title,
+            chapters = chapters,
+            files = files
+        )
+    except Exception as e:
+        return jsonresp({"code": -4, "msg": "内部错误", "error": str(e) if CONFIG_DEBUG else ""})
+    return jsonresp({"code": 0, "msg": "成功。", })
+
 
 
 

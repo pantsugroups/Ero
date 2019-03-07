@@ -4,7 +4,7 @@ sys.path.append('../')
 from config import *
 from werkzeug.utils import secure_filename
 from flask import  request
-from flask_login import login_user, current_user, login_required
+from flask_login import  current_user, login_required
 from .. import models
 import time
 from ..conf import config
@@ -17,7 +17,7 @@ def sun_delete_schedule(token):
     if token in schedule:
         schedule.pop(token)
 
-@app.route("/schedule/get")
+@stream.route("/schedule/get")
 def get_schedule():
     global schedule
     token = request.args.get("token")
@@ -41,9 +41,9 @@ def upload_cover():
             "msg":"成功",
             "downloads":upload_path
         })
-@stream.route('/upload_novel', methods=['POST'])
+@stream.route('/upload_', methods=['POST'])
 @login_required
-def upload_novel():
+def upload_volume():
     if request.method == 'POST':
         title = request.form['title']
         f = request.files['file']

@@ -32,7 +32,7 @@ def commit_list(cid = 0,page=1):
 @login_required
 def post_comment(nid):
     content = request.form["content"]
-    rep_cid = request.form['rep_cid']
+    rep_cid = request.args.get('rep_cid')
     if nid is 0 or nid <0 or not content:
         return jsonresp({"code": -2, "msg": "缺少参数"})
     try:
@@ -62,6 +62,9 @@ def post_comment(nid):
 def like_comment(cid):
     try:
         models.CommentLike.create(comment=cid,user=current_user.id)
+        models.Comment.update(
+            liked=models.Comment.liked+1
+        ).where(models.Comment.cid == cid).execute()
     except Exception as e:
         return jsonresp({"code": -4, "msg": "内部错误", "error": str(e) if CONFIG_DEBUG else ""})
     return jsonresp({
@@ -75,6 +78,9 @@ def like_comment(cid):
 def dislike_comment(cid):
     try:
         models.CommentLike.get(comment=cid).delete_instance()
+        models.Comment.update(
+            liked=models.Comment.liked - 1
+        ).where(models.Comment.cid == cid).execute()
     except Exception as e:
         return jsonresp({"code": -4, "msg": "内部错误", "error": str(e) if CONFIG_DEBUG else ""})
     return jsonresp({

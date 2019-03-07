@@ -76,7 +76,7 @@ def link_qq(User):
 # 已完成
 @user.route("/change_avatar",methods=["POST"])
 @login_required
-def setting(User):
+def setting():
     avatar = request.form['avatar']
     if not avatar:
         return jsonresp({"code": -2, "msg": "缺少参数"})

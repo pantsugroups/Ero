@@ -11,8 +11,10 @@ from . import auth
 
 
 
-@auth.route('/login', methods=[ 'POST'])
+@auth.route('/login', methods=[ 'GET','POST'])
 def login():
+    if request.method == 'GET':
+        return jsonresp({"code":-16,"msg":"请先登陆"})
     username = request.form["user"]
     passwd = request.form['passwd']
     if not username or not passwd:
@@ -48,5 +50,4 @@ def verify():
 @login_required
 def logout():
     logout_user()
-    flash(u'您已退出登录')
-    return redirect(url_for('auth.login'))
+    return jsonresp({"code": 0, "msg": "成功。", })

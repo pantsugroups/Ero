@@ -28,7 +28,7 @@ def index(page=1):
         "msg": "成功。",
         "data": {"novels": result}
     })
-@novel.route("/api/novel/detail/<int:nid>")
+@novel.route("/detail/<int:nid>")
 def detail(nid=0):
     if nid ==0:
         return jsonresp({"code": -2, "msg": "缺少参数"})
@@ -79,8 +79,7 @@ def search(text="",page=1 ):
         "data": {"novels": result}
     })
 @novel.route("/volumes/<int:nid>")
-@novel.route("/volumes/<int:nid>/<int:page>")
-def volumes(nid=0,page=1):
+def volumes(nid=0):
     if nid ==0:
         return jsonresp({"code": -2, "msg": "缺少参数"})
     try:
