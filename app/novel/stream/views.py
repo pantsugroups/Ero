@@ -11,7 +11,6 @@ from ..conf import config
 from . import stream
 from ..utils import *
 import threading
-from sys import version_info
 def sun_delete_schedule(token):
     time.sleep(60)
     if token in schedule:
@@ -34,7 +33,7 @@ def upload_cover():
     if request.method == 'POST':
         f = request.files['file']
         ext = f.filename[f.filename.find("."):]
-        upload_path = os.path.join('/root/Ero/static/cover',str(time.time())+ext)
+        upload_path = os.path.join('/root/Ero','static/cover',str(time.time())+ext)
         f.save(upload_path)
         return jsonresp({
             "coded":0,
@@ -55,7 +54,7 @@ def upload_volume():
         return jsonresp({
             "coded":0,
             "msg":"成功",
-            "downloads":upload_path
+            "downloads":secure_filename(title)+ext
         })
 @stream.route("/download/<vid>")
 @login_required

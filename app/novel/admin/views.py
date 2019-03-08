@@ -56,7 +56,7 @@ def novel_append_volume(nid):
                 models.Novel.id == nid
             ).volumes
         )
-        l.appent(vid)
+        l.append(vid)
         models.Novel.update(
             volumes = json.dumps(l)
         ).where(
@@ -116,15 +116,15 @@ def volume_create(nid):
     if type(__import__("json").loads(chapters)) is not list:
         return jsonresp({"code": -2, "msg": "参数错误"})
     try:
-        models.Volume.create(
+        vid = models.Volume.create(
             novel = nid,
             title = title,
             chapters = chapters,
             files = files
-        )
+        ).id
     except Exception as e:
         return jsonresp({"code": -4, "msg": "内部错误", "error": str(e) if CONFIG_DEBUG else ""})
-    return jsonresp({"code": 0, "msg": "成功。", })
+    return jsonresp({"code": 0, "msg": "成功。","data":{"vid":vid} })
 
 
 
