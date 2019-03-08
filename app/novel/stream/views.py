@@ -109,7 +109,7 @@ def manage(file):
     name = request.args.get("name")
     if token != generate_token(file) or not rand or len(rand) <= 16:
         return "Permission denid!", 403
-    obj = os.path.join(os.getcwd(), config.DL_SAVE_ADDRESS, file)
+    obj = os.path.join(config.DL_SAVE_ADDRESS, file)
     if os.path.isfile(obj):
         def send_():
             with open(obj, "rb") as target_file:

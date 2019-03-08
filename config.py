@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 
 CONFIG_DEBUG = True
+ISMYSQL = True
 WEB_PORT = 5000
 WEB_ADDRESS = "0.0.0.0"
 
 
 # 数据库配置
-DB_PATH = "F:\\NOW\Ero\\novel.db"
+DB_PATH = "/root/Ero/novel.db"
 
 
 # DEBUG == False时下列才有效
