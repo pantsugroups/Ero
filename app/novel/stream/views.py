@@ -68,7 +68,7 @@ def download(vid ):
         servers = config.DOWNLOAD_REMOTE_SERVER[int(servers)]
     try:
         links = models.Volume.get(models.Volume.id == vid).files
-        token = generate_token(links[links.rfind("/") + 1:])
+        token = generate_token(links)
         if models.User.get(models.User.id == current_user.id).downloads <=0:
              return jsonresp({
                  "code":-8,
