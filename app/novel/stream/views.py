@@ -33,8 +33,8 @@ def get_schedule():
 def upload_cover():
     if request.method == 'POST':
         f = request.files['file']
-        ext = f.filename[:f.filename.find(".")]
-        upload_path = os.path.join('static/cover',str(time.time())+ext)
+        ext = f.filename[f.filename.find("."):]
+        upload_path = os.path.join(os.path.dirname(__file__),'static/cover',str(time.time())+ext)
         f.save(upload_path)
         return jsonresp({
             "coded":0,
@@ -49,8 +49,8 @@ def upload_volume():
         f = request.files['file']
         if not title or not f:
             return jsonresp({"code": -2, "msg": "缺少参数"})
-        ext = f.filename[:f.filename.find(".")]
-        upload_path = os.path.join('static/cover',secure_filename(title)+ext)
+        ext = f.filename[f.filename.find("."):]
+        upload_path = os.path.join(os.path.dirname(__file__),'static/cover',secure_filename(title)+ext)
         f.save(upload_path)
         return jsonresp({
             "coded":0,
