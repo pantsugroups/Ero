@@ -4,7 +4,7 @@ from config import CONFIG_DEBUG
 sys.path.append('../')
 from flask import  redirect, request, url_for
 from flask_login import login_user, logout_user, login_required
-from .. import models
+from app import models
 from ..utils import *
 from ..conf.config import *
 from . import auth

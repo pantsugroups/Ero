@@ -5,7 +5,7 @@ from config import *
 from werkzeug.utils import secure_filename
 from flask import  request
 from flask_login import  current_user, login_required
-from .. import models
+from app import models
 import time
 from ..conf import config
 from . import stream

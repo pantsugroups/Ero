@@ -7,9 +7,9 @@ from peewee import *
 import json
 from datetime import datetime
 from hashlib import md5
-from app.novel import login_manager
+from app import login_manager
 from app.novel import utils
-db = SqliteDatabase(DB_PATH) if ISMYSQL else MySQLDatabase(host=MYSQL_HOST, database=MYSQL_DATABASE,
+db = SqliteDatabase(DB_PATH) if not ISMYSQL else MySQLDatabase(host=MYSQL_HOST, database=MYSQL_DATABASE,
                                                                 user=MYSQL_USERNAME, password=MYSQL_PASSWD, port=3306)
 
 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from flask import render_template, redirect, request, url_for, flash
 from flask_login import current_user, login_required
-from .. import models
+from app import models
 from ..utils import *
 from . import admin
 

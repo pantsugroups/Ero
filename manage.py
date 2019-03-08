@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 from flask import Flask
 from flask_cors import *
-from app.novel import create
-from app.novel.models import create_table
+from app import create
+from app.models import create_table
 from config import *
 import sys
 app = Flask(__name__)

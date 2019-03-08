@@ -5,7 +5,7 @@ from config import CONFIG_DEBUG
 from flask import request
 from flask_login import login_required,current_user
 from json import dumps,loads
-from .. import models
+from app import models
 from ..utils import *
 from ..conf.config import *
 from . import novel

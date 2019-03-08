@@ -4,7 +4,7 @@ sys.path.append('../')
 from config import CONFIG_DEBUG
 from flask import render_template, redirect, request, url_for, flash
 from flask_login import login_required,current_user
-from .. import models
+from app import models
 from . import user
 from ..utils import *
 @user.route("/info")
