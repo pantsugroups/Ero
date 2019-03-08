@@ -89,7 +89,7 @@ def volumes(nid=0):
         for i in items:
             obj =models.Volume.get(models.Volume.id == i)
             results.append({
-                "vid":obj.vid,
+                "vid":obj.id,
                 "title":obj.title,
                 "chapters":obj.chapters,
                 "update_time":obj.update_time
