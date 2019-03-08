@@ -62,7 +62,7 @@ def download(vid ):
     servers = request.args.get("servers")
     if not vid:
         return jsonresp({"code": -2, "msg": "缺少参数"})
-    if not servers or int(servers) > config.DOWNLOAD_REMOTE_SERVER:
+    if not servers or int(servers) > len(config.DOWNLOAD_REMOTE_SERVER):
         servers = config.DOWNLOAD_REMOTE_SERVER[0]
     else:
         servers = config.DOWNLOAD_REMOTE_SERVER[int(servers)]
