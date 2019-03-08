@@ -45,7 +45,7 @@ def upload_cover():
 @login_required
 def upload_volume():
     if request.method == 'POST':
-        title = request.form['title']
+        title = request.args.get('title')
         f = request.files['file']
         if not title or not f:
             return jsonresp({"code": -2, "msg": "缺少参数"})
@@ -58,6 +58,7 @@ def upload_volume():
             "downloads":upload_path
         })
 @stream.route("/download/<vid>")
+@login_required
 def download(vid ):
     servers = int(request.args.get("servers"))
     if not vid:
@@ -129,12 +130,10 @@ def manage(file):
         response = Response(
             send_(), content_type='application/octet-stream')
         if name:
-            if version_info.major != 2:
-                from urllib.parse import quote
-                name = quote(name)
-            else:
-                import urllib
-                name = urllib.quote(name)
+
+            from urllib.parse import quote
+            name = quote(name)
+
             response.headers["Content-Disposition"] = 'attachment; filename="{}";'.format(
                 name.encode("utf-8"))
             response.headers['Content-Disposition'] += "; filename*=utf-8''{}".format(
