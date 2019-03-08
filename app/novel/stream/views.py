@@ -11,6 +11,7 @@ from ..conf import config
 from . import stream
 from ..utils import *
 import threading
+schedule = {}
 def sun_delete_schedule(token):
     time.sleep(60)
     if token in schedule:
