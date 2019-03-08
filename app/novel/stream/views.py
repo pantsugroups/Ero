@@ -88,6 +88,7 @@ def download(vid ):
         results = {"token": token,
                    "hash":  random_string(32),
                    "name":  models.Volume.get(models.Volume.id == vid).title,
+                   "file":models.Volume.get(models.Volume.id == vid).files,
                    "server":servers}
     except Exception as e:
         return jsonresp({
