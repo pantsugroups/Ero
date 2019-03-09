@@ -4,6 +4,7 @@ from flask_cors import *
 from app import create
 from app.models import create_table
 from config import *
+
 import sys
 app = Flask(__name__)
 # from app import novel

@@ -33,4 +33,6 @@ def create(app):
 
     from .galgame.index import index as g_index_bluepring
     app.register_blueprint(g_index_bluepring, url_prefix="/game/index")
+    from .galgame.admin import admin as g_admin_bluepring
+    app.register_blueprint(g_admin_bluepring, url_prefix="/game/admin")
     return app

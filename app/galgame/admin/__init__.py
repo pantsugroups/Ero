@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from flask import Blueprint
 
-admin = Blueprint('admin', __name__)
+admin = Blueprint('novel_admin', __name__)
 
 from . import views

@@ -10,7 +10,7 @@ from . import admin
 def create():
     if current_user.lv is not 2:
         return "没权限",403
-    pass
+    return render_template('game/editor.html',title="",j_title="",tag="",cover="",content="",primary_str="")
 
 @admin.route("/change/<int:id>",methods = ["GET","POST"])
 @login_required

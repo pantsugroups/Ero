@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+    #txt{
+        width: 80%;
+        height: 500px;
+    }
+    </style>
+</head>
+<body>
+
+<form action="{{ interface }}" method="post">
+    <label>文章标题：</label>
+    <input type="text" name="title" value="{{ title }}">
+    <br>
+    <label>日文标题：</label>
+    <input type="text" name="j_title" value="{{ j_title }}">
+    <br>
+    <label>相关标签：</label>
+    <input type="text" name="tag" value="{{ tag }}">
+    <br>
+    <label>选择封面：</label>
+    <input type="button" value="选择文件" onclick="uploadPic();"/>
+    <input type="hidden" name="cover" value="{{ cover }}">
+    <br>
+    <label>内容输入：</label>
+    <textarea id="txt" name="content" cols="30" rows="4">{{ content }}</textarea>
+    <br>
+    <label>隐藏内容：</label>
+    <textarea id= "txt" name="primary_str" cols="30" rows="4">{{ primary_str }}</textarea>
+    <br>
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+<script type="javascript">
+    function uploadPic() {
+    var form = document.getElementById('upload'),
+    formData = new FormData(form);
+    $.ajax({
+        url:"/game/upload",
+        type:"post",
+        data:formData,
+        processData:false,
+        contentType:false,
+        success:function(res){
+            if(res){
+                alert("上传成功！");
+        }
+    console.log(res);
+
+   },
+   error:function(err){
+
+   }
+
+  })
+
+ }
+    </script>
+</html>
