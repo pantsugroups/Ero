@@ -7,7 +7,7 @@ WEB_ADDRESS = "0.0.0.0"
 
 
 # 数据库配置
-LOCAL_PATH = '/root/Ero/'
+LOCAL_PATH = 'F:\\NOW\Ero\\'
 DB_PATH = LOCAL_PATH + "novel.db"
 
 

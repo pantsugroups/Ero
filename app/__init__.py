@@ -15,16 +15,22 @@ def create(app):
     from .novel.admin import admin as admin_blueprint
     app.register_blueprint(admin_blueprint, url_prefix="/light/admin")
 
-    from .novel.stream import stream as stream_blurprint
-    app.register_blueprint(stream_blurprint, url_prefix="/light/stream")
+    from .novel.stream import stream as n_stream_blurprint
+    app.register_blueprint(n_stream_blurprint, url_prefix="/light/stream")
 
 
-    from .novel.novel import novel as novel_blueprint
-    app.register_blueprint(novel_blueprint,url_prefix="/light/novel")
+    from .novel.novel import novel as n_novel_blueprint
+    app.register_blueprint(n_novel_blueprint,url_prefix="/light/novel")
 
-    from .novel.user import user as user_blueprint
-    app.register_blueprint(user_blueprint, url_prefix="/light/user")
+    from .novel.user import user as n_user_blueprint
+    app.register_blueprint(n_user_blueprint, url_prefix="/light/user")
 
-    from .novel.comment import comment as comment_blueprint
-    app.register_blueprint(comment_blueprint, url_prefix="/light/comment")
+    from .novel.comment import comment as n_comment_blueprint
+    app.register_blueprint(n_comment_blueprint, url_prefix="/light/comment")
+
+
+
+
+    from .galgame.index import index as g_index_bluepring
+    app.register_blueprint(g_index_bluepring, url_prefix="/game/index")
     return app

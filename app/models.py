@@ -41,6 +41,17 @@ class Novel(BaseModel):
     hide = IntegerField(default=0)# 0 为不隐藏
     # status = IntegerField(defualt=0)# 0 为未通过，1为已通过
 
+class Game(BaseModel):
+    id =  PrimaryKeyField()
+    cover = TextField()
+    title = TextField()
+    j_title = TextField()
+    content = TextField()
+    post_time = DateTimeField(default=datetime.now)
+    tag = TextField()
+    primary_str = TextField()
+
+
 class Volume(BaseModel):
     id = PrimaryKeyField()
     novel = ForeignKeyField(Novel, related_name="volume")
@@ -84,13 +95,13 @@ class User(BaseModel):
         return md5(raw_password.encode()).hexdigest() == self.password
     def get_id(self):
         return self.id
-
+    @staticmethod
     def is_active(self):  # line 37
         return True
-
+    @staticmethod
     def is_anonymous(self):
         return False
-
+    @staticmethod
     def is_authenticated(self):
         return True
 
@@ -145,7 +156,7 @@ def load_user(user_id):
 # 建表
 def create_table():
     db.connect()
-    db.create_tables([User,Novel,Volume,Tag,NovelTag,NovelSubscribe,Comment,CommentLike,UserMessage])
+    db.create_tables([User,Novel,Volume,Tag,NovelTag,NovelSubscribe,Comment,CommentLike,UserMessage,Game])
     User.create(
         username="baka",
         password= md5("pantsu".encode()).hexdigest(),
@@ -164,6 +175,14 @@ def create_table():
         title="你以为这是开始？其实这是结束daze",
         chapters=__import__("json").dumps(["蚊子的肛与被肛"]),
         )
+    Game.create(
+        title="Hello Lady",
+        j_title="ハロー・レディ",
+        content="test",
+        cover="/static/game/gameCover/hellolady.jpg",
+        tag="纯爱/Steam/龙傲天",
+        primary_str="null"
+    )
 
 if __name__ == '__main__':
     create_table()

@@ -39,7 +39,7 @@ def upload_cover():
         return jsonresp({
             "coded":0,
             "msg":"成功",
-            "downloads":upload_path
+            "downloads":'static/cover/'+str(time.time())+ext
         })
 @stream.route('/upload_volume', methods=['POST'])
 @login_required

@@ -1,0 +1,84 @@
+#main {
+	margin-top: 9em;
+}
+#main div div a{
+    color: #717171;
+    margin-bottom: 0.2em;
+    display: block;
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+	text-decoration: none
+}
+#main div div a:hover {
+    color: #15BEF1;
+	text-decoration: none;
+}
+#main div div p{
+    margin: 0.6em;
+    line-height: 1.5em;
+    color: #acaaaa;
+}
+#main div div div button{
+	color: #717171;
+}
+#main {
+  padding-right: 0px;
+  padding-left: 0px;
+  margin-right: auto;
+  margin-left: auto;
+}
+body{
+	font-size:28px;
+}
+h1 {
+	font-size: 72px;
+}
+h3 {
+	font-size: 48px;
+}
+@media (min-width:768px){
+	body{
+	font-size:35px;
+	}
+	h1 {
+		font-size: 90px;
+	}
+	h3 {
+		font-size: 60px;
+	}
+}
+@media (min-width: 992px) {
+	body{
+	font-size:14px;
+	}
+	h1 {
+		font-size: 36px;
+	}
+	h3 {
+		font-size: 24px;
+	}
+}
+@media (min-width: 1200px) {
+	body{
+	font-size:14px;
+	}
+	h1 {
+		font-size: 36px;
+	}
+	h3 {
+		font-size: 24px;
+	}
+}
+.badge {
+    display: inline-block;
+    padding: 0.25em 0.4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: 0.25rem;
+}
