@@ -14,4 +14,4 @@ app = create(app)
 if __name__ == "__main__":
     if len(sys.argv) is not 1:create_table()
 
-    app.run(port=WEB_PORT,host=WEB_ADDRESS)
+    app.run(port=WEB_PORT,host=WEB_ADDRESS,debug=True)

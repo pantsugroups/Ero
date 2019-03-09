@@ -3,13 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
     <style>
     #txt{
         width: 80%;
         height: 500px;
     }
     </style>
+    <script >
+ function uploadPic() {
+    var form = document.getElementById('file'),
+    formData = new FormData();
+    console.log(form.files);
+    formData.append("file",form.files[0]);
+    $.ajax({
+        url:"/game/admin/upload",
+        type:"post",
+        data:formData,
+        processData:false,
+        contentType:false,
+        success:function(res){
+            if(res){
+                console.log(res);
+                $("#cover").val(res["downloads"])
+
+                alert("上传成功！"+res["downloads"]);
+        }
+   },
+   error:function(err){
+        alert("上传失败！")
+   }
+
+  })
+ }
+</script>
 </head>
 <body>
 
@@ -24,8 +51,10 @@
     <input type="text" name="tag" value="{{ tag }}">
     <br>
     <label>选择封面：</label>
-    <input type="button" value="选择文件" onclick="uploadPic();"/>
-    <input type="hidden" name="cover" value="{{ cover }}">
+    <input id="file" type="file" name="file"/>
+
+    <input type="button" value="上传" onclick="uploadPic();"/>
+    <input type="hidden" id="cover" name="cover" value="{{ cover }}">
     <br>
     <label>内容输入：</label>
     <textarea id="txt" name="content" cols="30" rows="4">{{ content }}</textarea>
@@ -37,29 +66,5 @@
 </form>
 
 </body>
-<script type="javascript">
-    function uploadPic() {
-    var form = document.getElementById('upload'),
-    formData = new FormData(form);
-    $.ajax({
-        url:"/game/upload",
-        type:"post",
-        data:formData,
-        processData:false,
-        contentType:false,
-        success:function(res){
-            if(res){
-                alert("上传成功！");
-        }
-    console.log(res);
 
-   },
-   error:function(err){
-
-   }
-
-  })
-
- }
-    </script>
 </html>
