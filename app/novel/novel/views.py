@@ -6,7 +6,7 @@ from flask import request
 from flask_login import login_required,current_user
 from json import dumps,loads
 from app import models
-from ..utils import *
+from app.utils import *
 from ..conf.config import *
 from . import novel
 @novel.route("/")

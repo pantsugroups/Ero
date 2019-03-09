@@ -5,8 +5,8 @@ sys.path.append('../')
 from flask import  redirect, request, url_for
 from flask_login import login_user, logout_user, login_required
 from app import models
-from ..utils import *
-from ..conf.config import *
+from app.utils import *
+from config import *
 from . import auth
 
 

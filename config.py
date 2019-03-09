@@ -7,7 +7,8 @@ WEB_ADDRESS = "0.0.0.0"
 
 
 # 数据库配置
-DB_PATH = "/root/Ero/novel.db"
+LOCAL_PATH = '/root/Ero/'
+DB_PATH = LOCAL_PATH + "novel.db"
 
 
 # DEBUG == False时下列才有效
@@ -19,6 +20,13 @@ MYSQL_PASSWD = "bakabie"
 # 加密类
 SALT = "bakabie"
 ACCESS_KEY = "BAKABIE9BIE"
+
+
+# SMTP邮件发送类
+SMTP_SERVER = ''
+SMTP_PORT = 25
+SMTP_USERNAME = ''
+SMTP_PASSWD = ''
 
 
 # 错误代码表

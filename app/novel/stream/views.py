@@ -9,7 +9,7 @@ from app import models
 import time
 from ..conf import config
 from . import stream
-from ..utils import *
+from app.utils import *
 import threading
 schedule = {}
 def sun_delete_schedule(token):
@@ -34,7 +34,7 @@ def upload_cover():
     if request.method == 'POST':
         f = request.files['file']
         ext = f.filename[f.filename.find("."):]
-        upload_path = os.path.join('/root/Ero','static/cover',str(time.time())+ext)
+        upload_path = os.path.join(LOCAL_PATH,'static/cover',str(time.time())+ext)
         f.save(upload_path)
         return jsonresp({
             "coded":0,

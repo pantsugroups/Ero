@@ -1,7 +1,42 @@
 # Ero使用手册
 
+## 验证类
+登陆和注销在这里
+
+#### auth/login
+请求方式：POST
+
+参数：
+   - user 用户名
+   - passwd  密码
+
+只有普通的md5加密。
+
+
+
+#### auth/register
+请求方式：POST
+
+参数：
+   - user 用户名
+   - passwd  密码
+   - mail 邮箱
+
+请在app/novel/conf/config.py下配置smtp信息
+
+注册之后将会发送一封验证邮件到mail（还未实现）
+
+
+#### auth/logout
+请求方式：GET
+
+注销登陆
+
+
 ## EroLight
 仅针对APP目录下的Novel包
+
+地址为 YOUDOMAIN/light
 
 全局申明：
 
@@ -66,37 +101,6 @@
 请使用 stream/uplod_volume 方式上传小说
   
 
-### 验证类
-登陆和注销在这里
-
-#### auth/login
-请求方式：POST
-
-参数：
-   - user 用户名
-   - passwd  密码
-
-只有普通的md5加密。
-
-
-
-#### auth/register
-请求方式：POST
-
-参数：
-   - user 用户名
-   - passwd  密码
-   - mail 邮箱
-
-请在app/novel/conf/config.py下配置smtp信息
-
-注册之后将会发送一封验证邮件到mail（还未实现）
-
-
-#### auth/logout
-请求方式：GET
-
-注销登陆
 
 
 ### 评论

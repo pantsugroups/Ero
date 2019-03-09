@@ -5,7 +5,7 @@ from config import *
 from flask import render_template, redirect, request, url_for, flash
 from flask_login import current_user, login_required
 from app import models
-from ..utils import *
+from app.utils import *
 from . import comment
 @comment.route("/list/<int:cid>")
 @comment.route("/list/<int:cid>/<int:page>")
