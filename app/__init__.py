@@ -13,18 +13,18 @@ def create(app):
     app.register_blueprint(auth_blueprint, url_prefix="/auth")
 
     from .novel.admin import admin as admin_blueprint
-    app.register_blueprint(admin_blueprint, url_prefix="light/admin")
+    app.register_blueprint(admin_blueprint, url_prefix="/light/admin")
 
     from .novel.stream import stream as stream_blurprint
-    app.register_blueprint(stream_blurprint, url_prefix="light/stream")
+    app.register_blueprint(stream_blurprint, url_prefix="/light/stream")
 
 
     from .novel.novel import novel as novel_blueprint
-    app.register_blueprint(novel_blueprint,url_prefix="light/novel")
+    app.register_blueprint(novel_blueprint,url_prefix="/light/novel")
 
     from .novel.user import user as user_blueprint
-    app.register_blueprint(user_blueprint, url_prefix="light/user")
+    app.register_blueprint(user_blueprint, url_prefix="/light/user")
 
     from .novel.comment import comment as comment_blueprint
-    app.register_blueprint(comment_blueprint, url_prefix="light/comment")
+    app.register_blueprint(comment_blueprint, url_prefix="/light/comment")
     return app
