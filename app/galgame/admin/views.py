@@ -8,6 +8,8 @@ from . import admin
 @admin.route("/create",methods = ["GET","POST"])
 @login_required
 def create():
+    if current_user.lv is not 2:
+        return "没权限",403
     pass
 
 @admin.route("/change/<int:id>",methods = ["GET","POST"])

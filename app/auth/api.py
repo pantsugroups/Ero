@@ -27,7 +27,7 @@ def login():
         login_user(user)
         return jsonresp({"code":0,"msg":"成功。","data":{"uid":user.id}})
     else:
-        return jsonresp({"coded":-1,"msg":"用户名或者密码错误"})
+        return jsonresp({"code":-1,"msg":"用户名或者密码错误"})
 # 未完成
 @auth.route('/register', methods=['POST'])
 def register():
