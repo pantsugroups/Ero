@@ -5,6 +5,7 @@ from app import models
 from app.utils import *
 from config import *
 from . import index
+import markdown
 @index.route('/')
 @index.route('/<int:page>')
 def indexs(page=1):
@@ -13,10 +14,14 @@ def indexs(page=1):
         .paginate(page, 20)
     return render_template('game/index.html',items=items)
 
-@index.route("/game/<int:id>")
+@index.route("/view/<int:id>")
 def game(id=0):
-    pass
+    item = models.Game.get(
+        models.Game.id == id
+    )
+    html = markdown.markdown(item.content)
+    return render_template('game/view.html',html=html,title=item.title)
 
-@index.route("/game_primary/<int:id>")
+@index.route("/view_primary/<int:id>")
 def primary_string(id=0):
     pass

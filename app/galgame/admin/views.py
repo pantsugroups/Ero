@@ -52,12 +52,39 @@ def delete(id=0):
 @admin.route("/change/<int:id>",methods = ["GET","POST"])
 @login_required
 def change(id = 0):
-    pass
+    if current_user.lv is not 2:
+        return "没权限",403
+    if request.method == "POST":
+        title = request.form["title"]
+        j_title = request.form["j_title"]
+        cover = request.form['cover']
+        content = request.form["content"]
+        tag = request.form["tag"]
+        primary_str = request.form["primary_str"]
+        if not title or not j_title or not cover or not content or not tag or not primary_str:
+            return "少了什么东西",500
 
-@admin.route("/change_primary/<int:id>",methods=["GET",'POST'])
-@login_required
-def cjamge_primary(id=0):
-    pass
+        models.Game.update(
+            title=title,
+            j_title=j_title,
+            content=content,
+            cover=cover,
+            tag=tag,
+            primary_str=primary_str
+        ).where(
+            models.Game.id == id
+        ).execute()
+        return jsonresp({
+            "code":0,
+            "data":"成功"
+        })
+    item = models.Game.get(
+        models.Game.id == id
+    )
+    return render_template('game/editor.html',title=item.title,j_title=item.j_title
+                           ,tag=item.tag,cover=item.cover,content=item.content,primary_str=item.primary_str)
+
+
 
 @admin.route("/upload",methods = ["POST"])
 @login_required
