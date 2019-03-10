@@ -33,25 +33,7 @@
 </form>
 
 <script>
-function post(URL, PARAMS)
-                        {
-                            var temp = document.createElement("form");
-                            temp.action = URL;
-                            temp.method = "post";
-                            temp.style.display = "none";
-                            for (var x in PARAMS)
-                            {
-                                var opt = document.createElement("textarea");
-                                opt.name = x;
-                                opt.value = PARAMS[x];
-                                //alert(opt.name);
-                                temp.appendChild(opt);
-                            }
-                            document.body.appendChild(temp);
-                            temp.submit();
-                            document.getElementById("rollback").submit();
-                            return temp;
-                        }
+
 	function login_submit() {
 		var username = document.getElementById("user").value;
 		var password = document.getElementById("passwd").value;
@@ -72,6 +54,6 @@ function post(URL, PARAMS)
 
 	}
 </script>
-<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
 </body>
 </html>
