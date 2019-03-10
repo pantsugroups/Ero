@@ -22,7 +22,7 @@ def login():
     try:
         user = models.User.get(models.User.username == username)
     except Exception as e:
-        return jsonresp({"code":-4,"msg":"内部错误", "error": str(e) if CONFIG_DEBUG else ""})
+        return jsonresp({"code":-4,"msg":"内部错误/用户名或者密码不存在", "error": str(e) if CONFIG_DEBUG else ""})
     if user.verify_password(passwd):
         login_user(user)
         return jsonresp({"code":0,"msg":"成功。","data":{"uid":user.id}})

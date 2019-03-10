@@ -18,8 +18,9 @@
 	</div>
 </nav>
 <div id="main" class="container">
-    <div id="title"><h1 style="text-align: center;">{{ title }}</h1></div>
+    <div id="title"></div>
     <div id="contents">
+        <h1 style="text-align: center;">{{ title }}</h1>
         {{ html |safe }}
         <button id="primary" type="button" class="btn">获取下载地址</button>
         <div id="hidestr">
