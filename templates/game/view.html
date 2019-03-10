@@ -18,9 +18,12 @@
 	</div>
 </nav>
 <div id="main" class="container">
-    <h1>{{ title }}</h1>
+    <div id="title"><h1 style="text-align: center;">{{ title }}</h1></div>
     <div id="contents">
         {{ html |safe }}
+        <button id="primary" type="button" class="btn">获取下载地址</button>
+        <div id="hidestr">
+        </div>
     </div>
 
 </div>
@@ -32,6 +35,14 @@
 
 		//window.location.href=window.document.location.href.substring(0, window.document.location.href.indexOf(window.document.location.pathname));
 	});
+
+    $("#primary").click(function () {
+        $.get(
+            "/game/index/view_primary/{{ id }}",function (data) {
+            $("#hidestr").html(data);
+        }
+        );
+    })
 
 </script>
 <script src="https://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>

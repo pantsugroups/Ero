@@ -20,8 +20,12 @@ def game(id=0):
         models.Game.id == id
     )
     html = markdown.markdown(item.content)
-    return render_template('game/view.html',html=html,title=item.title)
+    return render_template('game/view.html',html=html,title=item.title,id=item.id)
 
 @index.route("/view_primary/<int:id>")
 def primary_string(id=0):
-    pass
+    item = models.Game.get(
+        models.Game.id==id
+    ).primary_str
+    html = markdown.markdown(item)
+    return html
