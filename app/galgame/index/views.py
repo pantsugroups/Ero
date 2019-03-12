@@ -17,6 +17,18 @@ def indexs(page=1):
         return "",404
     return render_template('game/index.html',items=items)
 
+@index.route('/search/<text>')
+@index.route('/search/<text>/<int:page>')
+def indexs(text,page=1):
+    try:
+        items = models.Game.select() \
+        .where(models.Game.title ** '%'+text+'%')\
+        .order_by(models.Game.post_time) \
+        .paginate(page, 20)
+    except Exception as e:
+        return "",404
+    return render_template('game/index.html',items=items)
+
 @index.route("/view/<int:id>")
 def game(id=0):
     try:
