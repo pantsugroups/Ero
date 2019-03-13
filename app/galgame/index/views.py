@@ -19,7 +19,7 @@ def indexs(page=1):
 
 @index.route('/search/<text>')
 @index.route('/search/<text>/<int:page>')
-def indexs(text,page=1):
+def search(text,page=1):
     try:
         items = models.Game.select() \
         .where(models.Game.title ** '%'+text+'%')\
