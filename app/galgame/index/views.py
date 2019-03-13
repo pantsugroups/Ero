@@ -17,12 +17,13 @@ def indexs(page=1):
         return "",404
     return render_template('game/index.html',items=items)
 
-@index.route('/search/<text>')
-@index.route('/search/<text>/<int:page>')
-def search(text,page=1):
+@index.route('/search/')
+@index.route('/search/<int:page>')
+def search(page=1):
+    text=request.args.get("text")
     try:
         items = models.Game.select() \
-        .where(models.Game.title ** '%'+text+'%')\
+        .where(models.Game.title % '%'+text+'%')\
         .order_by(models.Game.post_time) \
         .paginate(page, 20)
     except Exception as e:
