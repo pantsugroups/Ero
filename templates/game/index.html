@@ -64,11 +64,11 @@
 {% endfor %}
 
 </div>
-<ul class="pagination">
+<ul class="pagination" style="align-text: center;">
     {%  if last %}
-	<li><a href="#">&laquo;</a></li>
+	<li><a href="/game/index/{{ last-1 }}">&laquo;上一页</a></li>
     {% elif next %}
-	<li><a href="#">&raquo;</a></li>
+	<li><a href="/game/index/{{ next + 1 }}">&raquo;下一页</a></li>
     {%   endif %}
 </ul>
 

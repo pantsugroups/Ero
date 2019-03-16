@@ -40,9 +40,9 @@ def search(page=1):
         return "",404
     next, last = False, False
     if page * 20 <= count:
-        next = True
+        next = page
     elif page != 1:
-        last = True
+        last = page
     return render_template('game/index.html',items=items,next=next,last=last)
 
 @index.route("/view/<int:id>")
