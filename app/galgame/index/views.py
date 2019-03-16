@@ -13,9 +13,15 @@ def indexs(page=1):
         items = models.Game.select() \
         .order_by(models.Game.post_time) \
         .paginate(page, 20)
+        count = models.Game.select().count()
     except Exception as e:
         return "",404
-    return render_template('game/index.html',items=items)
+    next,last=False,False
+    if page*20<=count:
+        next=True
+    elif page != 1:
+        last=True
+    return render_template('game/index.html',items=items,next=next,last=last)
 
 @index.route('/search/')
 @index.route('/search/<int:page>')
@@ -23,12 +29,21 @@ def search(page=1):
     text=request.args.get("text")
     try:
         items = models.Game.select() \
-        .where(models.Game.title % '%'+text+'%')\
+        .where(models.Game.title ** '%'+text+'%')\
         .order_by(models.Game.post_time) \
         .paginate(page, 20)
+        count = models.Game.select() \
+            .where(models.Game.title ** '%' + text + '%') \
+            .count()
+
     except Exception as e:
         return "",404
-    return render_template('game/index.html',items=items)
+    next, last = False, False
+    if page * 20 <= count:
+        next = True
+    elif page != 1:
+        last = True
+    return render_template('game/index.html',items=items,next=next,last=last)
 
 @index.route("/view/<int:id>")
 def game(id=0):

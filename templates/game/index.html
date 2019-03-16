@@ -14,7 +14,7 @@
 			<h1 id="title">[魔法使之家]-仓库</h1>
 
 		</div>
-        <form action="/game/search" method="get">
+        <form action="/game/index/search" method="get">
         <div class="col-md-4 input-group" style="padding:25px;">
 			<span class="input-group-addon">搜索</span>
 			<input type="text" name="text" class="form-control" placeholder="在这里输入你要寻找的资源哟">
@@ -24,7 +24,7 @@
 </nav>
 
 <div id="main" class="container masonry grid">
-	<div id="occupy" class="col-lg-3 col-md-4 col-sm-12 col-xs-12 grid-item">
+	<div id="occupy" class="col-lg-3 grid-item">
 		<div class="panel panel-default">
             <img width="100%" height="100%" src="{{ url_for('static', filename='game/gameCover/patchouli.png') }}">
 			<div class="panel-body">
@@ -39,7 +39,7 @@
 	</div>
 
     {% for i in items %}
-<div  class="col-lg-3 col-md-4 col-sm-12 col-xs-12 grid-item">
+<div  class="col-lg-3 grid-item">
 				<div class="panel panel-default">
 				    <img width="260px" height="155px" src="{{ i.cover }}">
 				        <div class="panel-body">
@@ -64,7 +64,13 @@
 {% endfor %}
 
 </div>
-
+<ul class="pagination">
+    {%  if last %}
+	<li><a href="#">&laquo;</a></li>
+    {% elif next %}
+	<li><a href="#">&raquo;</a></li>
+    {%   endif %}
+</ul>
 
 
 <script src="https://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
