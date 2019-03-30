@@ -10,7 +10,13 @@ import markdown
 @index.route('/api/index/<int:page>')
 def api_indexs(page=1):
     try:
-        items = models.Game.select() \
+        items = models.Game.select(
+            models.Game.id,
+            models.Game.cover,
+            models.Game.title,
+            models.Game.j_title,
+            models.Game.tag
+        ) \
         .order_by(models.Game.post_time) \
         .paginate(page, 20)
         count = models.Game.select().count()
