@@ -14,7 +14,7 @@ from . import novel
 def index(page=1):
     try:
         items = models.Novel.select()\
-            .order_by(models.Novel.update_time)\
+            .order_by(models.Novel.update_time.desc())\
             .paginate(page, 20)
     except Exception as e:
         return jsonresp({

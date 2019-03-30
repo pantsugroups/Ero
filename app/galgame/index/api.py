@@ -17,7 +17,7 @@ def api_indexs(page=1):
             models.Game.j_title,
             models.Game.tag
         ) \
-        .order_by(models.Game.post_time) \
+        .order_by(models.Game.post_time.desc()) \
         .paginate(page, 20)
         count = models.Game.select().count()
     except Exception as e:
