@@ -16,12 +16,11 @@ def api_indexs(page=1):
         count = models.Game.select().count()
     except Exception as e:
         return "",404
-    next=0
-    last=0
+    next=False,last=False
     if page*20<=count:
-        next=1
+        next=True
     elif page != 1:
-        last=1
+        last=True
     print(next,last)
     items=query_to_list(items)
     return jsonresp({
