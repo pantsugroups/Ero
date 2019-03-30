@@ -16,7 +16,7 @@ def api_indexs(page=1):
         count = models.Game.select().count()
     except Exception as e:
         return "",404
-    next=False,last=False
+    next,last=False,False
     if page*20<=count:
         next=True
     elif page != 1:
