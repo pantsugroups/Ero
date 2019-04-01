@@ -30,7 +30,7 @@ class Novel(BaseModel):
     title = TextField()
     author = TextField()
     cover = TextField()
-    description = TextField(null=True)
+      = TextField(null=True)
     tags = TextField(null=True)
     update_time = DateTimeField(default=datetime.now)
     subscribed = IntegerField(default=0)
