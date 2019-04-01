@@ -54,7 +54,7 @@ def api_game(id=0):
     return jsonresp({
         "code": 0,
         "msg": "成功。",
-        "date": html
+        "data": html
     })
 
 @index.route("/api/view_primary/<int:id>")
@@ -72,5 +72,5 @@ def api_primary_string(id=0):
     return jsonresp({
         "code": 0,
         "msg": "成功。",
-        "date": html
+        "data": html
     })
