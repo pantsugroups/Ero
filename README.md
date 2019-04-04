@@ -6,8 +6,8 @@
 
 ## Swagger Support
 
-Swagger UI 位于 /swagger
-Swagger OpenAPI 位于 /swagger/spec
+- Swagger UI 位于 `/swagger`
+- Swagger OpenAPI 位于 `/swagger/spec`
 
 ## 注意事项
 
