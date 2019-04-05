@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 import time
 from re import match as re_match
+from random import choice
+import string
 
 from flask import Blueprint, request, jsonify, current_app, session
 from flasgger import swag_from
@@ -183,7 +185,7 @@ def register():
 @bp.route("/create_administrator", methods=["GET"])
 def create_administrator():
     """
-    创建最高管理员，用户名administrator，密码fuckbakabie233
+    创建最高管理员，用户名administrator，密码随机，仅可创建一次
     ---
     tags:
       - 账号
@@ -194,11 +196,15 @@ def create_administrator():
             "msg": "最高管理员已存在"
         })
     else:
+        pwd = "".join(choice(string.ascii_uppercase + string.digits) for _ in range(15))
         User.create(username="administrator",
                     nickname="狗管理",
                     email="administrator@ero.ink",
-                    password=encrypt_pwd("administrator", "fuckbakabie233"),
+                    password=encrypt_pwd("administrator", pwd),
                     premission=999).save()
         return jsonify({
-            "status": True
+            "status": True,
+            "data": {
+                "password": pwd
+            }
         })
