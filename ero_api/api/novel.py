@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, current_app
 import json
 
 from ..models import Novel, NTag
@@ -112,7 +112,7 @@ def novel_create():
     })
 
 
-@bp.route("/<int:nid>")
+@bp.route("/<int:nid>", methods=["GET"])
 def novel_detail(nid):
     """
     获取小说详细信息
@@ -148,3 +148,34 @@ def novel_detail(nid):
             "ended": novel.ended
         }
     })
+
+
+@bp.route("/<int:nid>", methods=["DELETE"])
+def novel_delete(nid):
+    """
+    删除小说
+    ---
+    tags:
+      - 小说
+    parameters:
+      - in: path
+        name: nid
+        type: integer
+        description: 小说id
+        required: true
+    """
+    try:
+        novel = Novel.get(nid)
+    except Novel.DoesNotExist:
+        return jsonify({
+            "status": False,
+            "msg": "小说不存在"
+        })
+    with current_app.db.atomic():
+        for tag in novel.tags:
+            tag.novels.remove(novel)
+        novel.delete_instance()
+    return jsonify({
+        "status": True
+    })
+    
