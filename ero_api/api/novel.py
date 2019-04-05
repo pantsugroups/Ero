@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
-from flask import Blueprint, request, jsonify, current_app
+import datetime
 import json
+
+from flask import Blueprint, request, jsonify, current_app
 
 from ..models import Novel, NTag
 
@@ -75,7 +77,7 @@ def novel_create():
               description: 标签
     """
     data = request.get_json()
-    if not data:
+    if data is None:
         return jsonify({
             "status": False,
             "msg": "请以Json传入参数"
@@ -178,4 +180,86 @@ def novel_delete(nid):
     return jsonify({
         "status": True
     })
-    
+
+
+@bp.route("/<int:nid>", methods=["PUT"])
+def novel_update(nid):
+    """
+    修改小说数据
+    ---
+    tags:
+      - 小说
+    parameters:
+      - in: path
+        name: nid
+        type: integer
+        description: 小说id
+        required: true
+      - in: body
+        name: body
+        schema:
+          type: object
+          properties:
+            title:
+              type: string
+              description: 书名
+            author: 
+              type: string
+              description: 作者
+            cover:
+              type: string
+              description: 封面
+            description:
+              type: string
+              description: 简介
+            tags:
+              type: array
+              items:
+                type: string
+              description: 标签
+    """
+    try:
+        novel = Novel.get(nid)
+    except Novel.DoesNotExist:
+        return jsonify({
+            "status": False,
+            "msg": "小说不存在"
+        })
+    data = request.get_json()
+    if data is None:
+        return jsonify({
+            "status": False,
+            "msg": "请以Json传入参数"
+        })
+    allowed = {"title", "author", "cover", "ended", "tags", "hide"}
+    with current_app.db.atomic():
+        for k, v in data.items():
+            if k not in allowed:
+                return jsonify({
+                    "status": False,
+                    "msg": "%s字段不存在或不可修改" % k
+                })
+            if k == "tags":
+                after_tags = set()
+                for tag in v:
+                    t = NTag.select().where(NTag.name == tag)
+                    if not t:
+                        t = NTag.create(name=tag)
+                    else:
+                        t = t.get()
+                    after_tags.add(t)
+                current_tags = set(novel.tags)
+                delete = current_tags - after_tags
+                add = after_tags - current_tags
+                for tag in delete:
+                    novel.tags.remove(tag)
+                    tag.novels.remove(novel)
+                for tag in add:
+                    novel.tags.add(tag)
+        if "tags" in data:
+            data.pop("tags")
+        data["update_time"] = datetime.datetime.now()
+        Novel.update(**data).where(Novel.nid == novel.nid).execute()
+    return jsonify({
+        "status": True
+    })
