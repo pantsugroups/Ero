@@ -5,6 +5,7 @@ HOSTNAME = "0.0.0.0"
 PORT = 5000
 
 DB = SqliteDatabase("ero.db")
+SECRET_KEY = "bakabie"
 
 VERSION = "0.0.1a"
 SWAGGER = {

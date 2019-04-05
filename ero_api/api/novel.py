@@ -90,8 +90,8 @@ def novel_create():
         tags = data.get("tags", [])
     except KeyError:
         return jsonify({
-            "status": True,
-            "msg": "缺少字段"
+            "status": False,
+            "msg": "缺少参数"
         })
     novel = Novel.create(title=title,
                  author=author,
@@ -132,7 +132,7 @@ def novel_detail(nid):
         novel = Novel.get(nid)
     except Novel.DoesNotExist:
         return jsonify({
-            "status": True,
+            "status": False,
             "msg": "小说不存在"
         })
     return jsonify({

@@ -22,11 +22,11 @@ class BaseModel(Model):
 
 class User(BaseModel):
     uid = PrimaryKeyField()
-    username = CharField(50)
+    username = CharField(50, index=True)
     password = CharField(255)
     nickname = CharField(50, null=True)
-    avatar = TextField()
-    email = CharField(50, null=True)
+    avatar = TextField(null=True)
+    email = CharField(50, index=True)
     register_time = DateTimeField(default=datetime.datetime.now)
     qq = IntegerField(null=True)
     bio = TextField(null=True)

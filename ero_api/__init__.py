@@ -27,6 +27,8 @@ def create_app(config):
 
     app.register_blueprint(api.echo.bp, url_prefix="/echo")
     app.register_blueprint(api.novel.bp, url_prefix="/novel")
+    app.register_blueprint(api.auth.bp, url_prefix="/auth")
+    app.register_blueprint(api.user.bp, url_prefix="/user")
     return app
 
 
