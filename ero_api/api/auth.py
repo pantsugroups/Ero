@@ -201,7 +201,7 @@ def create_administrator():
                     nickname="狗管理",
                     email="administrator@ero.ink",
                     password=encrypt_pwd("administrator", pwd),
-                    premission=999).save()
+                    permission=999).save()
         return jsonify({
             "status": True,
             "data": {
