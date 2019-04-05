@@ -1,15 +1,17 @@
 # -*- coding: utf-8 -*-
 from flask import Flask, jsonify
-from flask_swagger import swagger
-from flask_swagger_ui import get_swaggerui_blueprint
+from flasgger import Swagger
+from flask_cors import CORS
 
 from . import api, models
 
 
 def create_app(config):
     app = Flask(__name__)
-
     app.config.from_object(config)
+    
+    CORS(app)
+    Swagger(app)
 
     @app.before_request
     def _connect_db():
@@ -20,20 +22,11 @@ def create_app(config):
         app.db.close()
         return response
 
-    swaggerui_blueprint = get_swaggerui_blueprint("/swagger",
-                                                  "/swagger/spec",
-                                                  {"app_name": "Ero API"})
-
-    @swaggerui_blueprint.route("/spec")
-    def _swagger_json():
-        return jsonify(swagger(app))
-
     models.db.initialize(config.DB)
     app.db = models.db
 
     app.register_blueprint(api.echo.bp, url_prefix="/echo")
     app.register_blueprint(api.novel.bp, url_prefix="/novel")
-    app.register_blueprint(swaggerui_blueprint, url_prefix="/swagger")
     return app
 
 

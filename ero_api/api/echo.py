@@ -14,12 +14,10 @@ def echo():
     parameters:
       - in: query
         name: msg
-        schma:
+        schema:
           type: string
+        required: false
         description: 返回内容（默认为Hello World!）
-    responses:
-      200:
-        description: 成功
     """
     msg = request.args.get("msg", "Hello World!")
     return msg

@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from flask import Blueprint, request, jsonify
+import json
 
-from ..models import Novel
+from ..models import Novel, NTag
 
 bp = Blueprint("novel", __name__)
 
@@ -16,12 +17,9 @@ def novel_list():
     parameters:
       - in: query
         name: page
-        schma:
-          type: integer
+        type: integer
+        required: false
         description: 分页页码（默认为1）
-    responses:
-      "200":
-        description: 返回小说列表
     """
     page = int(request.args.get("page", 1))
     novels = Novel.select().order_by(Novel.nid.desc()).paginate(page, 20)
@@ -32,13 +30,85 @@ def novel_list():
             "title": novel.title,
             "author": novel.author,
             "cover": novel.cover,
-            "tags": novel.tags.split("|"),
+            "tags": [t.name for t in novel.tags],
             "update_time": novel.update_time.strftime("%Y-%m-%d"),
             "ended": novel.ended
         })
     return jsonify({
-        "code": 0,
+        "status": True,
         "data": results
+    })
+
+
+@bp.route("/", methods=["POST"])
+def novel_create():
+    """
+    添加新小说
+    ---
+    tags:
+      - 小说
+    parameters:
+      - in: body
+        name: body
+        schema:
+          type: object
+          required:
+            - title
+            - author
+          properties:
+            title:
+              type: string
+              description: 书名
+            author: 
+              type: string
+              description: 作者
+            cover:
+              type: string
+              description: 封面
+            description:
+              type: string
+              description: 简介
+            tags:
+              type: array
+              items:
+                type: string
+              description: 标签
+    """
+    data = request.get_json()
+    if not data:
+        return jsonify({
+            "status": False,
+            "msg": "请以Json传入参数"
+        })
+    try:
+        title = data["title"]
+        author = data["author"]
+        cover = data.get("cover")
+        description = data.get("description")
+        tags = data.get("tags", [])
+    except KeyError:
+        return jsonify({
+            "status": True,
+            "msg": "缺少字段"
+        })
+    novel = Novel.create(title=title,
+                 author=author,
+                 cover=cover,
+                 description=description)
+    for tag in tags:
+        t = NTag.select().where(NTag.name == tag)
+        if not t:
+            t = NTag.create(name=tag)
+            t.save()
+        else:
+            t = t.get()
+        novel.tags.add(t)
+    novel.save()
+    return jsonify({
+        "status": True,
+        "data": {
+            "nid": novel.nid
+        }
     })
 
 
@@ -52,27 +122,25 @@ def novel_detail(nid):
     parameters:
       - in: path
         name: nid
-        schma:
-          type: integer
+        type: integer
+        required: true
         description: 小说id
-    responses:
-      "200":
-        description: 返回小说详细信息
     """
     try:
         novel = Novel.get(nid)
     except Novel.DoesNotExist:
         return jsonify({
-            "code": 404,
+            "status": True,
+            "msg": "小说不存在"
         })
     return jsonify({
-        "code": 0,
+        "status": True,
         "data": {
             "nid": novel.nid,
             "title": novel.title,
             "author": novel.author,
             "cover": novel.cover,
-            "tags": novel.tags.split("|"),
+            "tags": [t.name for t in novel.tags],
             "update_time": novel.update_time.strftime("%Y-%m-%d"),
             "subscribed": novel.subscribed,
             "viewed": novel.viewed,

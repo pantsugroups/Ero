@@ -39,6 +39,7 @@ class Novel(BaseModel):
     title = CharField(50)
     author = CharField(10)
     cover = TextField(null=True)
+    description = TextField(null=True)
     update_time = DateTimeField(default=datetime.datetime.now)
     subscribed = IntegerField(default=0)
     viewed = IntegerField(default=0)
@@ -59,7 +60,7 @@ class Volume(BaseModel):
 
 class NTag(BaseModel):
     tid = PrimaryKeyField()
-    name = CharField(10)
+    name = CharField(10, index=True)
     novels = ManyToManyField(Novel, backref="tags")
 NovelTag = NTag.novels.get_through_model()
 
@@ -89,6 +90,6 @@ class Game(BaseModel):
 
 class GTag(BaseModel):
     tid = PrimaryKeyField()
-    name = CharField(10)
+    name = CharField(10, index=True)
     games = ManyToManyField(Game, backref="tags")
 GameTag = GTag.games.get_through_model()
