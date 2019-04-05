@@ -40,6 +40,17 @@ def create_app(config):
 def initialize(config):
     models.db.initialize(config.DB)
     models.db.connect()
-    models.db.create_tables([models.Novel])
+    models.db.create_tables([
+        models.User,
+        models.Novel,
+        models.UserNovelSubscribe,
+        models.NTag,
+        models.NovelTag,
+        models.Volume,
+        models.NovelComment,
+        models.Game,
+        models.GTag,
+        models.GameTag
+    ])
     models.db.commit()
     models.db.close()

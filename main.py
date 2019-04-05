@@ -4,5 +4,6 @@ import config
 
 app = ero_api.create_app(config)
 app.run(host=config.HOSTNAME,
-        port=config.PORT)
+        port=config.PORT,
+        debug=config.DEBUG)
 
