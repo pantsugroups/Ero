@@ -12,11 +12,11 @@ def create_app(config):
     app.config.from_object(config)
 
     @app.before_request
-    def connect_db():
+    def _connect_db():
         app.db.connect()
     
     @app.after_request
-    def close_db(response):
+    def _close_db(response):
         app.db.close()
         return response
 
@@ -25,7 +25,7 @@ def create_app(config):
                                                   {"app_name": "Ero API"})
 
     @swaggerui_blueprint.route("/spec")
-    def swagger_json():
+    def _swagger_json():
         return jsonify(swagger(app))
 
     models.db.initialize(config.DB)

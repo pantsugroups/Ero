@@ -1,7 +1,16 @@
 # -*- coding: utf-8 -*-
 import datetime
 
-from peewee import *
+from peewee import (Model,
+                    Proxy,
+                    PrimaryKeyField,
+                    ForeignKeyField,
+                    CharField,
+                    TextField,
+                    DateTimeField,
+                    IntegerField,
+                    BooleanField,
+                    ManyToManyField)
 
 db = Proxy()
 
