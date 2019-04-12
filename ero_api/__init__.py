@@ -31,6 +31,8 @@ def create_app(config):
     app.register_blueprint(api.auth.bp, url_prefix="/auth")
     restful.add_resource(api.novel.NovelList, "/novel")
     restful.add_resource(api.novel.NovelItem, "/novel/<int:nid>")
+    restful.add_resource(api.game.GameList, "/game")
+    restful.add_resource(api.game.GameItem, "/game/<int:gid>")
     return app
 
 

@@ -1,2 +1,2 @@
 # -*- coding: utf-8 -*-
-from . import echo, novel, auth, user
+from . import echo, novel, auth, user, game
