@@ -3,7 +3,7 @@ import sys
 from config import CONFIG_DEBUG
 sys.path.append('../')
 from flask import  redirect, request, url_for
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required,current_user
 from app import models
 from app.utils import *
 from config import *
@@ -42,9 +42,15 @@ def register():
     smtpObj.login(SMTP_USERNAME,SMTP_PASSWD)
     # smtpObj.sendmail(SMTP)
     return jsonresp({"code": 0, "msg": "成功。", })
+
+
+
 @auth.route('/verify', methods=['GET'])
 def verify():
-    pass
+    if current_user.is_authenticated:
+        return jsonresp({"code":0,"msg":"成功","islogin":True})
+    else:
+        return jsonresp({"code":0,"msg":"成功","islogin":False})
 
 @auth.route('/logout')
 @login_required

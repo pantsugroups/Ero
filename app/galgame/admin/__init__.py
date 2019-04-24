@@ -3,4 +3,4 @@ from flask import Blueprint
 
 admin = Blueprint('novel_admin', __name__)
 
-from . import views
+from . import views,api

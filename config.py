@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 CONFIG_DEBUG = True
 ISMYSQL = False
 WEB_PORT = 5000
@@ -7,7 +6,7 @@ WEB_ADDRESS = "0.0.0.0"
 
 
 # 数据库配置
-LOCAL_PATH = 'F:\\NOW\Ero\\'
+LOCAL_PATH = 'E:\\项目\\Ero\\'
 DB_PATH = LOCAL_PATH + "novel.db"
 
 

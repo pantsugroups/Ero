@@ -1,3 +1,4 @@
+#coding:utf-8
 from flask import render_template, redirect, request, url_for, flash
 from flask_login import current_user, login_required
 import os
@@ -5,7 +6,7 @@ from app import models
 from config import *
 from app.utils import *
 from . import admin
-@admin.route("/create",methods = ["GET","POST"])
+@admin.route("views/create",methods = ["GET","POST"])
 @login_required
 def create():
     if current_user.lv is not 2:
@@ -34,7 +35,7 @@ def create():
         })
     return render_template('game/editor.html',title="",j_title="",tag="",cover="",content="",primary_str="")
 
-@admin.route("/delete/<int:id>",methods=["GET"])
+@admin.route("views/delete/<int:id>",methods=["GET"])
 @login_required
 def delete(id=0):
     if id is 0:
@@ -49,7 +50,7 @@ def delete(id=0):
 
 
 
-@admin.route("/change/<int:id>",methods = ["GET","POST"])
+@admin.route("views/change/<int:id>",methods = ["GET","POST"])
 @login_required
 def change(id = 0):
     if current_user.lv is not 2:
