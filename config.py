@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-CONFIG_DEBUG = True
-ISMYSQL = False
+CONFIG_DEBUG = False
+ISMYSQL = True
 WEB_PORT = 5000
 WEB_ADDRESS = "0.0.0.0"
 
