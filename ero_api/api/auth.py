@@ -14,27 +14,6 @@ bp = Blueprint("auth", __name__)
 
 @bp.route("/login", methods=["POST"])
 def login():
-    """
-    登陆
-    ---
-    tags:
-      - 账号
-    parameters:
-      - in: body
-        name: body
-        schema:
-          type: object
-          required:
-            - username
-            - password
-          properties:
-            username:
-              type: string
-              description: 用户名
-            password:
-              type: string
-              description: 密码
-    """
     data = request.get_json()
     if data is None:
         return jsonify({
@@ -88,31 +67,6 @@ def logout():
 
 @bp.route("/register", methods=["POST"])
 def register():
-    """
-    注册
-    ---
-    tags:
-      - 账号
-    parameters:
-      - in: body
-        name: body
-        schema:
-          type: object
-          required:
-            - username
-            - email
-            - password
-          properties:
-            username:
-              type: string
-              description: 用户名
-            email:
-              type: string
-              description: 邮箱
-            password:
-              type: string
-              description: 密码
-    """
     data = request.get_json()
     if data is None:
         return jsonify({
@@ -179,12 +133,6 @@ def register():
 
 @bp.route("/create_administrator", methods=["GET"])
 def create_administrator():
-    """
-    创建最高管理员，用户名administrator，密码随机，仅可创建一次
-    ---
-    tags:
-      - 账号
-    """
     if User.select().where(User.username == "administrator"):
         return jsonify({
             "status": False,
