@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 from flask import Flask, jsonify
-from flask_restful import Api
-from flasgger import Swagger
 from flask_cors import CORS
 
 from . import api, models
@@ -12,8 +10,6 @@ def create_app(config):
     app.config.from_object(config)
     
     CORS(app)
-    restful = Api(app)
-    Swagger(app)
 
     @app.before_request
     def _connect_db():
@@ -29,10 +25,8 @@ def create_app(config):
 
     app.register_blueprint(api.echo.bp, url_prefix="/echo")
     app.register_blueprint(api.auth.bp, url_prefix="/auth")
-    restful.add_resource(api.novel.NovelList, "/novel")
-    restful.add_resource(api.novel.NovelItem, "/novel/<int:nid>")
-    restful.add_resource(api.game.GameList, "/game")
-    restful.add_resource(api.game.GameItem, "/game/<int:gid>")
+    app.register_blueprint(api.novel.bp, url_prefix="/novel")
+    app.register_blueprint(api.game.bp, url_prefix="/game")
     return app
 
 
