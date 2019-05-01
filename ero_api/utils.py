@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from hashlib import sha256
+from functools import wraps 
 
 from flask import current_app, session, jsonify, request
 
@@ -8,7 +9,8 @@ from .models import User
 
 def require_login(func):
 
-    def warpper(*args, **kwargs):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
         if "uid" not in session or "username" not in session:
             return jsonify({
                 "status": False,
@@ -27,14 +29,15 @@ def require_login(func):
         request.user = user
         return func(*args, **kwargs)
  
-    return warpper
+    return wrapper
 
 
 def require_permission(permission):
-
-    def outer_warpper(func):
     
-        def warpper(*args, **kwargs):
+    def outer_wrapper(func):
+    
+        @wraps(func)
+        def wrapper(*args, **kwargs):
             if "uid" not in session or "username" not in session:
                 return jsonify({
                     "status": False,
@@ -58,9 +61,9 @@ def require_permission(permission):
             request.user = user
             return func(*args, **kwargs)
         
-        return warpper
+        return wrapper
  
-    return outer_warpper
+    return outer_wrapper
 
 
 def encrypt_pwd(username, pwd):
