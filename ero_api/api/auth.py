@@ -5,7 +5,6 @@ from random import choice
 import string
 
 from flask import Blueprint, request, jsonify, current_app, session
-from flasgger import swag_from
 
 from ..models import User
 from ..utils import require_login, encrypt_pwd
@@ -77,10 +76,6 @@ def login():
     
 
 @bp.route("/logout", methods=["GET"])
-@swag_from({
-    "tags": ["账号"],
-    "summary": "登出"
-})
 @require_login
 def logout():
     session.pop("uid", None)

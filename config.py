@@ -2,7 +2,7 @@
 from peewee import SqliteDatabase
 
 HOSTNAME = "0.0.0.0"
-PORT = 80
+PORT = 5000
 
 DB = SqliteDatabase("ero.db")
 SECRET_KEY = "bakabie"
