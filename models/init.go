@@ -1,4 +1,5 @@
 package models
+
 import (
 	"time"
 
@@ -30,6 +31,6 @@ func Database(connString string) {
 
 	DB = db
 
-	DB.AutoMigrate(&User{})
+	DB.AutoMigrate(&User{}, &Archive{})
 
 }
