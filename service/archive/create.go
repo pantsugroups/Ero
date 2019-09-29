@@ -33,9 +33,7 @@ func (service *CreateService) Create() *serializer.Response {
 	}
 	return nil
 }
-func (service *CreateService) Response() *serializer.Response {
-	return &serializer.Response{
-		Status: 0,
-		Data:   serializer.BuildArchiveResponse(service.result),
-	}
+func (service *CreateService) Response() interface{}{
+	return  serializer.BuildArchiveResponse(service.result)
+
 }

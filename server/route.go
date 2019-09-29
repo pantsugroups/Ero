@@ -23,10 +23,12 @@ func NewRouter() *echo.Echo {
 		g.POST("/user/register", api.UserRegister)
 		var ArchiveList archive.ListService
 		g.GET("/archive", api.List(&ArchiveList))
+		//var NovelList novel.ListService
+		//g.GET("/novel/",api.List(&NovelList))
 		var ArchiveGet archive.GetService
 		g.GET("/archive/:id", api.Get(&ArchiveGet))
 
-		r := g.Group("/")
+		r := g.Group("")
 		{
 			// 需要登陆的
 			config := middleware.JWTConfig{
@@ -37,7 +39,7 @@ func NewRouter() *echo.Echo {
 
 			r.GET("/user/:id", api.UserSelf)
 
-			a := r.Group("/")
+			a := r.Group("")
 			{
 				// 需要特殊权限
 				a.Use(m.AuthRequired)

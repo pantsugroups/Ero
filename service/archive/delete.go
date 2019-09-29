@@ -25,8 +25,6 @@ func (service *DeleteService) Delete() *serializer.Response {
 	}
 	return nil
 }
-func (service *DeleteService) Response() *serializer.Response {
-	return &serializer.Response{
-		Status: 0,
-	}
+func (service *DeleteService) Response() interface{} {
+	return nil
 }

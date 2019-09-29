@@ -41,9 +41,7 @@ func (service *UpdateService) Update() *serializer.Response {
 	service.result = archive
 	return nil
 }
-func (service *UpdateService) Response() *serializer.Response {
-	return &serializer.Response{
-		Status: 0,
-		Data:   service.result,
-	}
+func (service *UpdateService) Response() interface{}{
+		return  service.result
+
 }

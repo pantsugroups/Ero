@@ -6,7 +6,7 @@ import (
 )
 
 type GetService struct {
-	ID     uint `json:"id" form:"id" null:"false"`
+	ID     uint `json:"id" form:"id" param:"id" null:"false"`
 	result models.Archive
 }
 
@@ -16,14 +16,13 @@ func (service *GetService) Get() *serializer.Response {
 		return &serializer.Response{
 			Status: 40003,
 			Msg:    "获取失败",
+			Error:err.Error(),
 		}
 	}
 	service.result = archive
 	return nil
 }
-func (service *GetService) Response() *serializer.Response {
-	return &serializer.Response{
-		Status: 0,
-		Data:   serializer.BuildArchiveResponse(service.result),
-	}
+func (service *GetService) Response() interface{}{
+	return  serializer.BuildArchiveResponse(service.result)
+
 }

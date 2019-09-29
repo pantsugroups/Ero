@@ -12,6 +12,7 @@ type ListService struct {
 	PageSize int `json:"page_count" form:"page_Size" query:"page_Size"`
 	Count    int // 查询结果请求
 	All      int //总数
+	result []models.Archive
 }
 
 // 判断是否有上一页或者下一页
@@ -41,7 +42,7 @@ func (service *ListService) Pages() (int, *serializer.Response) {
 	}
 	return int(service.All / service.Count), nil
 }
-func (service *ListService) Pull() ([]models.Archive, *serializer.Response) {
+func (service *ListService) Pull() *serializer.Response {
 	var archive []models.Archive
 	//var count int
 	if service.PageSize == 0 {
@@ -61,13 +62,23 @@ func (service *ListService) Pull() ([]models.Archive, *serializer.Response) {
 		}
 	}
 	if err := DB.Find(&archive).Count(&service.Count).Error; err != nil {
-		return archive, &serializer.Response{
+		return  &serializer.Response{
 			Status: 40005,
 			Msg:    "获取失败",
 		}
 	}
-	return archive, nil
+	service.result = archive
+	return nil
 }
 func (service *ListService) Counts() int {
 	return service.Count
+}
+func (service *ListService)Response() interface{}{
+	next, last := service.HaveNextOrLast()
+	var pages int
+	var err *serializer.Response
+	if pages, err = service.Pages(); err != nil {
+		return  err
+	}
+	return  serializer.BuildArchiveListResponse(service.result, service.Count, next, last, pages)
 }

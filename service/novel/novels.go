@@ -12,6 +12,7 @@ type ListService struct {
 	PageSize int `json:"page_count" form:"page_Size" query:"page_Size"`
 	Count    int // 查询结果请求
 	All      int //总数
+
 }
 
 // 判断是否有上一页或者下一页
@@ -66,5 +67,9 @@ func (service *ListService) Pull() ([]models.Novel, *serializer.Response) {
 			Msg:    "获取失败",
 		}
 	}
+
 	return novel, nil
+}
+func (service *ListService)Counts()int{
+	return service.Count
 }
