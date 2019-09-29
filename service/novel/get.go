@@ -6,16 +6,21 @@ import (
 )
 
 type GetService struct {
-	ID uint `json:"id" form:"id" null:"false"`
+	ID     uint `json:"id" form:"id" null:"false"`
+	result models.Novel
 }
 
-func (service *GetService) Get() (models.Novel, *serializer.Response) {
+func (service *GetService) Get() *serializer.Response {
 	var novel models.Novel
 	if err := models.DB.Where("ID = ?", service.ID).First(&novel).Error; err != nil {
-		return novel, &serializer.Response{
+		return &serializer.Response{
 			Status: 40003,
 			Msg:    "获取失败",
 		}
 	}
-	return novel, nil
+	service.result = novel
+	return nil
+}
+func (service *GetService) Response() interface{} {
+	return serializer.BuildNovelResponse(service.result)
 }

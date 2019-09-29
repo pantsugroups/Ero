@@ -12,12 +12,13 @@ type UpdateService struct {
 	Cover  string `json:"cover" form:"cover"`
 	Ended  bool   `json:"ended" form:"ended"`
 	Level  int    `json:"level" form:"level"`
+	result models.Novel
 }
 
-func (service *UpdateService) Update() (models.Novel, *serializer.Response) {
+func (service *UpdateService) Update() *serializer.Response {
 	var novel models.Novel
 	if err := models.DB.Where("ID = ?", service.ID).First(&novel).Error; err != nil {
-		return novel, &serializer.Response{
+		return &serializer.Response{
 			Status: 40005,
 			Msg:    "获取失败",
 		}
@@ -29,10 +30,14 @@ func (service *UpdateService) Update() (models.Novel, *serializer.Response) {
 		Ended:  service.Ended,
 		Level:  service.Level,
 	}); err != nil {
-		return novel, &serializer.Response{
+		return &serializer.Response{
 			Status: 40005,
 			Msg:    "获取失败",
 		}
 	}
-	return novel, nil
+	service.result = novel
+	return nil
+}
+func (service *UpdateService) Response() interface{} {
+	return serializer.BuildNovelResponse(service.result)
 }

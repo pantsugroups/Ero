@@ -3,6 +3,7 @@ package server
 import (
 	"eroauz/api"
 	"eroauz/service/archive"
+	"eroauz/service/novel"
 	"eroauz/utils"
 	"github.com/labstack/echo"
 )
@@ -22,11 +23,13 @@ func NewRouter() *echo.Echo {
 		g.POST("/user/login", api.UserLogin)
 		g.POST("/user/register", api.UserRegister)
 		var ArchiveList archive.ListService
-		g.GET("/archive", api.List(&ArchiveList))
-		//var NovelList novel.ListService
-		//g.GET("/novel/",api.List(&NovelList))
+		g.GET("/archive/", api.List(&ArchiveList))
+		var NovelList novel.ListService
+		g.GET("/novel/", api.List(&NovelList))
 		var ArchiveGet archive.GetService
 		g.GET("/archive/:id", api.Get(&ArchiveGet))
+		var NovelGet novel.GetService
+		g.GET("/novel/:id", api.Get(&NovelGet))
 
 		r := g.Group("")
 		{
@@ -45,10 +48,16 @@ func NewRouter() *echo.Echo {
 				a.Use(m.AuthRequired)
 				var ArchiveCreate archive.CreateService
 				a.POST("/archive/", api.Create(&ArchiveCreate))
+				var NovelCreate novel.CreateService
+				a.POST("/novel/", api.Create(&NovelCreate))
 				var ArchiveDelete archive.DeleteService
 				a.DELETE("/archive/:id", api.Delete(&ArchiveDelete))
+				var NovelDelete novel.DeleteService
+				a.DELETE("/novel/:id", api.Delete(&NovelDelete))
 				var ArchiveUpdate archive.UpdateService
 				a.PUT("/archive/:id", api.Update(&ArchiveUpdate))
+				var NovelUpdate archive.UpdateService
+				a.PUT("/novel/:id", api.Update(&NovelUpdate))
 			}
 		}
 

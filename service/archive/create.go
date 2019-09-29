@@ -24,16 +24,16 @@ func (service *CreateService) Create() *serializer.Response {
 		PrimaryContent: service.PrimaryContent,
 		Cover:          service.Cover,
 	}
-	service.result = archive
 	if err := models.DB.Create(&archive).Error; err != nil {
 		return &serializer.Response{
 			Status: 40004,
 			Msg:    "创建失败",
 		}
 	}
+	service.result = archive
 	return nil
 }
-func (service *CreateService) Response() interface{}{
-	return  serializer.BuildArchiveResponse(service.result)
+func (service *CreateService) Response() interface{} {
+	return serializer.BuildArchiveResponse(service.result)
 
 }

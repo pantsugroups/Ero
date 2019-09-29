@@ -10,9 +10,10 @@ type CreateService struct {
 	Author      string `json:"author" form:"title"`
 	Cover       string `json:"cover" form:"cover"`
 	Description string `json:"description" form:"description"`
+	result      models.Novel
 }
 
-func (service *CreateService) Create() (models.Novel, *serializer.Response) {
+func (service *CreateService) Create() *serializer.Response {
 	novel := models.Novel{
 		Title:       service.Title,
 		Author:      service.Author,
@@ -23,10 +24,14 @@ func (service *CreateService) Create() (models.Novel, *serializer.Response) {
 		Subscribed:  0,
 	}
 	if err := models.DB.Create(&novel).Error; err != nil {
-		return novel, &serializer.Response{
+		return &serializer.Response{
 			Status: 40007,
 			Msg:    "创建失败",
 		}
 	}
-	return novel, nil
+	service.result = novel
+	return nil
+}
+func (service *CreateService) Response() interface{} {
+	return serializer.BuildNovelResponse(service.result)
 }
