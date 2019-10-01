@@ -6,7 +6,7 @@ import (
 )
 
 type UpdateService struct {
-	ID     uint   `json:"id" form:"id" null:"false"`
+	ID     uint   `json:"id" form:"id" param:"id" null:"false"`
 	Title  string `json:"title" form:"title"`
 	Author string `json:"author" form:"author"`
 	Cover  string `json:"cover" form:"cover"`

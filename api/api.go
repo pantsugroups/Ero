@@ -12,9 +12,8 @@ import (
 func List(service _interface.ListInterface) echo.HandlerFunc {
 	return func(c echo.Context) (err error) {
 
-
-		if err := utils.Bind(service,c); err == nil {
-			if  err := service.Pull(); err != nil {
+		if err := utils.Bind(service, c); err == nil {
+			if err := service.Pull(); err != nil {
 				return c.JSON(200, err)
 			} else {
 
@@ -35,8 +34,9 @@ func List(service _interface.ListInterface) echo.HandlerFunc {
 func Create(service _interface.CreateInterface) echo.HandlerFunc {
 	return func(c echo.Context) (err error) {
 
-		if err := utils.Bind(service,c); err == nil {
-			if err := service.Create(); err != nil {
+		if err := utils.Bind(service, c); err == nil {
+			uid := utils.GetAutherID(c)
+			if err := service.Create(uid); err != nil {
 				return c.JSON(200, err)
 			} else {
 				res := service.Response()
@@ -57,7 +57,7 @@ func Create(service _interface.CreateInterface) echo.HandlerFunc {
 func Get(service _interface.GetInterface) echo.HandlerFunc {
 
 	return func(c echo.Context) (err error) {
-		if err := utils.Bind(service,c); err == nil {
+		if err := utils.Bind(service, c); err == nil {
 			if err := service.Get(); err != nil {
 				return c.JSON(200, err)
 			} else {
@@ -77,7 +77,7 @@ func Get(service _interface.GetInterface) echo.HandlerFunc {
 //更新
 func Update(service _interface.UpdateInterface) echo.HandlerFunc {
 	return func(c echo.Context) (err error) {
-		if err := utils.Bind(service,c); err == nil {
+		if err := utils.Bind(service, c); err == nil {
 			if err := service.Update(); err != nil {
 				return c.JSON(200, err)
 			} else {
@@ -97,7 +97,7 @@ func Update(service _interface.UpdateInterface) echo.HandlerFunc {
 //删除
 func Delete(service _interface.DeleteInterface) echo.HandlerFunc {
 	return func(c echo.Context) (err error) {
-		if err := c.Bind(service); err == nil {
+		if err := utils.Bind(service, c); err == nil {
 			if err := service.Delete(); err != nil {
 				return c.JSON(200, err)
 			} else {

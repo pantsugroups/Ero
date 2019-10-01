@@ -31,6 +31,6 @@ func Database(connString string) {
 
 	DB = db
 
-	DB.AutoMigrate(&User{}, &Archive{})
+	DB.AutoMigrate(&User{}, &Archive{}, Comment{})
 
 }

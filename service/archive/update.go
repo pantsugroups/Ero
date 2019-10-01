@@ -6,7 +6,7 @@ import (
 )
 
 type UpdateService struct {
-	ID             uint   `json:"id" form:"id" null:"false"`
+	ID             uint   `json:"id" form:"id" param:"id" null:"false"`
 	Title          string `json:"title" form:"title"`
 	JapTitle       string `json:"japanese_title" form:"japanese_title"`
 	Cover          string `json:"cover" form:"cover"`
@@ -41,7 +41,7 @@ func (service *UpdateService) Update() *serializer.Response {
 	service.result = archive
 	return nil
 }
-func (service *UpdateService) Response() interface{}{
-		return  service.result
+func (service *UpdateService) Response() interface{} {
+	return service.result
 
 }

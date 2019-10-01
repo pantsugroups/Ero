@@ -13,7 +13,8 @@ type CreateService struct {
 	result      models.Novel
 }
 
-func (service *CreateService) Create() *serializer.Response {
+func (service *CreateService) Create(creater uint) *serializer.Response {
+	u, _ := models.GetUser(creater)
 	novel := models.Novel{
 		Title:       service.Title,
 		Author:      service.Author,
@@ -22,6 +23,7 @@ func (service *CreateService) Create() *serializer.Response {
 		Ended:       false,
 		Level:       models.Level1,
 		Subscribed:  0,
+		Creater:     u,
 	}
 	if err := models.DB.Create(&novel).Error; err != nil {
 		return &serializer.Response{

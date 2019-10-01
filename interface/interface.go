@@ -7,7 +7,7 @@ import (
 type ListInterface interface {
 	HaveNextOrLast() (next bool, last bool)
 	Pages() (int, *serializer.Response)
-	Pull()  *serializer.Response
+	Pull() *serializer.Response
 	Counts() int
 	Response() interface{}
 }
@@ -18,7 +18,7 @@ type GetInterface interface {
 }
 
 type CreateInterface interface {
-	Create() *serializer.Response
+	Create(creater uint) *serializer.Response
 	Response() interface{}
 }
 type UpdateInterface interface {
