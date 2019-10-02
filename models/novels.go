@@ -23,6 +23,12 @@ const (
 	Level3 = 2
 )
 
+func GetNovel(ID interface{}) (Novel, error) {
+	var novel Novel
+	result := DB.First(&novel, ID)
+	return novel, result.Error
+}
+
 //func Int2String_Novel(Type int) string{
 //	if Type == Level1{
 //		return "Level1"

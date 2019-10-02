@@ -1,16 +1,16 @@
-package service
+package user
 
 import "eroauz/serializer"
 import model "eroauz/models"
 
 // UserLoginService 管理用户登录的服务
-type UserLoginService struct {
+type LoginService struct {
 	UserName string `form:"username" json:"user_name" binding:"required,min=5,max=30"`
 	Password string `form:"password" json:"password" binding:"required,min=8,max=40"`
 }
 
 // Login 用户登录函数
-func (service *UserLoginService) Login() (model.User, *serializer.Response) {
+func (service *LoginService) Login() (model.User, *serializer.Response) {
 	var user model.User
 
 	if err := model.DB.Where("user_name = ?", service.UserName).First(&user).Error; err != nil {

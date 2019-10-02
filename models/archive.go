@@ -13,9 +13,8 @@ type Archive struct {
 	Creater        User `gorm:"ForeignKey:User;"`
 }
 
-// GetUser 用ID获取用户
 func GetArchive(ID interface{}) (Archive, error) {
 	var archive Archive
-	result := DB.First(&Archive{}, ID)
+	result := DB.First(&archive, ID)
 	return archive, result.Error
 }

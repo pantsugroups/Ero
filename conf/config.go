@@ -2,18 +2,20 @@ package conf
 
 const (
 	// 上传路径配置
-	Static_Path string = "/"
+	StaticPath string = "/"
 
 	// 数据库配置
-	DataBase_Name     string = "Ero"
-	DataBase_Password string = "bakabie"
-	DataBase_User     string = "root"
-	DttaBase_Port     string = "3306"
+	DataBaseName     string = "Ero"
+	DataBasePassword string = "bakabie"
+	DataBaseUser     string = "root"
+	DttaBasePort     string = "3306"
 
 	// 邮箱配置
-	SMTP_HOST     = ""
-	SMTP_USERNAME = ""
-	SMTP_PASSWORD = ""
+	SMTPHOST     = ""
+	SMTPUSERNAME = ""
+	SMTPPASSWORD = ""
+
+	JWTSecret = ""
 )
 
 func ParseDataBaseConfigure() string {

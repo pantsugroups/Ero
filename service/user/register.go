@@ -1,11 +1,12 @@
-package service
+package user
+
 import (
 	model "eroauz/models"
 	"eroauz/serializer"
 )
 
 // UserRegisterService 管理用户注册服务
-type UserRegisterService struct {
+type RegisterService struct {
 	Nickname        string `form:"nickname" json:"nickname" null:"false"`
 	UserName        string `form:"user_name" json:"user_name" null:"false"`
 	Mail            string `form:"mail" json:"mail" null:"false"`
@@ -14,7 +15,7 @@ type UserRegisterService struct {
 }
 
 // Valid 验证表单
-func (service *UserRegisterService) Valid() *serializer.Response {
+func (service *RegisterService) Valid() *serializer.Response {
 	if service.PasswordConfirm != service.Password {
 		return &serializer.Response{
 			Status: 40001,
@@ -42,16 +43,19 @@ func (service *UserRegisterService) Valid() *serializer.Response {
 
 	return nil
 }
+
 // SendMail 发送电子邮件
-func (service *UserRegisterService) SendMail() *serializer.Response{
+func (service *RegisterService) SendMail() *serializer.Response {
 	return nil
 }
+
 // Register 用户注册
-func (service *UserRegisterService) Register() (model.User, *serializer.Response) {
+func (service *RegisterService) Register() (model.User, *serializer.Response) {
 	user := model.User{
 		Nickname: service.Nickname,
 		UserName: service.UserName,
 		Status:   model.Inactive,
+		Point:    250,
 	}
 
 	// 表单验证

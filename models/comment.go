@@ -14,6 +14,7 @@ type Comment struct {
 	Author User `gorm:"ForeignKey:User;"`
 	Type   int  //评论类型
 	RId    uint // 关联的ID
+	RUid   uint // 是否评论中评论
 }
 
 func String2Int_Comment(Type string) int {

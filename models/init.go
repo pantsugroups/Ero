@@ -31,6 +31,20 @@ func Database(connString string) {
 
 	DB = db
 
-	DB.AutoMigrate(&User{}, &Archive{}, Comment{})
+	DB.AutoMigrate(&User{}, &Archive{}, Comment{}, Category{})
+	// 初始化
+	var count int
+	if err := DB.Model(&Category{}).Count(&count).Error; err != nil {
+		panic(err) // 安装错误
+	}
+	if count == 0 {
+		category := Category{
+			Title: "Default",
+			Count: 0,
+		}
+		if err := DB.Create(&category).Error; err != nil {
+			panic(err)
+		}
+	}
 
 }

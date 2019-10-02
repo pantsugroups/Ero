@@ -5,21 +5,20 @@ import (
 )
 
 type Comment struct {
-	ID          uint   `json:"id"`
-	Title       string `json:"title"`
-	Author_id   uint   `json:"author_id"`
-	Author_Name string `json:"author_name"`
-	Type        int    `json:"type"`
-	RId         uint   `json:"raw"`
+	ID         uint   `json:"id"`
+	Title      string `json:"title"`
+	AuthorID   uint   `json:"author_id"`
+	AuthorName string `json:"author_name"`
+	Type       int    `json:"type"`
+	RId        uint   `json:"raw"`
+	RUid       uint   `json:"reply"`
 }
 
-// ArchiveResponse 单个用户序列化
 type CommentResponse struct {
 	Response
 	Data Comment `json:"data"`
 }
 
-// ArchiveResponse 单个用户序列化
 type CommentListResponse struct {
 	Response
 	Count int       `json:"count"`
@@ -29,19 +28,17 @@ type CommentListResponse struct {
 	Pages int       `json:"pages"`
 }
 
-// BuildArchive 单个序列化文章
 func BuildComment(comment models.Comment) Comment {
 	return Comment{
-		ID:          comment.ID,
-		Title:       comment.Title,
-		Author_id:   comment.Author.ID,
-		Author_Name: comment.Author.Nickname,
-		Type:        comment.Type,
-		RId:         comment.RId,
+		ID:         comment.ID,
+		Title:      comment.Title,
+		AuthorID:   comment.Author.ID,
+		AuthorName: comment.Author.Nickname,
+		Type:       comment.Type,
+		RId:        comment.RId,
 	}
 }
 
-// BuildArchiveList 序列化文章列表
 func BuildCommentList(comments []models.Comment) []Comment {
 	var commentList []Comment
 	for _, a := range comments {
@@ -51,14 +48,12 @@ func BuildCommentList(comments []models.Comment) []Comment {
 	return commentList
 }
 
-// BuildArchiveResponse 序列化文章响应
 func BuildCommentResponse(comment models.Comment) CommentResponse {
 	return CommentResponse{
 		Data: BuildComment(comment),
 	}
 }
 
-// BuildArchiveResponse 序列化文章列表响应
 func BuildCommentListResponse(commments []models.Comment, count int, next bool, last bool, pages int) CommentListResponse {
 	return CommentListResponse{
 		Count: count,

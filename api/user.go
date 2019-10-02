@@ -2,20 +2,20 @@ package api
 
 import (
 	"eroauz/serializer"
-	s "eroauz/service"
+	"eroauz/service/user"
 	"eroauz/utils"
 	"fmt"
 	"github.com/labstack/echo"
 )
 
-func UserRegister(c echo.Context) (err error){
+func UserRegister(c echo.Context) (err error) {
 
-	var service s.UserRegisterService
+	var service user.RegisterService
 	if err := c.Bind(&service); err == nil {
-		if user, err := service.Register(); err != nil {
+		if users, err := service.Register(); err != nil {
 			return c.JSON(200, err)
 		} else {
-			res := serializer.BuildUserResponse(user)
+			res := serializer.BuildUserResponse(users)
 			return c.JSON(200, res)
 		}
 	} else {
@@ -26,21 +26,21 @@ func UserRegister(c echo.Context) (err error){
 		})
 	}
 }
-func UserLogin(c echo.Context)(err error){
-	var service s.UserLoginService
+func UserLogin(c echo.Context) (err error) {
+	var service user.LoginService
 	if err := c.Bind(&service); err == nil {
-		if user, err := service.Login(); err != nil {
+		if users, err := service.Login(); err != nil {
 			return c.JSON(200, err)
 		} else {
 			// 设置Session
-			token ,err := utils.CreateToken(user)
-			if err != nil{
+			token, err := utils.CreateToken(users)
+			if err != nil {
 				return c.JSON(200, &serializer.Response{
 					Status: 40003,
 					Msg:    "token生成失败",
 					Error:  fmt.Sprint(err)})
 			}
-			res := serializer.BuildTokenResponse(user,token)
+			res := serializer.BuildTokenResponse(users, token)
 			return c.JSON(200, res)
 		}
 	} else {
@@ -50,7 +50,7 @@ func UserLogin(c echo.Context)(err error){
 			Error:  fmt.Sprint(err)})
 	}
 }
-func UserSelf(c echo.Context)(err error){
+func UserSelf(c echo.Context) (err error) {
 
 	return nil
 }

@@ -3,12 +3,14 @@ package comment
 import (
 	"eroauz/models"
 	"eroauz/serializer"
+	"eroauz/service/message"
 )
 
 type CreateService struct {
 	Title  string `json:"title" form:"title"`
 	Type   int    `json:"type" form:"type"`
 	RId    uint   `json:"raw"  form:"raw"`
+	RUid   uint   `json:"reply" form:"reply"`
 	result models.Comment
 }
 
@@ -39,11 +41,21 @@ func (service *CreateService) Create(creater uint) *serializer.Response {
 		Author: u,
 		Type:   service.Type,
 		RId:    service.RId,
+		RUid:   service.RUid,
 	}
 	if err := models.DB.Create(&archive).Error; err != nil {
 		return &serializer.Response{
 			Status: 40004,
 			Msg:    "创建失败",
+		}
+	}
+	if service.RUid != 0 {
+		M := message.CreateService{
+			Title: "您的消息有回复啦！<a>查看回复</a>",
+			Recv:  u.ID,
+		}
+		if err := M.Create(creater); err != nil {
+			return err
 		}
 	}
 	service.result = archive

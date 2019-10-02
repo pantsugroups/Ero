@@ -2,34 +2,43 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41c30afa-f5b2-41ab-a7fc-1fc604c5d40e" name="默认更改列表" comment="">
-      <change afterPath="$PROJECT_DIR$/conf/config.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/serializer/comment.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/comment/comments.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/comment/create.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/comment/delete.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/comment/get.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/BIE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/BIE.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/category.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/msg.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/serializer/category.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/serializer/message.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/category/create.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/category/delete.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/category/lists.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/category/update.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/message/create.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/message/delete.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/message/update.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/relationship/append_nocel2category.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/relationship/delete_novel2category.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/user/delete.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/user/get.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/user/super.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/user/update.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/volume/create.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/volume/delete.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/volume/update.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/service/volume/volumes.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/api.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/archive.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/novel.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/interface/interface.go" beforeDir="false" afterPath="$PROJECT_DIR$/interface/interface.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/conf/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/middleware/auth.go" beforeDir="false" afterPath="$PROJECT_DIR$/middleware/auth.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/archive.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/archive.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/comment.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/comment.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/init.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/novels.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/novels.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/relation.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/relation.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serializer/archive.go" beforeDir="false" afterPath="$PROJECT_DIR$/serializer/archive.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/serializer/comment.go" beforeDir="false" afterPath="$PROJECT_DIR$/serializer/comment.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/serializer/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/serializer/user.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/route.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/route.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/archive/create.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/archive/create.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/archive/delete.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/archive/delete.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/archive/update.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/archive/update.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/lists_pull_service.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/novel/create.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/novel/create.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/novel/delete.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/novel/delete.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/novel/get.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/novel/get.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/novel/update.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/novel/update.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/jwt.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/jwt.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/comment/create.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/comment/create.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/user_login_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/user/login.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/user_register_service.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/user/register.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -42,58 +51,10 @@
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/api/api.go">
+            <entry file="file://$PROJECT_DIR$/service/message/create.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="2068">
-                  <caret line="100" column="38" selection-start-line="100" selection-start-column="38" selection-end-line="100" selection-end-column="38" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/service/novel/update.go">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="110">
-                  <caret line="8" column="48" selection-start-line="8" selection-start-column="48" selection-end-line="8" selection-end-column="48" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/serializer/archive.go">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="300">
-                  <caret line="46" column="46" selection-start-line="46" selection-start-column="46" selection-end-line="46" selection-end-column="46" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/service/comment/create.go">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="374">
-                  <caret line="17" column="34" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
-                  <folding>
-                    <element signature="e#17#65#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/service/comment/get.go">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="66">
-                  <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/service/comment/comments.go">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="176">
-                  <caret line="50" column="30" selection-start-line="50" selection-start-column="30" selection-end-line="50" selection-end-column="30" />
+                <state relative-caret-position="792">
+                  <caret line="36" column="57" lean-forward="true" selection-start-line="36" selection-start-column="57" selection-end-line="36" selection-end-column="57" />
                   <folding>
                     <element signature="e#17#65#0" expanded="true" />
                   </folding>
@@ -102,37 +63,85 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/models/comment.go">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="286">
-                  <caret line="13" column="14" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="14" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/models/archive.go">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="264">
-                  <caret line="12" column="49" selection-start-line="12" selection-start-column="49" selection-end-line="12" selection-end-column="49" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/service/novel/delete.go">
-              <provider selected="true" editor-type-id="text-editor">
-                <state>
-                  <caret column="13" selection-start-column="13" selection-end-column="13" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/api/tag.go">
+            <entry file="file://$PROJECT_DIR$/service/message/update.go">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="22">
-                  <caret line="1" selection-start-line="1" selection-end-line="1" />
+                  <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/serializer/message.go">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1296">
+                  <caret line="65" selection-start-line="65" selection-end-line="65" />
+                  <folding>
+                    <element signature="e#20#46#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/service/user/update.go">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="154">
+                  <caret line="7" column="27" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
+                  <folding>
+                    <element signature="e#14#62#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/service/user/super.go">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="562">
+                  <caret line="30" column="23" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
+                  <folding>
+                    <element signature="e#14#62#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/service/user/delete.go">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="440">
+                  <caret line="20" column="20" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
+                  <folding>
+                    <element signature="e#14#62#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/service/user/register.go">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="242">
+                  <caret line="14" selection-start-line="14" selection-end-line="14" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/service/novel/update.go">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="484">
+                  <caret line="28" column="27" selection-end-line="43" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/service/user/login.go">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="242">
+                  <caret line="12" column="56" selection-start-line="12" selection-start-column="56" selection-end-line="12" selection-end-column="56" />
                 </state>
               </provider>
             </entry>
@@ -141,98 +150,90 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/server/route.go">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/api/user.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="106">
-                  <caret line="30" column="24" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
+                <state relative-caret-position="188">
+                  <caret line="27" column="1" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
+                  <folding>
+                    <element signature="e#13#118#0" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/models/init.go">
+            <entry file="file://$PROJECT_DIR$/serializer/user.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="394">
-                  <caret line="33" column="47" selection-start-line="33" selection-start-column="47" selection-end-line="33" selection-end-column="47" />
+                <state relative-caret-position="220">
+                  <caret line="10" column="36" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
                 </state>
               </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/server/route.go">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="386">
+                  <caret line="72" column="29" selection-start-line="72" selection-start-column="29" selection-end-line="72" selection-end-column="29" />
+                  <folding>
+                    <element signature="e#16#208#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/models/comment.go">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="352">
+                  <caret line="16" column="26" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/serializer/common.go">
+              <provider selected="true" editor-type-id="text-editor" />
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/serializer/comment.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1056">
-                  <caret line="50" column="1" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
+                <state relative-caret-position="284">
+                  <caret line="50" column="22" selection-start-line="50" selection-start-column="11" selection-end-line="50" selection-end-column="22" />
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/service/archive/create.go">
+            <entry file="file://$PROJECT_DIR$/service/comment/comments.go">
+              <provider selected="true" editor-type-id="text-editor" />
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/service/comment/create.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="132">
-                  <caret line="9" column="63" selection-start-line="9" selection-start-column="63" selection-end-line="9" selection-end-column="63" />
+                <state relative-caret-position="430">
+                  <caret line="53" column="35" selection-start-line="53" selection-start-column="35" selection-end-line="53" selection-end-column="35" />
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/service/archive/get.go">
+            <entry file="file://$PROJECT_DIR$/models/user.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state>
-                  <caret column="15" selection-start-column="15" selection-end-column="15" />
+                <state relative-caret-position="242">
+                  <caret line="16" column="25" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="25" />
                 </state>
               </provider>
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/service/archive/update.go">
+            <entry file="file://$PROJECT_DIR$/models/msg.go">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="18">
-                  <caret line="13" column="55" selection-start-line="13" selection-start-column="55" selection-end-line="13" selection-end-column="55" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/service/archive/archives.go">
-              <provider selected="true" editor-type-id="text-editor">
-                <state>
-                  <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/service/archive/delete.go">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="176">
-                  <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
-                  <folding>
-                    <element signature="e#17#65#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/service/comment/delete.go">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="418">
-                  <caret line="22" column="26" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
-                  <folding>
-                    <element signature="e#17#65#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/conf/config.go">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="374">
-                  <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
+                <state relative-caret-position="330">
+                  <caret line="15" column="1" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
                 </state>
               </provider>
             </entry>
@@ -271,40 +272,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/eroauz/service/novel/novel_update_service.go" />
-        <option value="$PROJECT_DIR$/src/eroauz/service/novel/novel_service.go" />
-        <option value="$PROJECT_DIR$/src/eroauz/api/archive.go" />
-        <option value="$PROJECT_DIR$/src/eroauz/service/archive/archives_service.go" />
-        <option value="$PROJECT_DIR$/src/eroauz/service/novel/novels_service.go" />
-        <option value="$PROJECT_DIR$/src/eroauz/service/lists_pull_service.go" />
-        <option value="$PROJECT_DIR$/src/eroauz/utils/utils.go" />
-        <option value="$PROJECT_DIR$/main.go" />
-        <option value="$PROJECT_DIR$/api/readme.md" />
-        <option value="$PROJECT_DIR$/service/tag/create.go" />
-        <option value="$PROJECT_DIR$/service/tag/get.go" />
-        <option value="$PROJECT_DIR$/service/tag/delete.go" />
-        <option value="$PROJECT_DIR$/models/tag.go" />
-        <option value="$PROJECT_DIR$/serializer/tag.go" />
-        <option value="$PROJECT_DIR$/service/tag/gets.go" />
-        <option value="$PROJECT_DIR$/readme.md" />
-        <option value="$PROJECT_DIR$/serializer/novel.go" />
-        <option value="$PROJECT_DIR$/api/archive.go" />
-        <option value="$PROJECT_DIR$/api/novel.go" />
-        <option value="$PROJECT_DIR$/api/common.go" />
-        <option value="$PROJECT_DIR$/utils/utils.go" />
-        <option value="$PROJECT_DIR$/serializer/common.go" />
-        <option value="$PROJECT_DIR$/service/archive/archives.go" />
-        <option value="$PROJECT_DIR$/middleware/auth.go" />
-        <option value="$PROJECT_DIR$/service/novel/novels.go" />
-        <option value="$PROJECT_DIR$/service/comment/lists.go" />
-        <option value="$PROJECT_DIR$/service/comment/update.go" />
-        <option value="$PROJECT_DIR$/utils/jwt.go" />
-        <option value="$PROJECT_DIR$/models/novels.go" />
-        <option value="$PROJECT_DIR$/models/relation.go" />
-        <option value="$PROJECT_DIR$/service/archive/create.go" />
         <option value="$PROJECT_DIR$/service/novel/create.go" />
         <option value="$PROJECT_DIR$/interface/interface.go" />
-        <option value="$PROJECT_DIR$/models/archive.go" />
         <option value="$PROJECT_DIR$/serializer/archive.go" />
         <option value="$PROJECT_DIR$/service/archive/update.go" />
         <option value="$PROJECT_DIR$/service/novel/get.go" />
@@ -314,14 +283,46 @@
         <option value="$PROJECT_DIR$/service/novel/delete.go" />
         <option value="$PROJECT_DIR$/service/archive/delete.go" />
         <option value="$PROJECT_DIR$/service/comment/delete.go" />
-        <option value="$PROJECT_DIR$/conf/config.go" />
         <option value="$PROJECT_DIR$/service/comment/get.go" />
-        <option value="$PROJECT_DIR$/service/comment/create.go" />
-        <option value="$PROJECT_DIR$/models/init.go" />
-        <option value="$PROJECT_DIR$/serializer/comment.go" />
-        <option value="$PROJECT_DIR$/models/comment.go" />
         <option value="$PROJECT_DIR$/service/comment/comments.go" />
+        <option value="$PROJECT_DIR$/models/init.go" />
+        <option value="$PROJECT_DIR$/service/category/create.go" />
+        <option value="$PROJECT_DIR$/service/category/delete.go" />
+        <option value="$PROJECT_DIR$/service/category/lists.go" />
+        <option value="$PROJECT_DIR$/serializer/category.go" />
+        <option value="$PROJECT_DIR$/service/category/update.go" />
+        <option value="$PROJECT_DIR$/models/relation.go" />
+        <option value="$PROJECT_DIR$/service/category/append.go" />
+        <option value="$PROJECT_DIR$/service/relationship/append.go" />
+        <option value="$PROJECT_DIR$/models/category.go" />
+        <option value="$PROJECT_DIR$/models/novels.go" />
+        <option value="$PROJECT_DIR$/models/archive.go" />
+        <option value="$PROJECT_DIR$/service/relationship/delete_novel2category.go" />
+        <option value="$PROJECT_DIR$/service/volume/create.go" />
+        <option value="$PROJECT_DIR$/service/volume/delete.go" />
+        <option value="$PROJECT_DIR$/service/volume/update.go" />
+        <option value="$PROJECT_DIR$/service/volume/volumes.go" />
+        <option value="$PROJECT_DIR$/service/message/delete.go" />
+        <option value="$PROJECT_DIR$/service/relationship/append_nocel2category.go" />
+        <option value="$PROJECT_DIR$/api/user.go" />
+        <option value="$PROJECT_DIR$/service/user/get.go" />
+        <option value="$PROJECT_DIR$/service/message/update.go" />
+        <option value="$PROJECT_DIR$/service/user/login.go" />
+        <option value="$PROJECT_DIR$/service/user/register.go" />
+        <option value="$PROJECT_DIR$/models/user.go" />
+        <option value="$PROJECT_DIR$/conf/config.go" />
+        <option value="$PROJECT_DIR$/serializer/user.go" />
+        <option value="$PROJECT_DIR$/service/user/delete.go" />
+        <option value="$PROJECT_DIR$/middleware/auth.go" />
         <option value="$PROJECT_DIR$/server/route.go" />
+        <option value="$PROJECT_DIR$/service/user/super.go" />
+        <option value="$PROJECT_DIR$/service/user/update.go" />
+        <option value="$PROJECT_DIR$/models/msg.go" />
+        <option value="$PROJECT_DIR$/models/comment.go" />
+        <option value="$PROJECT_DIR$/serializer/message.go" />
+        <option value="$PROJECT_DIR$/serializer/comment.go" />
+        <option value="$PROJECT_DIR$/service/message/create.go" />
+        <option value="$PROJECT_DIR$/service/comment/create.go" />
       </list>
     </option>
   </component>
@@ -382,7 +383,55 @@
             <path>
               <item name="eroauz" type="b2602c69:ProjectViewProjectNode" />
               <item name="eroauz" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eroauz" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eroauz" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="archive" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eroauz" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eroauz" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="category" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eroauz" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eroauz" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="comment" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eroauz" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eroauz" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="message" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eroauz" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eroauz" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="novel" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eroauz" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eroauz" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="relationship" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eroauz" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eroauz" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="tag" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="eroauz" type="b2602c69:ProjectViewProjectNode" />
+              <item name="eroauz" type="462c0819:PsiDirectoryNode" />
+              <item name="service" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -403,7 +452,7 @@
     <property name="go.gopath.indexing.explicitly.defined" value="true" />
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/service/user" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -411,6 +460,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\NOW\src\eroauz\service\user" />
+      <recent name="F:\NOW\src\eroauz\service\relationship" />
       <recent name="F:\NOW\src\eroauz" />
       <recent name="F:\NOW\eroauz\src\eroauz\service\archive" />
     </key>
@@ -474,12 +525,12 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.09605123" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14994664" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32934782" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32826087" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32826087" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -504,368 +555,10 @@
       <path value="$PROJECT_DIR$/src/eroauz" />
     </ignored-roots>
     <MESSAGE value="+ Novel/Archive 完成增上改查API" />
-    <option name="LAST_COMMIT_MESSAGE" value="+ Novel/Archive 完成增上改查API" />
+    <MESSAGE value="+ 完成 Comment" />
+    <option name="LAST_COMMIT_MESSAGE" value="+ 完成 Comment" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/main.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
-          <folding>
-            <element signature="e#14#92#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/serializer/tag.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="18" lean-forward="true" selection-start-column="18" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor />
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/readme.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="547">
-            <caret line="27" column="2" selection-start-line="27" selection-start-column="2" selection-end-line="27" selection-end-column="2" />
-          </first_editor>
-          <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://F:/GOPATH/src/github.com/labstack/echo/group.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="42" column="46" selection-start-line="42" selection-start-column="35" selection-end-line="42" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/user_register_service.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-374">
-          <caret line="19" column="26" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/user_login_service.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="16" column="42" selection-start-line="16" selection-start-column="42" selection-end-line="16" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://F:/Go/src/reflect/type.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="1125" column="21" selection-start-line="1125" selection-start-column="21" selection-end-line="1125" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/user.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="638">
-          <caret line="38" column="34" lean-forward="true" selection-start-line="38" selection-start-column="34" selection-end-line="38" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://F:/Go/src/reflect/value.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1127">
-          <caret line="783" column="22" selection-start-line="783" selection-start-column="21" selection-end-line="783" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://F:/GOPATH/src/github.com/labstack/echo/context.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="123" column="4" selection-start-line="123" selection-start-column="4" selection-end-line="123" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/serializer/novel.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="453">
-          <caret line="63" column="5" selection-start-line="63" selection-start-column="5" selection-end-line="63" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/utils.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1012">
-          <caret line="51" column="43" selection-start-line="51" selection-start-column="43" selection-end-line="51" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://F:/GOPATH/src/github.com/labstack/echo/bind.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1100">
-          <caret line="59" column="25" selection-start-line="59" selection-start-column="13" selection-end-line="59" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/user.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-54">
-          <caret line="23" column="17" selection-start-line="23" selection-start-column="17" selection-end-line="23" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/volume.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/tag.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="716">
-          <caret line="45" column="24" selection-start-line="45" selection-start-column="24" selection-end-line="45" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/serializer/common.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="26" column="20" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://F:/GOPATH/src/github.com/labstack/echo/middleware/jwt.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1352">
-          <caret line="107" column="5" selection-start-line="107" selection-start-column="5" selection-end-line="107" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/relation.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" column="3" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/novels.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="13" column="23" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/utils/jwt.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="660">
-          <caret line="35" column="36" selection-start-line="35" selection-start-column="32" selection-end-line="35" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/interface/interface.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="12" column="1" lean-forward="true" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/novel/create.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="484">
-          <caret line="25" column="18" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/novel/get.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="8" column="46" selection-start-line="8" selection-start-column="46" selection-end-line="8" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/novel/novels.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="25" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
-          <folding>
-            <element signature="e#15#63#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/novel/update.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="8" column="48" selection-start-line="8" selection-start-column="48" selection-end-line="8" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/middleware/auth.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="352">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
-          <folding>
-            <element signature="e#20#58#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/lists_pull_service.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1126" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/archive.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="548">
-          <caret line="69" column="8" selection-start-line="69" selection-start-column="8" selection-end-line="69" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/novel.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-840">
-          <caret line="10" column="3" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/tag.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/api.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2068">
-          <caret line="100" column="38" selection-start-line="100" selection-start-column="38" selection-end-line="100" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/conf/config.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/comment/update.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="15" selection-start-column="15" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/novel/delete.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="13" selection-start-column="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/comment/delete.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="22" column="26" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
-          <folding>
-            <element signature="e#17#65#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/comment/create.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="17" column="34" selection-start-line="17" selection-start-column="34" selection-end-line="17" selection-end-column="34" />
-          <folding>
-            <element signature="e#17#65#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/init.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="33" column="47" selection-start-line="33" selection-start-column="47" selection-end-line="33" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/serializer/archive.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="46" column="46" selection-start-line="46" selection-start-column="46" selection-end-line="46" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/archive.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="12" column="49" selection-start-line="12" selection-start-column="49" selection-end-line="12" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/comment/comments.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="50" column="30" selection-start-line="50" selection-start-column="30" selection-end-line="50" selection-end-column="30" />
-          <folding>
-            <element signature="e#17#65#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/archive/delete.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
-          <folding>
-            <element signature="e#17#65#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/serializer/comment.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1056">
-          <caret line="50" column="1" selection-start-line="50" selection-start-column="1" selection-end-line="50" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/comment/get.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66">
-          <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/comment.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="13" column="14" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/archive/archives.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/archive/update.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="13" column="55" selection-start-line="13" selection-start-column="55" selection-end-line="13" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/service/archive/get.go">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -880,10 +573,373 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/models/init.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="44" column="30" selection-start-line="44" selection-start-column="30" selection-end-line="44" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/serializer/category.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="53" selection-start-line="53" selection-end-line="53" />
+          <folding>
+            <element signature="e#22#48#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/novel/novels.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1382">
+          <caret line="82" column="55" selection-start-line="82" selection-start-column="55" selection-end-line="82" selection-end-column="55" />
+          <folding>
+            <element signature="e#15#63#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/category/update.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="282">
+          <caret line="15" column="79" selection-start-line="15" selection-start-column="76" selection-end-line="15" selection-end-column="79" />
+          <folding>
+            <element signature="e#18#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/category/create.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="25" column="1" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/tag.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="452">
+          <caret line="45" column="24" selection-start-line="45" selection-start-column="24" selection-end-line="45" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/volume.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/relation.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/novel/get.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="14" column="47" selection-start-line="14" selection-start-column="40" selection-end-line="14" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/tag/gets.go">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/novel/create.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="436">
+          <caret line="39" selection-start-line="2" selection-end-line="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/archive.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="19" column="24" selection-start-line="19" selection-start-column="24" selection-end-line="19" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/relationship/delete_novel2category.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="10" column="1" selection-start-line="10" selection-start-column="1" selection-end-line="10" selection-end-column="1" />
+          <folding>
+            <element signature="e#22#70#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/novels.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="110">
+          <caret line="5" column="14" selection-start-line="5" selection-start-column="9" selection-end-line="5" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/category/lists.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="64" column="14" selection-start-line="64" selection-start-column="14" selection-end-line="64" selection-end-column="14" />
+          <folding>
+            <element signature="e#18#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/volume/delete.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="14" selection-start-column="14" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/volume/update.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="14" selection-start-column="14" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/volume/volumes.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://F:/GOPATH/src/github.com/jinzhu/gorm/model.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/serializer/archive.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="33" column="1" selection-start-line="33" selection-start-column="1" selection-end-line="33" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/category.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="13" column="1" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/category/delete.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="21" column="25" selection-start-line="21" selection-start-column="25" selection-end-line="21" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/relationship/append_nocel2category.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="518">
+          <caret line="40" column="15" selection-start-line="40" selection-start-column="15" selection-end-line="40" selection-end-column="15" />
+          <folding>
+            <element signature="e#18#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/volume/create.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/user/get.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="12" selection-start-column="12" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/novel/update.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="28" column="27" selection-end-line="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/novel/delete.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="15" column="26" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/conf/config.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/api.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1320">
+          <caret line="99" column="39" selection-start-line="99" selection-start-column="39" selection-end-line="99" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/middleware/auth.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="16" column="7" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/serializer/user.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="10" column="36" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/user.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="27" column="1" selection-start-line="27" selection-start-column="1" selection-end-line="27" selection-end-column="1" />
+          <folding>
+            <element signature="e#13#118#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/message/delete.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/user/login.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="12" column="56" selection-start-line="12" selection-start-column="56" selection-end-line="12" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/comment.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="16" column="26" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/serializer/common.go">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/server/route.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="30" column="24" selection-start-line="30" selection-start-column="24" selection-end-line="30" selection-end-column="24" />
+        <state relative-caret-position="386">
+          <caret line="72" column="29" selection-start-line="72" selection-start-column="29" selection-end-line="72" selection-end-column="29" />
+          <folding>
+            <element signature="e#16#208#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/user/register.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/msg.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="15" column="1" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/user/delete.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="20" column="20" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="20" />
+          <folding>
+            <element signature="e#14#62#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/user/super.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="562">
+          <caret line="30" column="23" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
+          <folding>
+            <element signature="e#14#62#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/user/update.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="7" column="27" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
+          <folding>
+            <element signature="e#14#62#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/user.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="16" column="25" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/serializer/message.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1296">
+          <caret line="65" selection-start-line="65" selection-end-line="65" />
+          <folding>
+            <element signature="e#20#46#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/serializer/comment.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="50" column="22" selection-start-line="50" selection-start-column="11" selection-end-line="50" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/comment/comments.go">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/message/create.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="792">
+          <caret line="36" column="57" lean-forward="true" selection-start-line="36" selection-start-column="57" selection-end-line="36" selection-end-column="57" />
+          <folding>
+            <element signature="e#17#65#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/message/update.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="22">
+          <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/comment/create.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="430">
+          <caret line="53" column="35" selection-start-line="53" selection-start-column="35" selection-end-line="53" selection-end-column="35" />
         </state>
       </provider>
     </entry>
