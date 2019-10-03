@@ -19,7 +19,7 @@ func BuildTag(tag models.Tag) Tag {
 	return Tag{
 		Title: tag.Title,
 		ID:    tag.RID,
-		Type:  models.Int2String_Tag(tag.R_Type),
+		Type:  models.Int2StringTag(tag.RType),
 	}
 }
 

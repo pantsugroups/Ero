@@ -10,7 +10,7 @@ type CreateService struct {
 	result models.Category
 }
 
-func (service *CreateService) Create(creater uint) *serializer.Response {
+func (service *CreateService) Create(create uint) *serializer.Response {
 	category := models.Category{
 		Title: service.Title,
 		Count: 0,

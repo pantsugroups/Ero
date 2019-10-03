@@ -1,4 +1,4 @@
-package archive
+package message
 
 import (
 	"eroauz/models"
@@ -12,7 +12,7 @@ type ListService struct {
 	PageSize int `json:"page_count" form:"page_Size" query:"page_Size"`
 	Count    int // 查询结果请求
 	All      int //总数
-	result   []models.Archive
+	result   []models.Category
 }
 
 // 判断是否有上一页或者下一页
@@ -34,7 +34,7 @@ func (service *ListService) HaveNextOrLast() (next bool, last bool) {
 // 返回查询结果总页数,是按照当前请求的结果的数量除以总数得出的
 func (service *ListService) Pages() (int, *serializer.Response) {
 
-	if err := models.DB.Model(&models.Archive{}).Count(&service.All).Error; err != nil {
+	if err := models.DB.Model(&models.Novel{}).Count(&service.All).Error; err != nil {
 		return 0, &serializer.Response{
 			Status: 40005,
 			Msg:    "查询总数失败",
@@ -46,40 +46,33 @@ func (service *ListService) Pages() (int, *serializer.Response) {
 	return int(service.All / service.Count), nil
 }
 func (service *ListService) Pull(create uint) *serializer.Response {
-	var archive []models.Archive
+	var category []models.Category
 	//var count int
 	if service.PageSize == 0 {
 		service.PageSize = 10
 	}
 
-	DB := models.DB
+	DB := models.DB.Where("recv_id = ?", create)
 
-	if service.Page > 0 && service.PageSize > 0 {
-		DB = DB.Limit(service.Page).Offset((service.Page - 1) * service.PageSize)
-	} else {
-		if service.Limit != 0 {
-			DB.Limit(service.Limit)
-		}
-		if service.Offset != 0 {
-			DB.Offset(service.Offset)
-		}
-	}
-	if err := DB.Find(&archive).Count(&service.Count).Error; err != nil {
+	//if service.Page > 0 && service.PageSize > 0 {
+	//	DB = DB.Limit(service.Page).Offset((service.Page - 1) * service.PageSize)
+	//} else {
+	//	if service.Limit != 0 {
+	//		DB.Limit(service.Limit)
+	//	}
+	//	if service.Offset != 0 {
+	//		DB.Offset(service.Offset)
+	//	}
+	//}
+
+	if err := DB.Find(&category).Count(&service.Count).Error; err != nil {
 		return &serializer.Response{
 			Status: 40005,
 			Msg:    "获取失败",
 		}
 	}
-	for a := range archive {
-		var user models.User
-		u, err := models.GetUser(archive[a].Create)
-		user = u
-		if err != nil {
-			user.Nickname = "被删除用户"
-		}
-		archive[a].Create = user
-	}
-	service.result = archive
+
+	service.result = category
 	return nil
 }
 func (service *ListService) Counts() int {
@@ -92,5 +85,5 @@ func (service *ListService) Response() interface{} {
 	if pages, err = service.Pages(); err != nil {
 		return err
 	}
-	return serializer.BuildArchiveListResponse(service.result, service.Count, next, last, pages)
+	return serializer.BuildCategoryListResponse(service.result, service.Count, next, last, pages)
 }

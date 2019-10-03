@@ -14,13 +14,11 @@ type Novel struct {
 	Level      int    `json:"level"`
 }
 
-// ArchiveResponse 单个用户序列化
 type NovelResponse struct {
 	Response
 	Data Novel `json:"data"`
 }
 
-// 相应列表
 type NovelListResponse struct {
 	Response
 	Count int     `json:"count"`
@@ -30,9 +28,9 @@ type NovelListResponse struct {
 	Pages int     `json:"pages"`
 }
 
-// BuildArchive 单个序列化文章
 func BuildNovel(novel models.Novel) Novel {
 	return Novel{
+		ID:         novel.ID,
 		Title:      novel.Title,
 		Cover:      novel.Cover,
 		Author:     novel.Author,
@@ -42,32 +40,21 @@ func BuildNovel(novel models.Novel) Novel {
 	}
 }
 
-// BuildArchiveList 序列化文章列表
 func BuildNovelList(novels []models.Novel) []Novel {
 	var novelList []Novel
 	for _, a := range novels {
-		i := Novel{
-			ID:         a.ID,
-			Title:      a.Title,
-			Cover:      a.Cover,
-			Author:     a.Author,
-			Subscribed: a.Subscribed,
-			Ended:      a.Ended,
-			Level:      a.Level,
-		}
+		i := BuildNovel(a)
 		novelList = append(novelList, i)
 	}
 	return novelList
 }
 
-// BuildArchiveResponse 序列化文章响应
 func BuildNovelResponse(novel models.Novel) NovelResponse {
 	return NovelResponse{
 		Data: BuildNovel(novel),
 	}
 }
 
-// BuildArchiveResponse 序列化文章列表响应
 func BuildNovelListResponse(novels []models.Novel, count int, next bool, last bool, pages int) NovelListResponse {
 	return NovelListResponse{
 		Count: count,

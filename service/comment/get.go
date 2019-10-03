@@ -10,16 +10,23 @@ type GetService struct {
 	result models.Comment
 }
 
-func (service *GetService) Get() *serializer.Response {
-	var archive models.Comment
-	if err := models.DB.Where("ID = ?", service.ID).First(&archive).Error; err != nil {
+func (service *GetService) Get(create uint) *serializer.Response {
+	var comment models.Comment
+	if err := models.DB.Where("ID = ?", service.ID).First(&comment).Error; err != nil {
 		return &serializer.Response{
 			Status: 40003,
 			Msg:    "获取失败",
 			Error:  err.Error(),
 		}
 	}
-	service.result = archive
+	var user models.User
+	u, err := models.GetUser(comment.AuthorID)
+	user = u
+	if err != nil {
+		user.Nickname = "已删除用户"
+	}
+	comment.Author = user
+	service.result = comment
 	return nil
 }
 func (service *GetService) Response() interface{} {

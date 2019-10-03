@@ -10,7 +10,7 @@ type DeleteN2CService struct {
 	Category uint `json:"category" form:"category" null:"category"`
 }
 
-func (service *DeleteN2CService) Delete() *serializer.Response {
+func (service *DeleteN2CService) Delete(create uint) *serializer.Response {
 
 	n, err := models.GetNovel(service.Novel)
 	if err != nil {

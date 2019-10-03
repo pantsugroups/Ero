@@ -10,7 +10,7 @@ type GetService struct {
 	result models.Novel
 }
 
-func (service *GetService) Get() *serializer.Response {
+func (service *GetService) Get(create uint) *serializer.Response {
 	var novel models.Novel
 	if err := models.DB.Where("ID = ?", service.ID).First(&novel).Error; err != nil {
 		return &serializer.Response{
@@ -18,6 +18,13 @@ func (service *GetService) Get() *serializer.Response {
 			Msg:    "获取失败",
 		}
 	}
+	var user models.User
+	u, err := models.GetUser(novel.Create)
+	user = u
+	if err != nil {
+		user.Nickname = "已删除用户"
+	}
+	novel.Create = user
 	service.result = novel
 	return nil
 }

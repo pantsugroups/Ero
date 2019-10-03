@@ -12,8 +12,8 @@ type CreateService struct {
 	result models.Message
 }
 
-func (service *CreateService) Create(creater uint) *serializer.Response {
-	u, err := models.GetUser(creater)
+func (service *CreateService) Create(create uint) *serializer.Response {
+	u, err := models.GetUser(create)
 	if err != nil {
 		return &serializer.Response{
 			Status: 40005,

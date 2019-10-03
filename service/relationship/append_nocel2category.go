@@ -11,7 +11,7 @@ type AppendN2CService struct {
 	result   models.NovelCategory
 }
 
-func (service *AppendN2CService) Create(creater uint) *serializer.Response {
+func (service *AppendN2CService) Create(create uint) *serializer.Response {
 	n, err := models.GetNovel(service.Novel)
 	if err != nil {
 		return &serializer.Response{

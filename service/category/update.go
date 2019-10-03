@@ -11,7 +11,7 @@ type UpdateService struct {
 	result models.Category
 }
 
-func (service *UpdateService) Update() *serializer.Response {
+func (service *UpdateService) Update(create uint) *serializer.Response {
 	var category models.Category
 	if err := models.DB.Where("ID = ?", service.ID).First(&category).Error; err != nil {
 		return &serializer.Response{

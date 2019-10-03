@@ -42,10 +42,13 @@ func (service *ListService) Pages() (int, *serializer.Response) {
 			Msg:    "查询总数失败",
 		}
 	}
+	if int(service.Count) == 0 {
+		return 0, nil
+	}
 	return int(service.All / service.Count), nil
 }
-func (service *ListService) Pull() *serializer.Response {
-	Type := models.String2Int_Comment(service.Type)
+func (service *ListService) Pull(create uint) *serializer.Response {
+	Type := models.String2IntComment(service.Type)
 	var comments []models.Comment
 	//var count int
 	if service.PageSize == 0 {
@@ -69,6 +72,16 @@ func (service *ListService) Pull() *serializer.Response {
 			Status: 40005,
 			Msg:    "获取失败",
 		}
+	}
+	for c := range comments {
+		var user models.User
+		u, err := models.GetUser(comments[c].AuthorID)
+		user = u
+		if err != nil {
+			user.Nickname = "已删除用户"
+		}
+		comments[c].Author = user
+
 	}
 	service.result = comments
 	return nil

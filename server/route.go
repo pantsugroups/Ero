@@ -5,9 +5,11 @@ import (
 	"eroauz/service/archive"
 	"eroauz/service/category"
 	"eroauz/service/comment"
+	"eroauz/service/message"
 	"eroauz/service/novel"
 	"eroauz/service/relationship"
 	"eroauz/service/user"
+	"eroauz/service/volume"
 	"eroauz/utils"
 	"github.com/labstack/echo"
 )
@@ -58,7 +60,8 @@ func NewRouter() *echo.Echo {
 			}
 			r.Use(middleware.JWTWithConfig(config))
 
-			r.GET("/user/:id", api.UserSelf)
+			var UserGet user.GetService
+			r.GET("/user/:id", api.Get(&UserGet))
 
 			var ArchiveCreate archive.CreateService
 			r.POST("/archive/", api.Create(&ArchiveCreate))
@@ -75,13 +78,22 @@ func NewRouter() *echo.Echo {
 			var Novel2Category relationship.AppendN2CService
 			r.POST("/category/", api.Create(&Novel2Category))
 
+			var VolumeList volume.ListService
+			r.GET("/volume/:id", api.List(&VolumeList))
+
 			a := r.Group("")
 			{
 				// 需要特殊权限(自己为创建者或管理员)
-				a.Use(m.AuthRequired)
 
+				var MessageList message.ListService
+				a.GET("/message/", api.List(&MessageList))
+
+				// todo:鉴权
 				var CommentDelete comment.DeleteService
 				a.DELETE("/comment/:id", api.Delete(&CommentDelete))
+
+				var MessageDelete message.DeleteService
+				a.DELETE("/message/:id", api.Delete(&MessageDelete))
 
 				var ArchiveUpdate archive.UpdateService
 				a.PUT("/archive/:id", api.Update(&ArchiveUpdate))
@@ -95,11 +107,19 @@ func NewRouter() *echo.Echo {
 				s := a.Group("")
 				{
 					// 超级权限
+					s.Use(m.AuthRequired)
+
+					var VolumeCreate volume.CreateService
+					s.POST("/volume/:id", api.Create(&VolumeCreate))
+
+					var VolumeUpdate volume.UpdateService
+					s.PUT("/volume/:id", api.Update(&VolumeUpdate))
+
 					var CategoryUpdate category.UpdateService
-					a.PUT("/category/:id", api.Update(&CategoryUpdate))
+					s.PUT("/category/:id", api.Update(&CategoryUpdate))
 
 					var ArchiveDelete archive.DeleteService
-					a.DELETE("/archive/:id", api.Delete(&ArchiveDelete))
+					s.DELETE("/archive/:id", api.Delete(&ArchiveDelete))
 
 					var UserDelete user.DeleteService
 					s.DELETE("/user/:id", api.Delete(&UserDelete))
@@ -112,6 +132,10 @@ func NewRouter() *echo.Echo {
 
 					var NovelDelete novel.DeleteService
 					a.DELETE("/novel/:id", api.Delete(&NovelDelete))
+
+					var VolumeDelete volume.DeleteService
+					a.DELETE("/volume/:id", api.Delete(&VolumeDelete))
+
 				}
 			}
 		}

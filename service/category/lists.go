@@ -40,9 +40,12 @@ func (service *ListService) Pages() (int, *serializer.Response) {
 			Msg:    "查询总数失败",
 		}
 	}
+	if int(service.Count) == 0 {
+		return 0, nil
+	}
 	return int(service.All / service.Count), nil
 }
-func (service *ListService) Pull() *serializer.Response {
+func (service *ListService) Pull(create uint) *serializer.Response {
 	var category []models.Category
 	//var count int
 	if service.PageSize == 0 {
@@ -68,6 +71,7 @@ func (service *ListService) Pull() *serializer.Response {
 			Msg:    "获取失败",
 		}
 	}
+
 	service.result = category
 	return nil
 }

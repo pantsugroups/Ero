@@ -14,8 +14,8 @@ type CreateService struct {
 	result models.Comment
 }
 
-func (service *CreateService) Create(creater uint) *serializer.Response {
-	u, _ := models.GetUser(creater)
+func (service *CreateService) Create(create uint) *serializer.Response {
+	u, _ := models.GetUser(create)
 	if service.Type == models.Archive_ {
 		var archive models.Archive
 		archive.ID = service.RId
@@ -54,7 +54,7 @@ func (service *CreateService) Create(creater uint) *serializer.Response {
 			Title: "您的消息有回复啦！<a>查看回复</a>",
 			Recv:  u.ID,
 		}
-		if err := M.Create(creater); err != nil {
+		if err := M.Create(create); err != nil {
 			return err
 		}
 	}

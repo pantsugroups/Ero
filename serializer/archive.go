@@ -44,8 +44,8 @@ func BuildArchive(archive models.Archive) Archive {
 		Author:         archive.Author,
 		PrimaryContent: archive.PrimaryContent,
 		CreatedAt:      archive.CreatedAt.Unix(),
-		CreaterId:      archive.Creater.ID,
-		CreaterName:    archive.Creater.Nickname,
+		CreaterId:      archive.Create.ID,
+		CreaterName:    archive.Create.Nickname,
 	}
 }
 

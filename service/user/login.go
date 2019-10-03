@@ -5,7 +5,7 @@ import model "eroauz/models"
 
 // UserLoginService 管理用户登录的服务
 type LoginService struct {
-	UserName string `form:"username" json:"user_name" binding:"required,min=5,max=30"`
+	UserName string `form:"username" json:"username" binding:"required,min=5,max=30"`
 	Password string `form:"password" json:"password" binding:"required,min=8,max=40"`
 }
 

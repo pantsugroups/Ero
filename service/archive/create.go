@@ -15,8 +15,8 @@ type CreateService struct {
 	result         models.Archive
 }
 
-func (service *CreateService) Create(creater uint) *serializer.Response {
-	user, _ := models.GetUser(creater)
+func (service *CreateService) Create(create uint) *serializer.Response {
+	user, _ := models.GetUser(create)
 	archive := models.Archive{
 		Title:          service.Title,
 		JapTitle:       service.JapTitle,
@@ -24,7 +24,7 @@ func (service *CreateService) Create(creater uint) *serializer.Response {
 		Author:         service.Author,
 		PrimaryContent: service.PrimaryContent,
 		Cover:          service.Cover,
-		Creater:        user,
+		Create:         user,
 	}
 	if err := models.DB.Create(&archive).Error; err != nil {
 		return &serializer.Response{

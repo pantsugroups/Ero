@@ -40,9 +40,12 @@ func (service *ListService) Pages() (int, *serializer.Response) {
 			Msg:    "查询总数失败",
 		}
 	}
+	if int(service.Count) == 0 {
+		return 0, nil
+	}
 	return int(service.All / service.Count), nil
 }
-func (service *ListService) Pull() *serializer.Response {
+func (service *ListService) Pull(create uint) *serializer.Response {
 	var novel []models.Novel
 	//var count int
 	if service.PageSize == 0 {
@@ -67,6 +70,16 @@ func (service *ListService) Pull() *serializer.Response {
 			Msg:    "获取失败",
 		}
 	}
+	for n := range novel {
+		var user models.User
+		u, err := models.GetUser(novel[n].Create)
+		user = u
+		if err != nil {
+			user.Nickname = "已删除用户"
+		}
+		novel[n].Create = user
+	}
+
 	service.result = novel
 	return nil
 }

@@ -10,7 +10,8 @@ type Archive struct {
 	Author         string
 	Content        string
 	PrimaryContent string
-	Creater        User `gorm:"ForeignKey:User;"`
+	Create         User `gorm:"ForeignKey:CreateID;"`
+	CreateID       uint
 }
 
 func GetArchive(ID interface{}) (Archive, error) {

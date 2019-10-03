@@ -8,7 +8,7 @@ import (
 // UserRegisterService 管理用户注册服务
 type RegisterService struct {
 	Nickname        string `form:"nickname" json:"nickname" null:"false"`
-	UserName        string `form:"user_name" json:"user_name" null:"false"`
+	UserName        string `form:"username" json:"user_name" null:"false"`
 	Mail            string `form:"mail" json:"mail" null:"false"`
 	Password        string `form:"password" json:"password" null:"false"`
 	PasswordConfirm string `form:"password_confirm" json:"password_confirm" null:"false"`

@@ -7,25 +7,25 @@ import (
 type ListInterface interface {
 	HaveNextOrLast() (next bool, last bool)
 	Pages() (int, *serializer.Response)
-	Pull() *serializer.Response
+	Pull(create uint) *serializer.Response
 	Counts() int
 	Response() interface{}
 }
 
 type GetInterface interface {
-	Get() *serializer.Response
+	Get(create uint) *serializer.Response
 	Response() interface{}
 }
 
 type CreateInterface interface {
-	Create(creater uint) *serializer.Response
+	Create(create uint) *serializer.Response
 	Response() interface{}
 }
 type UpdateInterface interface {
-	Update() *serializer.Response
+	Update(create uint) *serializer.Response
 	Response() interface{}
 }
 type DeleteInterface interface {
-	Delete() *serializer.Response
+	Delete(create uint) *serializer.Response
 	Response() interface{}
 }

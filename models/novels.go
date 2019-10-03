@@ -11,7 +11,8 @@ type Novel struct {
 	Subscribed  int
 	Ended       bool //是否完结
 	Level       int
-	Creater     User
+	Create      User `gorm:"ForeignKey:CreateID;"`
+	CreateID    uint
 }
 
 const (

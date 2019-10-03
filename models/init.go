@@ -31,7 +31,8 @@ func Database(connString string) {
 
 	DB = db
 
-	DB.AutoMigrate(&User{}, &Archive{}, Comment{}, Category{})
+	DB.Debug().AutoMigrate(&User{}, &Archive{}, &Novel{}, &Volume{}, &Comment{}, &Category{},
+		&Message{}, &File{}, &NovelCategory{})
 	// 初始化
 	var count int
 	if err := DB.Model(&Category{}).Count(&count).Error; err != nil {

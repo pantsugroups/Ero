@@ -13,8 +13,8 @@ type CreateService struct {
 	result      models.Novel
 }
 
-func (service *CreateService) Create(creater uint) *serializer.Response {
-	u, _ := models.GetUser(creater)
+func (service *CreateService) Create(create uint) *serializer.Response {
+	u, _ := models.GetUser(create)
 	novel := models.Novel{
 		Title:       service.Title,
 		Author:      service.Author,
@@ -23,14 +23,16 @@ func (service *CreateService) Create(creater uint) *serializer.Response {
 		Ended:       false,
 		Level:       models.Level1,
 		Subscribed:  0,
-		Creater:     u,
+		Create:      u,
 	}
 	if err := models.DB.Create(&novel).Error; err != nil {
 		return &serializer.Response{
 			Status: 40007,
 			Msg:    "创建失败",
+			Error:  err.Error(),
 		}
 	}
+
 	service.result = novel
 	return nil
 }

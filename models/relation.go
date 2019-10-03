@@ -1,10 +1,18 @@
 package models
 
+import "github.com/jinzhu/gorm"
+
 type NovelSubscribe struct {
-	User  User  `gorm:"ForeignKey:NovelSubscribe"`
-	Novel Novel `gorm:"ForeignKey:NovelSubscribe"`
+	gorm.Model
+	UserID  uint
+	User    User `gorm:"ForeignKey:UserID"`
+	NovelID uint
+	Novel   Novel `gorm:"ForeignKey:NovelID"`
 }
 type NovelCategory struct {
-	Novel    Novel    `gorm:"ForeignKey:NovelCategory"`
-	Category Category `gorm:"ForeignKey:NovelCategory"`
+	gorm.Model
+	NovelID    uint
+	Novel      Novel `gorm:"ForeignKey:NovelID"`
+	CategoryID uint
+	Category   Category `gorm:"ForeignKey:CategoryID"`
 }

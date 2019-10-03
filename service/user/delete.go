@@ -9,7 +9,7 @@ type DeleteService struct {
 	ID uint `json:"ID" form:"ID" param:"id" null:"false"`
 }
 
-func (service *DeleteService) Delete() *serializer.Response {
+func (service *DeleteService) Delete(create uint) *serializer.Response {
 	var user models.User
 	if err := models.DB.Where("ID = ?", service.ID).First(&user).Error; err != nil {
 		return &serializer.Response{

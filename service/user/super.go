@@ -15,7 +15,7 @@ type SuperUpdateService struct {
 	result   models.User
 }
 
-func (service *SuperUpdateService) Update() *serializer.Response {
+func (service *SuperUpdateService) Update(create uint) *serializer.Response {
 	var user models.User
 	if err := models.DB.Where("ID = ?", service.ID).First(&user).Error; err != nil {
 		return &serializer.Response{
