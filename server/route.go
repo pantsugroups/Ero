@@ -10,6 +10,7 @@ import (
 	"eroauz/service/message"
 	"eroauz/service/novel"
 	"eroauz/service/relationship"
+	"eroauz/service/search"
 	"eroauz/service/user"
 	"eroauz/service/volume"
 	"eroauz/utils"
@@ -26,35 +27,41 @@ func NewRouter() *echo.Echo {
 	e.Use(middleware.Logger())
 
 	e.Use(middleware.Recover())
-	e.Static("/img/", path.Join(conf.StaticPath, "/img/"))
-	e.Static("/other/", path.Join(conf.StaticPath, "/other/"))
+	e.Static("/img", path.Join(conf.StaticPath, "/img/")).Name = "静态图片文件"
+	e.Static("/other", path.Join(conf.StaticPath, "/other/")).Name = "静态文件"
 	g := e.Group("/api/v1")
 	{
 		//普通等级路由
-		g.POST("/user/login", api.UserLogin)
+		g.POST("/user/login", api.UserLogin).Name = "用户登陆"
 
-		g.POST("/user/register", api.UserRegister)
+		g.POST("/user/register", api.UserRegister).Name = "用户注册"
+
+		var SearchNovel search.NovelListService
+		g.POST("/search/novel/", api.List(&SearchNovel)).Name = "小说搜索"
+
+		var SearchArchive search.ArchiveListService
+		g.POST("/search/archive/", api.List(&SearchArchive)).Name = "文章搜索"
 
 		var ArchiveList archive.ListService
-		g.GET("/archive/", api.List(&ArchiveList))
+		g.GET("/archive/", api.List(&ArchiveList)).Name = "文章列表"
 
 		var NovelList novel.ListService
-		g.GET("/novel/", api.List(&NovelList))
+		g.GET("/novel/", api.List(&NovelList)).Name = "小说列表"
 
 		var CommentList comment.ListService
-		g.GET("/comments/:type/:id", api.List(&CommentList))
+		g.GET("/comments/:type/:id", api.List(&CommentList)).Name = "评论列表"
 
 		var CategoryList category.ListService
-		g.GET("/category/", api.List(&CategoryList))
+		g.GET("/category/", api.List(&CategoryList)).Name = "分类列表"
 
 		var ArchiveGet archive.GetService
-		g.GET("/archive/:id", api.Get(&ArchiveGet))
+		g.GET("/archive/:id", api.Get(&ArchiveGet)).Name = "文章查看"
 
 		var NovelGet novel.GetService
-		g.GET("/novel/:id", api.Get(&NovelGet))
+		g.GET("/novel/:id", api.Get(&NovelGet)).Name = "小说查看"
 
 		var CommentGet comment.GetService
-		g.GET("/comment/:id", api.Get(&CommentGet))
+		g.GET("/comment/:id", api.Get(&CommentGet)).Name = "评论查看"
 
 		r := g.Group("")
 		{
@@ -64,53 +71,52 @@ func NewRouter() *echo.Echo {
 				SigningKey: []byte(conf.Secret),
 			}
 			r.Use(middleware.JWTWithConfig(config))
-			r.POST("/Upload/", api.Upload)
-			r.GET("/Download", api.Download)
+			r.Use(m.BaseRequired)
+
+			r.POST("/upload/", api.Upload).Name = "上传文件"
+			r.GET("/download", api.Download).Name = "下载小说"
 			var UserGet user.GetService
-			r.GET("/user/:id", api.Get(&UserGet))
+			r.GET("/user/:id", api.Get(&UserGet)).Name = "查看用户信息"
 
 			var ArchiveCreate archive.CreateService
-			r.POST("/archive/", api.Create(&ArchiveCreate))
+			r.POST("/archive/", api.Create(&ArchiveCreate)).Name = "创建文章"
 
 			var NovelCreate novel.CreateService
-			r.POST("/novel/", api.Create(&NovelCreate))
+			r.POST("/novel/", api.Create(&NovelCreate)).Name = "创建小说"
 
 			var CommentCreate comment.CreateService
-			r.POST("/comment/", api.Create(&CommentCreate))
-
-			var CategoryCreate category.CreateService
-			r.POST("/category/", api.Create(&CategoryCreate))
+			r.POST("/comment/", api.Create(&CommentCreate)).Name = "创建评论"
 
 			var Novel2Category relationship.AppendN2CService
-			r.POST("/category/", api.Create(&Novel2Category))
+			r.POST("/category/", api.Create(&Novel2Category)).Name = "关联分类"
 
 			var VolumeList volume.ListService
-			r.GET("/novel/volume/:id", api.List(&VolumeList))
+			r.GET("/novel/volume/:id", api.List(&VolumeList)).Name = "查看小说分卷"
 
 			a := r.Group("")
 			{
 				// 需要特殊权限(自己为创建者或管理员)
 				// todo:鉴权
 				var MessageList message.ListService
-				a.GET("/message/", api.List(&MessageList))
+				a.GET("/message/", api.List(&MessageList)).Name = "查看消息"
 
 				var VolumeDown volume.GetService
-				a.GET("/volume/:id", api.Get(&VolumeDown))
+				a.GET("/volume/:id", api.Get(&VolumeDown)).Name = "分卷下载"
 
 				var CommentDelete comment.DeleteService
-				a.DELETE("/comment/:id", api.Delete(&CommentDelete))
+				a.DELETE("/comment/:id", api.Delete(&CommentDelete)).Name = "删除评论"
 
 				var MessageDelete message.DeleteService
-				a.DELETE("/message/:id", api.Delete(&MessageDelete))
+				a.DELETE("/message/:id", api.Delete(&MessageDelete)).Name = "删除消息"
 
 				var ArchiveUpdate archive.UpdateService
-				a.PUT("/archive/:id", api.Update(&ArchiveUpdate))
+				a.PUT("/archive/:id", api.Update(&ArchiveUpdate)).Name = "更新文章"
 
 				var NovelUpdate archive.UpdateService
-				a.PUT("/novel/:id", api.Update(&NovelUpdate))
+				a.PUT("/novel/:id", api.Update(&NovelUpdate)).Name = "更新小说"
 
 				var UserUpdate user.UpdateService
-				a.PUT("/user/:id", api.Update(&UserUpdate))
+				a.PUT("/user/:id", api.Update(&UserUpdate)).Name = "更新用户信息"
 
 				s := a.Group("")
 				{
@@ -118,31 +124,34 @@ func NewRouter() *echo.Echo {
 					s.Use(m.AuthRequired)
 
 					var VolumeCreate volume.CreateService
-					s.POST("/volume/:id", api.Create(&VolumeCreate))
+					s.POST("/volume/:id", api.Create(&VolumeCreate)).Name = "创建小说分卷"
+
+					var CategoryCreate category.CreateService
+					r.POST("/category/", api.Create(&CategoryCreate)).Name = "创建分类"
 
 					var VolumeUpdate volume.UpdateService
-					s.PUT("/volume/:id", api.Update(&VolumeUpdate))
+					s.PUT("/volume/:id", api.Update(&VolumeUpdate)).Name = "更新小说分卷信息"
 
 					var CategoryUpdate category.UpdateService
-					s.PUT("/category/:id", api.Update(&CategoryUpdate))
+					s.PUT("/category/:id", api.Update(&CategoryUpdate)).Name = "更新分类"
 
 					var ArchiveDelete archive.DeleteService
-					s.DELETE("/archive/:id", api.Delete(&ArchiveDelete))
+					s.DELETE("/archive/:id", api.Delete(&ArchiveDelete)).Name = "删除文章"
 
 					var UserDelete user.DeleteService
-					s.DELETE("/user/:id", api.Delete(&UserDelete))
+					s.DELETE("/user/:id", api.Delete(&UserDelete)).Name = "删除用户"
 
 					var CategoryDelete category.DeleteService
-					a.DELETE("/category/:id", api.Delete(&CategoryDelete))
+					a.DELETE("/category/:id", api.Delete(&CategoryDelete)).Name = "删除分类"
 
 					var Novel2CategoryDelete relationship.DeleteN2CService
-					a.DELETE("/category/", api.Delete(&Novel2CategoryDelete))
+					a.DELETE("/category/", api.Delete(&Novel2CategoryDelete)).Name = "取消分类关联"
 
 					var NovelDelete novel.DeleteService
-					a.DELETE("/novel/:id", api.Delete(&NovelDelete))
+					a.DELETE("/novel/:id", api.Delete(&NovelDelete)).Name = "删除小说"
 
 					var VolumeDelete volume.DeleteService
-					a.DELETE("/volume/:id", api.Delete(&VolumeDelete))
+					a.DELETE("/volume/:id", api.Delete(&VolumeDelete)).Name = "删除小说分卷"
 
 					a.File("/routes.json", "routes.json")
 				}

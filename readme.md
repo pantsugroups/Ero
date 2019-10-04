@@ -20,19 +20,8 @@ eroauz
 
 ## 路由
 详细API请查看：[API详细调用说明](api.md)
-#### 普通 （无需登陆）
-  
-  - 用户登录(POST)：/user/login
-  - 用户注册(POST)：/user/register
-  - 文章浏览(GET)：/archive/:id
-  
-#### R层 （需要登陆）
 
-  - 用户信息(GET)：/user/:id
+或者可以访问程序目录下面`routes.json`查看
 
-#### A层 （需要登陆且所有者是自己或是管理员）
-
-  - 发表文章(POST)：/archive/
-  - 删除文章(DELETE): /archive/:id
-  - 更新文章(PUT): /archive/:id
+或者使用管理员访问`/routes.json`查看
   

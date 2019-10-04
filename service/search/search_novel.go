@@ -1,0 +1,99 @@
+package search
+
+import (
+	"eroauz/models"
+	"eroauz/serializer"
+)
+
+type NovelListService struct {
+	Keyword  string `json:"keyword" form:"keyword" query:"keyword"`
+	Page     int    `json:"page" form:"page" query:"page"`
+	Limit    int    `json:"limit" form:"limit" query:"limit"`
+	Offset   int    `json:"offset" form:"offset" query:"offset"`
+	PageSize int    `json:"page_count" form:"page_Size" query:"page_Size"`
+	Count    int    // 查询结果请求
+	All      int    //总数
+	result   []models.Novel
+}
+
+// 判断是否有上一页或者下一页
+func (service *NovelListService) HaveNextOrLast() (next bool, last bool) {
+	if service.Page <= 1 {
+		last = false
+	} else {
+		last = true
+	}
+	if service.All-(service.Page+1)*service.PageSize < 0 {
+		next = false
+	} else {
+		next = true
+	}
+	return next, last
+
+}
+
+// 返回查询结果总页数,是按照当前请求的结果的数量除以总数得出的
+func (service *NovelListService) Pages() (int, *serializer.Response) {
+
+	if err := models.DB.Model(&models.Novel{}).Count(&service.All).Error; err != nil {
+		return 0, &serializer.Response{
+			Status: 40005,
+			Msg:    "查询总数失败",
+		}
+	}
+	if int(service.Count) == 0 {
+		return 0, nil
+	}
+	return int(service.All / service.Count), nil
+}
+func (service *NovelListService) Pull(create uint) *serializer.Response {
+	var novel []models.Novel
+	//var count int
+	if service.PageSize == 0 {
+		service.PageSize = 10
+	}
+	service.Keyword = "%" + service.Keyword + "%"
+	DB := models.DB.Where("title like ?", service.Keyword).Where("description like ?", service.Keyword).Where(
+		"author like ?", service.Keyword)
+
+	if service.Page > 0 && service.PageSize > 0 {
+		DB = DB.Limit(service.Page).Offset((service.Page - 1) * service.PageSize)
+	} else {
+		if service.Limit != 0 {
+			DB.Limit(service.Limit)
+		}
+		if service.Offset != 0 {
+			DB.Offset(service.Offset)
+		}
+	}
+	if err := DB.Find(&novel).Count(&service.Count).Error; err != nil {
+		return &serializer.Response{
+			Status: 40005,
+			Msg:    "获取失败",
+		}
+	}
+	for n := range novel {
+		var user models.User
+		u, err := models.GetUser(novel[n].Create)
+		user = u
+		if err != nil {
+			user.Nickname = "已删除用户"
+		}
+		novel[n].Create = user
+	}
+
+	service.result = novel
+	return nil
+}
+func (service *NovelListService) Counts() int {
+	return service.Count
+}
+func (service *NovelListService) Response() interface{} {
+	next, last := service.HaveNextOrLast()
+	var pages int
+	var err *serializer.Response
+	if pages, err = service.Pages(); err != nil {
+		return err
+	}
+	return serializer.BuildNovelListResponse(service.result, service.Count, next, last, pages)
+}

@@ -57,7 +57,7 @@ func (service *RegisterService) SendMail() *serializer.Response {
 	//)
 	hash := utils.Generate(service.UserName)
 	token := utils.RandStringRunes(16)
-	s := "您的验证地址如下：https://%s/api/v1/register?hash=%s&token=%s&user=%s"
+	s := "您的验证地址如下：https://%s/api/v1/user/register?hash=%s&token=%s&user=%s"
 	body := fmt.Sprintf(s, conf.BackEndHost, hash, token, service.UserName)
 	if err := utils.SendToMail(conf.SMTPUSERNAME, conf.SMTPPASSWORD, conf.SMTPHOST, service.Mail, "Ero 注册邮件", body, "html"); err != nil {
 		return &serializer.Response{
