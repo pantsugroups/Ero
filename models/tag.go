@@ -35,24 +35,25 @@ func Create(title string, ID int, Type int) (Tag, error) {
 		return tag, nil
 	}
 }
-func Int2StringTag(Type int) string {
-	if Type == N {
-		return "Novel"
-	} else if Type == A {
-		return "Archive"
-	} else if Type == U {
-		return "Unknown"
-	} else {
-		return "Unknown"
-	}
-}
 
-func String2intTag(Type string) int {
-	if Type == "Novel" {
-		return N
-	} else if Type == "Archive" {
-		return A
-	} else {
-		return U
-	}
-}
+//func Int2StringTag(Type int) string {
+//	if Type == N {
+//		return "Novel"
+//	} else if Type == A {
+//		return "Archive"
+//	} else if Type == U {
+//		return "Unknown"
+//	} else {
+//		return "Unknown"
+//	}
+//}
+//
+//func String2intTag(Type string) int {
+//	if Type == "Novel" {
+//		return N
+//	} else if Type == "Archive" {
+//		return A
+//	} else {
+//		return U
+//	}
+//}

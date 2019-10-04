@@ -1,12 +1,14 @@
 package main
 
 import (
+	"eroauz/conf"
 	"eroauz/models"
 	"eroauz/server"
 	"github.com/labstack/gommon/log"
 )
+
 func main() {
-	models.Database("root:bakabie@/ero?charset=utf8&parseTime=True&loc=Local")
+	models.Database(conf.ParseDataBaseConfigure())
 	e := server.NewRouter()
-	log.Fatal(e.Start(":8000"))
+	log.Fatal(e.Start(conf.WebPort))
 }

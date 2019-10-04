@@ -1,7 +1,9 @@
 package server
 
 import (
+	"encoding/json"
 	"eroauz/api"
+	"eroauz/conf"
 	"eroauz/service/archive"
 	"eroauz/service/category"
 	"eroauz/service/comment"
@@ -12,6 +14,8 @@ import (
 	"eroauz/service/volume"
 	"eroauz/utils"
 	"github.com/labstack/echo"
+	"io/ioutil"
+	"path"
 )
 import "github.com/labstack/echo/middleware"
 import m "eroauz/middleware"
@@ -22,7 +26,8 @@ func NewRouter() *echo.Echo {
 	e.Use(middleware.Logger())
 
 	e.Use(middleware.Recover())
-
+	e.Static("/img/", path.Join(conf.StaticPath, "/img/"))
+	e.Static("/other/", path.Join(conf.StaticPath, "/other/"))
 	g := e.Group("/api/v1")
 	{
 		//普通等级路由
@@ -56,10 +61,11 @@ func NewRouter() *echo.Echo {
 			// 需要登陆的
 			config := middleware.JWTConfig{
 				Claims:     &utils.JwtCustomClaims{},
-				SigningKey: []byte(utils.Secret()),
+				SigningKey: []byte(conf.Secret),
 			}
 			r.Use(middleware.JWTWithConfig(config))
-
+			r.POST("/Upload/", api.Upload)
+			r.GET("/Download", api.Download)
 			var UserGet user.GetService
 			r.GET("/user/:id", api.Get(&UserGet))
 
@@ -79,16 +85,18 @@ func NewRouter() *echo.Echo {
 			r.POST("/category/", api.Create(&Novel2Category))
 
 			var VolumeList volume.ListService
-			r.GET("/volume/:id", api.List(&VolumeList))
+			r.GET("/novel/volume/:id", api.List(&VolumeList))
 
 			a := r.Group("")
 			{
 				// 需要特殊权限(自己为创建者或管理员)
-
+				// todo:鉴权
 				var MessageList message.ListService
 				a.GET("/message/", api.List(&MessageList))
 
-				// todo:鉴权
+				var VolumeDown volume.GetService
+				a.GET("/volume/:id", api.Get(&VolumeDown))
+
 				var CommentDelete comment.DeleteService
 				a.DELETE("/comment/:id", api.Delete(&CommentDelete))
 
@@ -136,11 +144,14 @@ func NewRouter() *echo.Echo {
 					var VolumeDelete volume.DeleteService
 					a.DELETE("/volume/:id", api.Delete(&VolumeDelete))
 
+					a.File("/routes.json", "routes.json")
 				}
 			}
 		}
 
 	}
+	data, _ := json.MarshalIndent(e.Routes(), "", "  ")
 
+	_ = ioutil.WriteFile("routes.json", data, 0644)
 	return e
 }

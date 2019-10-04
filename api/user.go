@@ -1,6 +1,7 @@
 package api
 
 import (
+	"eroauz/models"
 	"eroauz/serializer"
 	"eroauz/service/user"
 	"eroauz/utils"
@@ -50,7 +51,44 @@ func UserLogin(c echo.Context) (err error) {
 			Error:  fmt.Sprint(err)})
 	}
 }
-func UserSelf(c echo.Context) (err error) {
+func VeruftMail(c echo.Context) error {
+	token := c.QueryParam("token")
+	s := c.QueryParam("user")
+	hash := c.QueryParam("hash")
+	if len(token) != 16 {
+		return c.JSON(200, serializer.Response{
+			Status: 403,
+			Msg:    "验证失败",
+		})
+	}
+	u, err := models.GetUser(s)
+	if err != nil {
+		return c.JSON(200, serializer.Response{
+			Status: 404,
+			Msg:    "用户不存在",
+		})
+	}
+	if hash != utils.Generate(s) {
+		return c.JSON(200, serializer.Response{
+			Status: 403,
+			Msg:    "令牌错误",
+		})
+	} else {
 
-	return nil
+		if err := models.DB.Model(&u).Update(models.User{
+			Status: models.Active,
+		}).Error; err != nil {
+			return c.JSON(200, serializer.Response{
+				Status: 500,
+				Msg:    "激活失败",
+				Error:  err.Error(),
+			})
+		} else {
+			return c.JSON(200, serializer.Response{
+				Status: 0,
+				Msg:    "激活成功",
+			})
+		}
+
+	}
 }

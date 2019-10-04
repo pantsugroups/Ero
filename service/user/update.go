@@ -21,6 +21,12 @@ func (service *UpdateService) Update(create uint) *serializer.Response {
 			Msg:    "获取失败",
 		}
 	}
+	if create != service.ID {
+		return &serializer.Response{
+			Status: 403,
+			Msg:    "没有权限",
+		}
+	}
 	if err := models.DB.Model(&user).Update(models.User{
 		Nickname: service.Nickname,
 		Avatar:   service.Avatar,

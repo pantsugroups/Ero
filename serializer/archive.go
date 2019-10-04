@@ -13,8 +13,9 @@ type Archive struct {
 	Author         string `json:"author"`
 	PrimaryContent string `json:"primary_content"`
 	CreatedAt      int64  `json:"created_at"`
-	CreaterId      uint   `json:"creater_id"`
-	CreaterName    string `json:"creater_name"`
+	CreateId       uint   `json:"create_id"`
+	CreateName     string `json:"create_name"`
+	Tag            string `json:"tag"`
 }
 
 // ArchiveResponse 单个用户序列化
@@ -44,8 +45,9 @@ func BuildArchive(archive models.Archive) Archive {
 		Author:         archive.Author,
 		PrimaryContent: archive.PrimaryContent,
 		CreatedAt:      archive.CreatedAt.Unix(),
-		CreaterId:      archive.Create.ID,
-		CreaterName:    archive.Create.Nickname,
+		CreateId:       archive.Create.ID,
+		CreateName:     archive.Create.Nickname,
+		Tag:            archive.Tag,
 	}
 }
 

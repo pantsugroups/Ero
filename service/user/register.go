@@ -1,8 +1,11 @@
 package user
 
 import (
+	"eroauz/conf"
 	model "eroauz/models"
 	"eroauz/serializer"
+	"eroauz/utils"
+	"fmt"
 )
 
 // UserRegisterService 管理用户注册服务
@@ -46,6 +49,37 @@ func (service *RegisterService) Valid() *serializer.Response {
 
 // SendMail 发送电子邮件
 func (service *RegisterService) SendMail() *serializer.Response {
+	//auth := smtp.PlainAuth(
+	//	"",
+	//	conf.SMTPUSERNAME,
+	//	conf.SMTPPASSWORD,
+	//	conf.SMTPHOST,
+	//)
+	hash := utils.Generate(service.UserName)
+	token := utils.RandStringRunes(16)
+	s := "您的验证地址如下：https://%s/api/v1/register?hash=%s&token=%s&user=%s"
+	body := fmt.Sprintf(s, conf.BackEndHost, hash, token, service.UserName)
+	if err := utils.SendToMail(conf.SMTPUSERNAME, conf.SMTPPASSWORD, conf.SMTPHOST, service.Mail, "Ero 注册邮件", body, "html"); err != nil {
+		return &serializer.Response{
+			Status: 500,
+			Msg:    "邮件发送失败",
+			Error:  err.Error(),
+		}
+	}
+	//if err := smtp.SendMail(
+	//	conf.SMTPHOST,
+	//	auth,
+	//	conf.SMTPSENDER,
+	//	[]string{service.Mail},
+	//	[]byte(fmt.Sprintf(body,conf.BackEndHost,hash,token,service.UserName)),
+	//);err != nil{
+	//	return  &serializer.Response{
+	//		Status: 500,
+	//		Msg:    "邮件发送失败",
+	//		Error:err.Error(),
+	//	}
+	//}
+
 	return nil
 }
 
@@ -66,16 +100,18 @@ func (service *RegisterService) Register() (model.User, *serializer.Response) {
 	// 加密密码
 	if err := user.SetPassword(service.Password); err != nil {
 		return user, &serializer.Response{
-			Status: 40002,
+			Status: 500,
 			Msg:    "密码加密失败",
+			Error:  err.Error(),
 		}
 	}
 
 	// 创建用户
 	if err := model.DB.Create(&user).Error; err != nil {
 		return user, &serializer.Response{
-			Status: 40002,
+			Status: 500,
 			Msg:    "注册失败",
+			Error:  err.Error(),
 		}
 	}
 

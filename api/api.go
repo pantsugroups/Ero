@@ -116,5 +116,4 @@ func Delete(service _interface.DeleteInterface) echo.HandlerFunc {
 			})
 		}
 	}
-
 }

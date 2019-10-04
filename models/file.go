@@ -4,8 +4,11 @@ import "github.com/jinzhu/gorm"
 
 type File struct {
 	gorm.Model
-	Path string
-	Type int
+	User     User `gorm:"ForeignKey:UserID;"`
+	UserID   uint
+	Path     string
+	FileName string
+	Type     int
 }
 
 const (

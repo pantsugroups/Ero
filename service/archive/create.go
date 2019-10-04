@@ -12,6 +12,7 @@ type CreateService struct {
 	Content        string `json:"content" form:"content"`
 	PrimaryContent string `json:"primary_content" form:"primary_content"`
 	Cover          string `json:"cover" form:"cover"`
+	Tag            string `json:"tag" form:"tag"`
 	result         models.Archive
 }
 
@@ -25,6 +26,7 @@ func (service *CreateService) Create(create uint) *serializer.Response {
 		PrimaryContent: service.PrimaryContent,
 		Cover:          service.Cover,
 		Create:         user,
+		Tag:            service.Tag,
 	}
 	if err := models.DB.Create(&archive).Error; err != nil {
 		return &serializer.Response{

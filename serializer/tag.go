@@ -1,11 +1,12 @@
 package serializer
 
-import "eroauz/models"
+import (
+	"eroauz/models"
+)
 
 type Tag struct {
+	ID    uint   `json:"id"`
 	Title string `json:"title"`
-	ID    int    `json:"id"`
-	Type  string `json:"Type"`
 }
 
 // UserResponse 单个用户序列化
@@ -18,8 +19,6 @@ type TagResponse struct {
 func BuildTag(tag models.Tag) Tag {
 	return Tag{
 		Title: tag.Title,
-		ID:    tag.RID,
-		Type:  models.Int2StringTag(tag.RType),
 	}
 }
 

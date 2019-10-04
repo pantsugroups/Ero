@@ -25,6 +25,21 @@ func (service *UpdateService) Update(create uint) *serializer.Response {
 			Msg:    "获取失败",
 		}
 	}
+	user, err := models.GetUser(create)
+	if err != nil {
+		return &serializer.Response{
+			Status: 500,
+			Msg:    "找不到用户",
+			Error:  err.Error(),
+		}
+	} else {
+		if user.ID != archive.CreateID {
+			return &serializer.Response{
+				Status: 403,
+				Msg:    "没有权限",
+			}
+		}
+	}
 	if err := models.DB.Model(&archive).Update(models.Archive{
 		Title:          service.Title,
 		JapTitle:       service.JapTitle,

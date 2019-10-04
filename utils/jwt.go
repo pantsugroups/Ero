@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"eroauz/conf"
 	"eroauz/models"
 	"github.com/dgrijalva/jwt-go"
 	"github.com/labstack/echo"
@@ -13,12 +14,6 @@ type JwtCustomClaims struct {
 	jwt.StandardClaims
 }
 
-var secret = "secret"
-
-// 创建token
-func Secret() string {
-	return secret
-}
 func CreateToken(user models.User) (string, error) {
 	claims := &JwtCustomClaims{
 		user.UserName,
@@ -28,7 +23,7 @@ func CreateToken(user models.User) (string, error) {
 		},
 	}
 	t := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-	token, err := t.SignedString([]byte(secret))
+	token, err := t.SignedString([]byte(conf.Secret))
 	if err != nil {
 		return "", err
 	}
