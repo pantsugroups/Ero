@@ -82,8 +82,8 @@ func Upload(c echo.Context) error {
 }
 
 // EroAPI godoc
-// @Summary 上传小说分卷
-// @Description 必须要登陆，文件ID就是在这里去拿的，图片等静态 文件可以直接访问/img/*获得，novel必须要经过/download
+// @Summary 下载小说分卷
+// @Description 必须要登陆，文件ID就是在这里去拿的，图片等静态 文件可以直接访问/img/获得，novel必须要经过/download
 // @Tags file,volume
 // @Accept html
 // @Produce json
@@ -92,7 +92,7 @@ func Upload(c echo.Context) error {
 // @Param hash formData string true "从/api/v1/novel/volume/:id得来"
 // @Success 200 {object} serializer.FileResponse
 // @Failure 500 {object} serializer.Response
-// @Router /api/v1/download/ [post]
+// @Router /api/v1/download/ [get]
 // @Security ApiKeyAuth
 func Download(c echo.Context) error {
 	token := c.QueryParam("token")
