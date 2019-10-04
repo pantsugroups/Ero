@@ -32,6 +32,7 @@ func (service *ListService) HaveNextOrLast() (next bool, last bool) {
 }
 
 // 返回查询结果总页数,是按照当前请求的结果的数量除以总数得出的
+
 func (service *ListService) Pages() (int, *serializer.Response) {
 
 	if err := models.DB.Model(&models.Archive{}).Count(&service.All).Error; err != nil {
@@ -45,6 +46,20 @@ func (service *ListService) Pages() (int, *serializer.Response) {
 	}
 	return int(service.All / service.Count), nil
 }
+
+// EroAPI godoc
+// @Summary 文章列表
+// @Description
+// @Tags archive
+// @Accept html
+// @Produce json
+// @Success 200 {object} serializer.ArchiveListResponse
+// @Failure 500 {object} serializer.Response
+// @Router /api/v1/archives/ [get]
+// @Param page formData integer false "Pages"
+// @Param limit formData integer false "Limit"
+// @Param offset formData integer false "Offset"
+// @Param page_size formData integer false "PageSize default is 10"
 func (service *ListService) Pull(create uint) *serializer.Response {
 	var archive []models.Archive
 	//var count int

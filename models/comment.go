@@ -15,7 +15,7 @@ type Comment struct {
 	Author   User `gorm:"ForeignKey:AuthorID;"`
 	Type     int  //评论类型
 	RId      uint // 关联的ID
-	RUid     uint // 是否评论中评论
+	RCid     uint // 是否评论中评论
 }
 
 func String2IntComment(Type string) int {
@@ -26,4 +26,9 @@ func String2IntComment(Type string) int {
 	} else {
 		return Unknown
 	}
+}
+func GetComment(ID interface{}) (Comment, error) {
+	var comment Comment
+	result := DB.First(&comment, ID)
+	return comment, result.Error
 }

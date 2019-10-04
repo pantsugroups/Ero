@@ -15,6 +15,21 @@ type UpdateService struct {
 	result models.Novel
 }
 
+// EroAPI godoc
+// @Summary 更新小说
+// @Description
+// @Tags novel
+// @Accept html
+// @Produce json
+// @Success 200 {object} serializer.NovelResponse
+// @Failure 500 {object} serializer.Response
+// @Param id path int false "小说ID"
+// @Param title formData string true "小说标题"
+// @Param cover formData string true "小说封面"
+// @Param Ended formData bool true "是否完结"
+// @Param level formData int true "目标等级：还未实现"
+// @Router /api/v1/novel/:id [put]
+// @Security ApiKeyAuth
 func (service *UpdateService) Update(create uint) *serializer.Response {
 	var novel models.Novel
 	if err := models.DB.Where("ID = ?", service.ID).First(&novel).Error; err != nil {

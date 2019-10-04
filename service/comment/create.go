@@ -10,10 +10,24 @@ type CreateService struct {
 	Title  string `json:"title" form:"title"`
 	Type   int    `json:"type" form:"type"`
 	RId    uint   `json:"raw"  form:"raw"`
-	RUid   uint   `json:"reply" form:"reply"`
+	RCid   uint   `json:"reply" form:"reply"`
 	result models.Comment
 }
 
+// EroAPI godoc
+// @Summary 创建评论
+// @Description 必须登陆
+// @Tags comment
+// @Accept html
+// @Produce json
+// @Success 200 {object} serializer.CommentResponse
+// @Failure 500 {object} serializer.Response
+// @Param title formData string true "评论内容"
+// @Param type formData int true "评论类型。小说为：2 文章为：1 其余泽忽略"
+// @Param raw formData int true "如果type参数为1泽这是文章ID，如果type参数为2则是小说ID"
+// @Param reply formData int false "要返回用户的评论的id"
+// @Router /api/v1/comment/ [post]
+// @Security ApiKeyAuth
 func (service *CreateService) Create(create uint) *serializer.Response {
 	u, _ := models.GetUser(create)
 	if service.Type == models.Archive_ {
@@ -41,7 +55,7 @@ func (service *CreateService) Create(create uint) *serializer.Response {
 		Author: u,
 		Type:   service.Type,
 		RId:    service.RId,
-		RUid:   service.RUid,
+		RCid:   service.RCid,
 	}
 	if err := models.DB.Create(&archive).Error; err != nil {
 		return &serializer.Response{
@@ -49,14 +63,18 @@ func (service *CreateService) Create(create uint) *serializer.Response {
 			Msg:    "创建失败",
 		}
 	}
-	if service.RUid != 0 {
-		M := message.CreateService{
-			Title: "您的消息有回复啦！<a>查看回复</a>",
-			Recv:  u.ID,
+	if service.RCid != 0 {
+		c, _ := models.GetComment(service.RCid)
+		if c.AuthorID != 0 {
+			M := message.CreateService{
+				Title: "您的消息有回复啦！<a>查看回复</a>",
+				Recv:  c.AuthorID,
+			}
+			if err := M.Create(create); err != nil {
+				return err
+			}
 		}
-		if err := M.Create(create); err != nil {
-			return err
-		}
+
 	}
 	service.result = archive
 	return nil

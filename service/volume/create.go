@@ -13,6 +13,20 @@ type CreateService struct {
 	result models.Volume
 }
 
+// EroAPI godoc
+// @Summary 创建小说分卷
+// @Description 必须登陆
+// @Tags volume,admin
+// @Accept html
+// @Produce json
+// @Success 200 {object} serializer.VolumeResponse
+// @Failure 500 {object} serializer.Response
+// @Param id path int true "小说ID"
+// @Param title formData string true "分卷标题"
+// @Param cover formData string false "分卷封面，URL，如果封面为空的话泽会自动替换。默认封面请检查conf.DefaultCover字段"
+// @Param file formData integer false "文件ID"
+// @Router /api/v1/volume/ [post]
+// @Security ApiKeyAuth
 func (service *CreateService) Create(create uint) *serializer.Response {
 	var file models.File
 

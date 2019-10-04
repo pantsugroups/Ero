@@ -47,6 +47,22 @@ func (service *ListService) Pages() (int, *serializer.Response) {
 	}
 	return int(service.All / service.Count), nil
 }
+
+// EroAPI godoc
+// @Summary 分卷列表
+// @Description
+// @Tags volume
+// @Accept html
+// @Produce json
+// @Success 200 {object} serializer.NovelListResponse
+// @Failure 500 {object} serializer.Response
+// @Router /api/v1/novel/volume/:id [get]
+// @Param id formData integer true "小说ID"
+// @Param page formData integer false "Pages"
+// @Param page formData integer false "Pages"
+// @Param limit formData integer false "Limit"
+// @Param offset formData integer false "Offset"
+// @Param page_size formData int false "PageSize default is 10"
 func (service *ListService) Pull(create uint) *serializer.Response {
 	var volume []models.Volume
 	//var count int

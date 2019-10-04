@@ -1,6 +1,9 @@
 package models
 
-import "github.com/jinzhu/gorm"
+import (
+	"eroauz/conf"
+	"github.com/jinzhu/gorm"
+)
 
 type Novel struct {
 	gorm.Model
@@ -23,6 +26,12 @@ const (
 	// 只有老司机才能看的
 	Level3 = 2
 )
+
+func (model *Novel) CheckCover() {
+	if model.Cover == "" {
+		model.Cover = conf.DefaultCover
+	}
+}
 
 func GetNovel(ID interface{}) (Novel, error) {
 	var novel Novel

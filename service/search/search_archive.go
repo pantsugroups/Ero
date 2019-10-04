@@ -46,6 +46,21 @@ func (service *ArchiveListService) Pages() (int, *serializer.Response) {
 	}
 	return int(service.All / service.Count), nil
 }
+
+// EroAPI godoc
+// @Summary 搜索文章
+// @Description
+// @Tags search,archive
+// @Accept html
+// @Produce json
+// @Success 200 {object} serializer.ArchiveListResponse
+// @Failure 500 {object} serializer.Response
+// @Router /api/v1/search/archive/ [get]
+// @Param keyword formData string true "搜索关键词"
+// @Param page formData integer false "Pages"
+// @Param limit formData integer false "Limit"
+// @Param offset formData integer false "Offset"
+// @Param page_size formData integer false "PageSize default is 10"
 func (service *ArchiveListService) Pull(create uint) *serializer.Response {
 	var archive []models.Archive
 	//var count int

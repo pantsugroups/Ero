@@ -10,6 +10,16 @@ type GetService struct {
 	result models.Archive
 }
 
+// EroAPI godoc
+// @Summary 获取文章
+// @Description 获取单个文章的详细信息
+// @Tags archive
+// @Accept html
+// @Produce json
+// @Success 200 {object} serializer.ArchiveResponse
+// @Failure 500 {object} serializer.Response
+// @Param id path integer true "文章ID"
+// @Router /api/v1/archive/:id [get]
 func (service *GetService) Get(create uint) *serializer.Response {
 	var archive models.Archive
 	if err := models.DB.Where("ID = ?", service.ID).First(&archive).Error; err != nil {

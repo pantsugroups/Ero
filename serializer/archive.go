@@ -4,6 +4,9 @@ import (
 	"eroauz/models"
 )
 
+// Archive Info
+//
+// swagger:response ArchiveResponse
 type Archive struct {
 	ID             uint   `json:"id"`
 	Title          string `json:"title"`

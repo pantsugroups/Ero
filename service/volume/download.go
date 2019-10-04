@@ -11,6 +11,17 @@ type GetService struct {
 	result serializer.File
 }
 
+// EroAPI godoc
+// @Summary 获取分卷下载连接
+// @Description 必须登陆,请到/api/v1/download下载
+// @Tags volume
+// @Accept html
+// @Produce json
+// @Success 200 {object} serializer.FileResponse
+// @Failure 500 {object} serializer.Response
+// @Param id path int true "分卷ID"
+// @Router /api/v1/volume/:id [get]
+// @Security ApiKeyAuth
 func (service *GetService) Get(create uint) *serializer.Response {
 	var f models.File
 	u, err := models.GetUser(create)

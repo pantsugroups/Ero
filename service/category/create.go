@@ -10,6 +10,17 @@ type CreateService struct {
 	result models.Category
 }
 
+// EroAPI godoc
+// @Summary 创建分类
+// @Description 必须登陆
+// @Tags category,admin
+// @Accept html
+// @Produce json
+// @Success 200 {object} serializer.CategoryResponse
+// @Failure 500 {object} serializer.Response
+// @Param title formData string true "分类标题"
+// @Router /api/v1/category/ [post]
+// @Security ApiKeyAuth
 func (service *CreateService) Create(create uint) *serializer.Response {
 	category := models.Category{
 		Title: service.Title,

@@ -22,6 +22,9 @@ const (
 	SMTPPASSWORD = ""
 
 	Secret = "secret"
+
+	DefaultAvatar = "https://api.ero.ink/img/default_avatar.jpg"
+	DefaultCover  = "https://api.ero.ink/img/default_cover.jpg"
 )
 
 func ParseDataBaseConfigure() string {

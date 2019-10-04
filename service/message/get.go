@@ -10,6 +10,17 @@ type GetService struct {
 	result models.Message
 }
 
+// EroAPI godoc
+// @Summary 获取消息详细
+// @Description 接收者必须为自己或者权限必须为管理员
+// @Tags message
+// @Accept html
+// @Produce json
+// @Success 200 {object} serializer.MessageResponse
+// @Failure 500 {object} serializer.Response
+// @Param id path integer true "消息ID"
+// @Router /api/v1/message/:id [get]
+// @Security ApiKeyAuth
 func (service *GetService) Get(create uint) *serializer.Response {
 	var message models.Message
 	if err := models.DB.Where("ID = ?", service.ID).First(&message).Error; err != nil {

@@ -11,7 +11,18 @@ import (
 	"path"
 )
 
-// todo:偷懒直接写API层了
+// EroAPI godoc
+// @Summary 上传文件
+// @Description 必须要登陆，文件ID就是在这里去拿的，图片等静态 文件可以直接访问/img/*获得，novel必须要经过/download
+// @Tags file,volume
+// @Accept html
+// @Produce json
+// @Param type formData string true "类型，分为novel,img两个，如果是img则可以直接去静态文件请求"
+// @Param file formData string true "文件"
+// @Success 200 {object} serializer.FileResponse
+// @Failure 500 {object} serializer.Response
+// @Router /api/v1/archive/ [post]
+// @Security ApiKeyAuth
 func Upload(c echo.Context) error {
 	var dir string
 	var i int
@@ -69,6 +80,20 @@ func Upload(c echo.Context) error {
 	}
 	return c.JSON(200, serializer.BuildFileResponse(f))
 }
+
+// EroAPI godoc
+// @Summary 上传小说分卷
+// @Description 必须要登陆，文件ID就是在这里去拿的，图片等静态 文件可以直接访问/img/*获得，novel必须要经过/download
+// @Tags file,volume
+// @Accept html
+// @Produce json
+// @Param token formData string true "从/api/v1/novel/volume/:id得来"
+// @Param filename formData string true "从/api/v1/novel/volume/:id得来"
+// @Param hash formData string true "从/api/v1/novel/volume/:id得来"
+// @Success 200 {object} serializer.FileResponse
+// @Failure 500 {object} serializer.Response
+// @Router /api/v1/download/ [post]
+// @Security ApiKeyAuth
 func Download(c echo.Context) error {
 	token := c.QueryParam("token")
 	file := c.QueryParam("filename")

@@ -11,6 +11,18 @@ type UpdateService struct {
 	result models.Category
 }
 
+// EroAPI godoc
+// @Summary 创建分类
+// @Description 必须为管理员
+// @Tags category,admin
+// @Accept html
+// @Produce json
+// @Success 200 {object} serializer.CategoryResponse
+// @Failure 500 {object} serializer.Response
+// @Param id path int false "分类ID"
+// @Param title formData string true "分类标题"
+// @Router /api/v1/category/:id [put]
+// @Security ApiKeyAuth
 func (service *UpdateService) Update(create uint) *serializer.Response {
 	var category models.Category
 	if err := models.DB.Where("ID = ?", service.ID).First(&category).Error; err != nil {

@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"eroauz/api"
 	"eroauz/conf"
+	_ "eroauz/docs"
 	"eroauz/service/archive"
 	"eroauz/service/category"
 	"eroauz/service/comment"
@@ -20,6 +21,7 @@ import (
 )
 import "github.com/labstack/echo/middleware"
 import m "eroauz/middleware"
+import "github.com/swaggo/echo-swagger"
 
 func NewRouter() *echo.Echo {
 	e := echo.New()
@@ -27,6 +29,7 @@ func NewRouter() *echo.Echo {
 	e.Use(middleware.Logger())
 
 	e.Use(middleware.Recover())
+	e.GET("/swagger/*", echoSwagger.WrapHandler)
 	e.Static("/img", path.Join(conf.StaticPath, "/img/")).Name = "静态图片文件"
 	e.Static("/other", path.Join(conf.StaticPath, "/other/")).Name = "静态文件"
 	g := e.Group("/api/v1")
@@ -100,6 +103,9 @@ func NewRouter() *echo.Echo {
 				var MessageList message.ListService
 				a.GET("/message/", api.List(&MessageList)).Name = "查看消息"
 
+				var MessageUpdate message.UpdateService
+				a.GET("/message/:id", api.Update(&MessageUpdate))
+
 				var VolumeDown volume.GetService
 				a.GET("/volume/:id", api.Get(&VolumeDown)).Name = "分卷下载"
 
@@ -140,6 +146,9 @@ func NewRouter() *echo.Echo {
 
 					var UserDelete user.DeleteService
 					s.DELETE("/user/:id", api.Delete(&UserDelete)).Name = "删除用户"
+
+					var SupterUserUpdate user.SuperUpdateService
+					s.PUT("/admin/user/:id", api.Update(&SupterUserUpdate))
 
 					var CategoryDelete category.DeleteService
 					a.DELETE("/category/:id", api.Delete(&CategoryDelete)).Name = "删除分类"

@@ -9,6 +9,17 @@ type DeleteService struct {
 	ID uint `json:"id" form:"id" param:"id" null:"false"`
 }
 
+// EroAPI godoc
+// @Summary 删除消息
+// @Description 接收者必须为自己或者用户权限为管理员
+// @Tags message
+// @Accept html
+// @Produce json
+// @Success 200 {object} serializer.Response
+// @Failure 500 {object} serializer.Response
+// @Param id path integer true "分类ID"
+// @Router /api/v1/message/:id [delete]
+// @Security ApiKeyAuth
 func (service *DeleteService) Delete(create uint) *serializer.Response {
 	var msg models.Message
 	if err := models.DB.Where("ID = ?", service.ID).First(&msg).Error; err != nil {

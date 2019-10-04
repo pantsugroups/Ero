@@ -11,7 +11,7 @@ type Comment struct {
 	AuthorName string `json:"author_name"`
 	Type       int    `json:"type"`
 	RId        uint   `json:"raw"`
-	RUid       uint   `json:"reply"`
+	RCid       uint   `json:"reply"`
 }
 
 type CommentResponse struct {
@@ -36,6 +36,7 @@ func BuildComment(comment models.Comment) Comment {
 		AuthorName: comment.Author.Nickname,
 		Type:       comment.Type,
 		RId:        comment.RId,
+		RCid:       comment.RCid,
 	}
 }
 

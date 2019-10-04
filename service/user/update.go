@@ -13,6 +13,19 @@ type UpdateService struct {
 	result models.User
 }
 
+// EroAPI godoc
+// @Summary 更新用户信息
+// @Description
+// @Tags user
+// @Accept html
+// @Produce json
+// @Success 200 {object} serializer.UserResponse
+// @Failure 500 {object} serializer.Response
+// @Param id path int false "用户ID"
+// @Param nickname formData string false "昵称"
+// @Param avatar formData string false "用户头像"
+// @Router /api/v1/user/:id [put]
+// @Security ApiKeyAuth
 func (service *UpdateService) Update(create uint) *serializer.Response {
 	var user models.User
 	if err := models.DB.Where("ID = ?", service.ID).First(&user).Error; err != nil {

@@ -11,6 +11,18 @@ type AppendN2CService struct {
 	result   models.NovelCategory
 }
 
+// EroAPI godoc
+// @Summary 添加小说分类关联
+// @Description 必须为管理员
+// @Tags novel,category,admin
+// @Accept html
+// @Produce json
+// @Success 200 {object} serializer.Response
+// @Failure 500 {object} serializer.Response
+// @Param novel formData integer true "小说ID"
+// @Param category formData integer true "分类ID"
+// @Router /api/v1/message/ [post]
+// @Security ApiKeyAuth
 func (service *AppendN2CService) Create(create uint) *serializer.Response {
 	n, err := models.GetNovel(service.Novel)
 	if err != nil {

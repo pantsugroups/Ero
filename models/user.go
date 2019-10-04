@@ -4,7 +4,6 @@ import (
 	"eroauz/conf"
 	"github.com/jinzhu/gorm"
 	"golang.org/x/crypto/bcrypt"
-	"path"
 )
 
 // User 用户模型
@@ -44,7 +43,7 @@ func GetUser(ID interface{}) (User, error) {
 //如果头像为空则替换为默认头像
 func (user *User) CheckAvatar() {
 	if user.Avatar == "" {
-		user.Avatar = path.Join(conf.StaticPath, "default.jpg")
+		user.Avatar = conf.DefaultAvatar
 	}
 }
 

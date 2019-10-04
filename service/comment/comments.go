@@ -47,6 +47,22 @@ func (service *ListService) Pages() (int, *serializer.Response) {
 	}
 	return int(service.All / service.Count), nil
 }
+
+// EroAPI godoc
+// @Summary 评论列表
+// @Description
+// @Tags comment
+// @Accept html
+// @Produce json
+// @Success 200 {object} serializer.CommentListResponse
+// @Failure 500 {object} serializer.Response
+// @Router /api/v1/comment/ [get]
+// @Param id path integer false "回复者ID"
+// @Param type formData integer false "类型：1为文章，2为小说"
+// @Param page formData integer false "Pages"
+// @Param limit formData integer false "Limit"
+// @Param offset formData integer false "Offset"
+// @Param page_size formData integer false "PageSize default is 10"
 func (service *ListService) Pull(create uint) *serializer.Response {
 	Type := models.String2IntComment(service.Type)
 	var comments []models.Comment

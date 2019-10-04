@@ -19,7 +19,7 @@ eroauz
 `Server->API->Service->Models->Serializer->API->Server`
 
 ## 路由
-详细API请查看：[API详细调用说明](api.md)
+详细API请查看： `/swagger/index.html`
 
 或者可以访问程序目录下面`routes.json`查看
 

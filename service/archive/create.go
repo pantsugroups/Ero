@@ -16,6 +16,23 @@ type CreateService struct {
 	result         models.Archive
 }
 
+// EroAPI godoc
+// @Summary 创建文章
+// @Description 必须要登陆
+// @Tags archive
+// @Accept html
+// @Produce json
+// @Param title formData string true "标题"
+// @Param japanese_title formData string false "日文标题"
+// @Param author formData string false "作者"
+// @Param content formData string false "文章内容"
+// @Param primary_content formData string false "隐藏内容"
+// @Param cover formData string false "封面，这个是个url地址"
+// @Param tag formData string false "标签，推荐使用/分割，例如 纯爱/治愈/等等 "
+// @Success 200 {object} serializer.ArchiveResponse
+// @Failure 500 {object} serializer.Response
+// @Router /api/v1/archive/ [post]
+// @Security ApiKeyAuth
 func (service *CreateService) Create(create uint) *serializer.Response {
 	user, _ := models.GetUser(create)
 	archive := models.Archive{
@@ -30,7 +47,7 @@ func (service *CreateService) Create(create uint) *serializer.Response {
 	}
 	if err := models.DB.Create(&archive).Error; err != nil {
 		return &serializer.Response{
-			Status: 40004,
+			Status: 500,
 			Msg:    "创建失败",
 		}
 	}

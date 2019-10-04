@@ -9,7 +9,17 @@ type LoginService struct {
 	Password string `form:"password" json:"password" binding:"required,min=8,max=40"`
 }
 
-// Login 用户登录函数
+// EroAPI godoc
+// @Summary 用户登录
+// @Description
+// @Tags user
+// @Accept html
+// @Produce json
+// @Success 200 {object} serializer.UserResponse
+// @Failure 500 {object} serializer.Response
+// @Param username formData string true "用户名"
+// @Param password formData string true "密码"
+// @Router /api/v1/user/login [get]
 func (service *LoginService) Login() (model.User, *serializer.Response) {
 	var user model.User
 

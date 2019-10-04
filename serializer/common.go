@@ -4,10 +4,10 @@ import "eroauz/models"
 
 // Response 团队基础序列化器
 type Response struct {
-	Status int         `json:"status"`
+	Status int         `json:"status" example:"200"`
 	Data   interface{} `json:"data"`
-	Msg    string      `json:"msg"`
-	Error  string      `json:"error"`
+	Msg    string      `json:"msg" `
+	Error  string      `json:"error" example:"Error."`
 }
 
 // TrackedErrorResponse 有追踪信息的错误响应
@@ -19,12 +19,13 @@ type TrackedErrorResponse struct {
 type TokenResponse struct {
 	Response
 	Token string `json:"token"`
-	Data  User    `json:"data"`
+	Data  User   `json:"data"`
 }
+
 // 创建用户第一次注册时包含Token的Response
-func BuildTokenResponse(u models.User,token string) *TokenResponse{
+func BuildTokenResponse(u models.User, token string) *TokenResponse {
 	return &TokenResponse{
-		Token:token,
-		Data:BuildUser(u),
+		Token: token,
+		Data:  BuildUser(u),
 	}
 }

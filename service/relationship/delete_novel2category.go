@@ -10,6 +10,18 @@ type DeleteN2CService struct {
 	Category uint `json:"category" form:"category" null:"category"`
 }
 
+// EroAPI godoc
+// @Summary 删除小说分类关联
+// @Description 接收者必须为自己管理员
+// @Tags novel,category,admin
+// @Accept html
+// @Produce json
+// @Success 200 {object} serializer.Response
+// @Failure 500 {object} serializer.Response
+// @Param novel formData integer true "小说ID"
+// @Param category formData integer true "分类ID"
+// @Router /api/v1/novel/:id [delete]
+// @Security ApiKeyAuth
 func (service *DeleteN2CService) Delete(create uint) *serializer.Response {
 
 	n, err := models.GetNovel(service.Novel)
@@ -23,7 +35,7 @@ func (service *DeleteN2CService) Delete(create uint) *serializer.Response {
 	if err != nil {
 		return &serializer.Response{
 			Status: 40007,
-			Msg:    "找不到Novel ID",
+			Msg:    "找不到Category ID",
 		}
 	}
 	target := models.NovelCategory{

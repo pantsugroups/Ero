@@ -83,13 +83,27 @@ func (service *RegisterService) SendMail() *serializer.Response {
 	return nil
 }
 
-// Register 用户注册
+// EroAPI godoc
+// @Summary 用户注册
+// @Description
+// @Tags user
+// @Accept html
+// @Produce json
+// @Success 200 {object} serializer.UserResponse
+// @Failure 500 {object} serializer.Response
+// @Param username formData string true "用户名"
+// @Param nickname formData string true "昵称（可更改）"
+// @Param password formData string true "密码"
+// @Param mail formData string true "邮箱"
+// @Param password_confirm formData string true "重复一遍密码用于验证"
+// @Router /api/v1/user/register [post]
 func (service *RegisterService) Register() (model.User, *serializer.Response) {
 	user := model.User{
 		Nickname: service.Nickname,
 		UserName: service.UserName,
 		Status:   model.Inactive,
 		Point:    250,
+		Avatar:   conf.DefaultAvatar,
 	}
 
 	// 表单验证

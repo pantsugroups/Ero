@@ -9,7 +9,9 @@ import (
 )
 
 // 获取列表
+
 func List(service _interface.ListInterface) echo.HandlerFunc {
+
 	return func(c echo.Context) (err error) {
 
 		if err := utils.Bind(service, c); err == nil {
