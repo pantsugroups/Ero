@@ -15,7 +15,7 @@ type UpdateService struct {
 }
 
 // EroAPI godoc
-// @Summary 创建小说分卷
+// @Summary 更新小说分卷
 // @Description 必须登陆
 // @Tags volume,admin
 // @Accept html

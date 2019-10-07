@@ -6,7 +6,7 @@ import (
 )
 
 type CreateService struct {
-	Title  string `json:"title" form:"title"`
+	Title  string `json:"title" form:"title" null:"false"`
 	result models.Category
 }
 

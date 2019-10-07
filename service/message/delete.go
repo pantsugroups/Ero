@@ -6,7 +6,7 @@ import (
 )
 
 type DeleteService struct {
-	ID uint `json:"id" form:"id" param:"id" null:"false"`
+	ID uint `json:"id" form:"id" param:"id" null:"false" null:"false"`
 }
 
 // EroAPI godoc

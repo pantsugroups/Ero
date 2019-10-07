@@ -6,7 +6,7 @@ import (
 )
 
 type CreateService struct {
-	Title          string `json:"title" form:"title"`
+	Title          string `json:"title" form:"title" null:"false"`
 	JapTitle       string `json:"japanese_title" form:"japanese_title"`
 	Author         string `json:"author" form:"author"`
 	Content        string `json:"content" form:"content"`

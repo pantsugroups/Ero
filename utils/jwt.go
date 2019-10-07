@@ -32,8 +32,12 @@ func CreateToken(user models.User) (string, error) {
 }
 
 func GetAutherID(c echo.Context) uint {
-	user := c.Get("user").(*jwt.Token)
-	claims := user.Claims.(*JwtCustomClaims)
+	user := c.Get("user")
+	if user == nil || user == "" {
+		return 0
+	}
+	u := user.(*jwt.Token)
+	claims := u.Claims.(*JwtCustomClaims)
 	id := claims.ID
 	return id
 }

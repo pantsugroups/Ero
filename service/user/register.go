@@ -128,6 +128,8 @@ func (service *RegisterService) Register() (model.User, *serializer.Response) {
 			Error:  err.Error(),
 		}
 	}
-
+	if err := service.SendMail(); err != nil {
+		return user, err
+	}
 	return user, nil
 }

@@ -6,10 +6,10 @@ import (
 )
 
 type CreateService struct {
-	ID     uint   `json:"id" param:"id" form:"id" query:"id"`
+	ID     uint   `json:"id" param:"id" form:"id" query:"id"  null:"false"`
 	Title  string `json:"title" form:"title" query:"title"`
 	Cover  string `json:"cover" form:"cover" query:"cover"`
-	File   int    `json:"file" form:"file"`
+	File   int    `json:"file" form:"file"  null:"false"`
 	result models.Volume
 }
 

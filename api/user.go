@@ -12,7 +12,7 @@ import (
 func UserRegister(c echo.Context) (err error) {
 
 	var service user.RegisterService
-	if err := c.Bind(&service); err == nil {
+	if err := utils.Bind(&service, c); err == nil {
 		if users, err := service.Register(); err != nil {
 			return c.JSON(200, err)
 		} else {
@@ -29,7 +29,7 @@ func UserRegister(c echo.Context) (err error) {
 }
 func UserLogin(c echo.Context) (err error) {
 	var service user.LoginService
-	if err := c.Bind(&service); err == nil {
+	if err := utils.Bind(&service, c); err == nil {
 		if users, err := service.Login(); err != nil {
 			return c.JSON(200, err)
 		} else {
@@ -61,7 +61,8 @@ func VeruftMail(c echo.Context) error {
 			Msg:    "验证失败",
 		})
 	}
-	u, err := models.GetUser(s)
+	var u models.User
+	err := models.DB.Where("user_name = ?", s).First(&u).Error
 	if err != nil {
 		return c.JSON(200, serializer.Response{
 			Status: 404,

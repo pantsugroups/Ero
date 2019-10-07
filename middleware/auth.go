@@ -26,7 +26,7 @@ func BaseRequired(next echo.HandlerFunc) echo.HandlerFunc {
 		if u.Status == models.Inactive || u.Status == models.Suspend {
 			return c.JSON(200, serializer.Response{
 				Status: 403,
-				Msg:    "没有权限",
+				Msg:    "BaseAuth:没有权限",
 			})
 		}
 		return next(c)
@@ -48,7 +48,7 @@ func AuthRequired(next echo.HandlerFunc) echo.HandlerFunc {
 		if u.Status != models.Admin {
 			return c.JSON(200, serializer.Response{
 				Status: 403,
-				Msg:    "没有权限",
+				Msg:    "AdminAuth:没有权限",
 			})
 		}
 		return next(c)

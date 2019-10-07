@@ -6,7 +6,7 @@ import (
 )
 
 type ListService struct {
-	ID       int    `json:"id"   form:"id" param:"id" query:"id"`
+	ID       int    `json:"id"   form:"id" param:"id" query:"id" null:"false"`
 	Type     string `json:"type" param:"type" query:"type"`
 	Page     int    `json:"page" form:"page" query:"page"`
 	Limit    int    `json:"limit" form:"limit" query:"limit"`

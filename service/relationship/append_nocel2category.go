@@ -6,8 +6,8 @@ import (
 )
 
 type AppendN2CService struct {
-	Novel    uint `json:"novel" form:"novel"`
-	Category uint `json:"category" form:"category"`
+	Novel    uint `json:"novel" form:"novel"  null:"false"`
+	Category uint `json:"category" form:"category"  null:"false"`
 	result   models.NovelCategory
 }
 

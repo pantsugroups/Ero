@@ -68,8 +68,8 @@ func (service *ArchiveListService) Pull(create uint) *serializer.Response {
 		service.PageSize = 10
 	}
 	service.Keyword = "%" + service.Keyword + "%"
-	DB := models.DB.Where("title kile ?", service.Keyword).Where("tag like ?", service.Keyword).Where(
-		"author like ?", service.Keyword).Where("content like ?", service.Keyword).Where("jap_title like ?", service.Keyword)
+	DB := models.DB.Where("title LIKE ?", service.Keyword).Or("tag LIKE ?", service.Keyword).Or(
+		"author LIKE ?", service.Keyword).Or("content LIKE ?", service.Keyword).Or("jap_title LIKE ?", service.Keyword)
 
 	if service.Page > 0 && service.PageSize > 0 {
 		DB = DB.Limit(service.Page).Offset((service.Page - 1) * service.PageSize)

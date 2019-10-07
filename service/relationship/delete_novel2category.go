@@ -7,7 +7,7 @@ import (
 
 type DeleteN2CService struct {
 	Novel    uint `json:"novel" form:"novel" null:"false"`
-	Category uint `json:"category" form:"category" null:"category"`
+	Category uint `json:"category" form:"category" null:"false"`
 }
 
 // EroAPI godoc

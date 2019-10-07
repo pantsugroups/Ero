@@ -30,14 +30,16 @@ func NewRouter() *echo.Echo {
 
 	e.Use(middleware.Recover())
 	e.GET("/swagger/*", echoSwagger.WrapHandler)
-	e.Static("/img", path.Join(conf.StaticPath, "/img/")).Name = "静态图片文件"
-	e.Static("/other", path.Join(conf.StaticPath, "/other/")).Name = "静态文件"
+	e.Static("/img", path.Join(conf.StaticPath, "img")).Name = "静态图片文件"
+	e.Static("/other", path.Join(conf.StaticPath, "other")).Name = "静态文件"
 	g := e.Group("/api/v1")
 	{
 		//普通等级路由
 		g.POST("/user/login", api.UserLogin).Name = "用户登陆"
 
 		g.POST("/user/register", api.UserRegister).Name = "用户注册"
+
+		g.GET("/user/register", api.VeruftMail).Name = "用户邮箱验证"
 
 		var SearchNovel search.NovelListService
 		g.POST("/search/novel/", api.List(&SearchNovel)).Name = "小说搜索"

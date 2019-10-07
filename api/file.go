@@ -31,13 +31,13 @@ func Upload(c echo.Context) error {
 	types := c.FormValue("type")
 
 	if types == "novel" {
-		dir = "/novel/"
+		dir = "novel"
 		i = models.Volume_
 	} else if types == "img" {
-		dir = "/img/"
+		dir = "img"
 		i = models.Image_
 	} else {
-		dir = "/other/"
+		dir = "other"
 		i = models.Other_
 	}
 	file, err := c.FormFile("file")
@@ -107,10 +107,11 @@ func Download(c echo.Context) error {
 	f := models.File{
 		FileName: file,
 	}
-	if err := models.DB.First(f).Error; err != nil {
+	if err := models.DB.First(&f).Error; err != nil {
 		return c.JSON(200, serializer.Response{
 			Status: 404,
 			Msg:    "找不到文件",
+			Error:  err.Error(),
 		})
 	}
 	if hash != utils.Generate(file) {

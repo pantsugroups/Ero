@@ -6,7 +6,7 @@ import (
 )
 
 type UpdateService struct {
-	ID     uint `json:"id" param:"id" form:"id"`
+	ID     uint `json:"id" param:"id" form:"id" null:"false"`
 	Read   bool `json:"is_read" form:"id_read"`
 	result models.Message
 }
