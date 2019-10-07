@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>Ero Light</title>
+        <!-- <link rel="stylesheet" type="text/css" href="css/ero.css"> -->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/ero.css') }}">
+    </head>
+    <body>
+		<table class="top">
+			<tr>
+				<td class="left font-size-max">
+					<a href="index.html">Ero Light</a>
+				</td>
+				<td class="right font-size-medium">
+					{% if not username %}
+					<a href="#" id="username">请先登录</a>
+					{% else %}
+					<a href="#" id="username">{{ username }}</a>
+					<a href="#" class="notify" id="notify">订阅</a>
+					{% endif %}
+				</td>
+			</tr>
+		</table>
+		<div class="middle">
+			<table class="search">
+					<tr>
+						<td class="search-input"><input id="search-box" class="font-size-medium" name="search" placeholder="搜索一切...""></td>
+						<td class="search-btn"><button id="search-btn" class="font-size-medium" >立即搜索</button></td>
+					</tr>
+			</table>
+			<div class="list">
+				<table class="book-item">
+						<tr>
+							<td class="cover">
+								<a href="book.html"><img src="/static/img/konosuba1.jpg" alt=""></a>
+							</td>
+							<td class="texts">
+								<a href="book.html" class="title font-size-medium">{{title}}</a>
+								<div class="author font-size-small">
+									<span class="author-name">{{author}}</span>
+									{% if ended == 1 %}
+									<span class="status">已完结</span>
+									{% else %}
+									<span class="status">连载中</span>
+									{% endif %}
+								</div>
+								<div class="category font-size-small">{{tags}}</div>
+								<div class="description font-size-min">{{ description }}</div>
+							</td>
+						<tr>
+			</table>
+			<table class="rate">
+				<tr>
+					<td class="rate-info">评分：4.5 / 5 (10人评价)</td>
+					<td class="rate-action font-size-medium"><span class="rate-tip font-size-small">点击评分</span> ☆ ☆ ☆ ☆ ☆</td>
+				</tr>
+			</table>
+			<table class="book-single">
+				<tr>
+					<td class="subscribe">
+						订阅
+					</td>
+					<td class="push">
+						推送
+					</td>
+				</tr>
+			</table>
+			<div class="volume-list-container">
+				<table class="volume-list">
+					{% for volume in volumes %}
+					<tr>
+						<td class="volume font-size-small">{{ Volume_Get_Name(volume) }}</td>
+						<td class="action-select font-size-small">选择</td>
+						<td class="action-download font-size-small"><a href="/api/novel/download/{{ volume }}/{{ auto }}">下载</a></td>
+					</tr>
+					{% endfor %}
+				</table>
+			</div>
+		</div>
+	</div>
+	<div class="bottom">
+
+	</div>
+</body>
+
+</html>

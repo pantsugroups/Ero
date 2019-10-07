@@ -1,0 +1,200 @@
+html{
+	-ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  margin: 0;
+  font-size: 35px;
+  width: 100%;
+}
+.top {
+  width: 100%;
+  height: 80px;
+  background-color: #dddddd;
+}
+.top .left {
+  padding: 20px;
+}
+.top .right {
+  padding: 35px;
+	text-align: right;
+}
+.top a{
+	text-decoration: none!important;
+	color:#000;
+	margin:0 5px;
+}
+.top .right .notify:after{
+	content:'';
+	width:8px;
+	height:8px;
+	margin-left:5px;
+	border-radius:50%;
+	background:#666;
+	position: absolute;
+}
+.middle .search {
+	margin-top:-2px;
+  border-spacing: 0px;
+  width: 100%;
+}
+.middle .search input {
+  padding: 20px 15px;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #dddddd;
+}
+.middle .search .search-input {
+  width: 100%;
+}
+.middle .search .search-button {
+  width: 100%;
+}
+	.middle .search button {
+		width: 250px;
+  color: #f1f1f1;
+  padding: 20px 40px;
+  background: #333;
+  border: none;
+}
+.middle .list .book-item {
+	width:100%;
+	border-spacing: 10px;
+}
+.middle .list .book-item .texts{
+	vertical-align: middle;
+	text-align:center;
+	padding:10px 20px;
+	line-height:30px;
+	border-bottom:1px solid #dddddd;
+}
+.middle .list .book-item .no-border{
+	border:none;
+}
+.middle .list .book-item .cover{
+	width:30%;
+}
+.middle .list .book-item .cover img{
+	width:100%;
+}
+.middle .list .book-item .title{
+	text-decoration: none!important;
+	font-weight: bold;
+}
+.middle .list .book-item .author{
+	margin:30px 0;
+}
+.middle .list .book-item .author .author-name{
+	background-color:#333;
+	color:#f1f1f1;
+	padding:5px 10px;
+}
+.middle .list .book-item .author .status{
+	box-shadow:inset 0 0 0 2px #333;
+	padding:5px 10px;
+}
+.middle .list .book-item .description{
+	margin-top:8px;
+	line-height:30px;
+}
+.middle .rate{
+	width:100%;
+	margin-top:-20px;
+	padding:0 10px;
+}
+.middle .rate .rate-action{
+	text-align: right;
+}
+.middle .book-single{
+	width:100%;
+	border-spacing: 10px;
+}
+.middle .subscribe{
+	text-align:center;
+	padding:20px;
+	margin:5px;
+	background-color:#333;
+	color:#f1f1f1;
+}
+.middle .push{
+	box-shadow:inset 0 0 0 2px #333;
+	text-align:center;
+	padding:20px;
+}
+.volume-list-container{
+	padding:0 10px;
+}
+.middle .volume-list{
+	width:100%;
+	border-spacing: 0px;
+}
+.middle .volume-list .volume{
+	padding:10px;
+	background:#ddd;
+	color:#333;
+}
+.middle .volume-list :nth-child(2n) .volume{
+	background:#eee;
+	color:#333;
+}
+.middle .volume-list :nth-child(2n) .action-download{
+	background:#444;
+	color:#f1f1f1;
+}
+.middle .volume-list :nth-child(2n) .action-select{
+	background-color:#dadada;
+	color:#333;
+}
+.middle .volume-list .action-download{
+	padding:5px 10px;
+	text-align: center;
+	background:#333;
+	color:#f1f1f1;
+}
+.middle .volume-list .action-select{
+	padding:5px 10px;
+	background:#c9c9c9;
+	color:#333;
+	text-align: center;
+}
+.font-size-min{
+	font-size:25px;
+}
+.font-size-small{
+	font-size:30px;
+}
+.font-size-medium{
+	font-size:35px;
+}
+.font-size-big{
+	font-size:40px;
+}
+.font-size-max{
+	font-size:50px;
+}
+@media screen and (max-width: 600px) {
+	body{
+		font-size:24px;
+	}
+	.font-size-min{
+		font-size:18px;
+	}
+	.font-size-small{
+		font-size:22px;
+	}
+	.font-size-medium{
+		font-size:26px;
+	}
+	.font-size-big{
+		font-size:30px;
+	}
+	.font-size-max{
+		font-size:34px;
+	}
+	.middle .list .book-item .author{
+		margin:10px 0;
+	}
+	.middle .search button{
+		width:200px;
+	}
+}

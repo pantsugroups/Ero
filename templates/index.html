@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="UTF-8">
+        <title>Ero Light</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/ero.css') }}">
+
+    </head>
+    <body>
+		<table class="top">
+			<tr>
+				<td class="left font-size-max">
+					<a href="index.html">Ero Light</a>
+				</td>
+				<td class="right font-size-medium">
+					{% if not username %}
+					<a href="#" id="username">请先登录</a>
+					{% else %}
+					<a href="#" id="username">{{ username }}</a>
+					<a href="#" class="notify" id="notify">订阅</a>
+					{% endif %}
+					
+				</td>
+			</tr>
+		</table>
+		<div class="middle">
+			<table class="search">
+					<tr>
+						<td class="search-input"><input id="search-box" class="font-size-medium" name="search" placeholder="搜索一切...""></td>
+						<td class="search-btn"><button id="search-btn" class="font-size-medium" >立即搜索</button></td>
+					</tr>
+			</table>
+			<div class="list">
+				<table class="book-item">
+					{% for i in items %}
+						<tr>
+							<td class="cover">
+								<a href="detail/{{ i.nid }}"><img src="{{ i.cover }}" alt=""></a>
+							</td>
+							<td class="texts">
+								<a href="detail/{{ i.nid }}" class="title font-size-medium">{{ i.title }}</a>
+								<div class="author font-size-small">
+									<span class="author-name">{{ i.author }}</span>
+									{% if ended == 1 %}
+									<span class="status">已完结</span>
+									{% else %}
+									<span class="status">连载中</span>
+									{% endif %}
+								</div>
+								<div class="category font-size-small">{{ i.tags.replace(',',' / ') }}</div>
+								<div class="description font-size-min">{{ i.description }}</div>
+							</td>
+						<tr>
+						{% endfor %}
+				</table>
+			</div>
+		</div>
+		<div class="bottom">
+			
+		</div>
+	</body>
+</html>
