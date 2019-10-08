@@ -15,6 +15,8 @@ type RegisterService struct {
 	Mail            string `form:"mail" json:"mail" null:"false"`
 	Password        string `form:"password" json:"password" null:"false"`
 	PasswordConfirm string `form:"password_confirm" json:"password_confirm" null:"false"`
+	VerifyCode      string `json:"verify_code" form:"verify_code" null:"false"`
+	VerifyCodeId    string `json:"verify_id" form:"verify_id" null:"false"`
 }
 
 // Valid 验证表单
@@ -55,16 +57,13 @@ func (service *RegisterService) SendMail() *serializer.Response {
 	//	conf.SMTPPASSWORD,
 	//	conf.SMTPHOST,
 	//)
+
 	hash := utils.Generate(service.UserName)
 	token := utils.RandStringRunes(16)
 	s := "您的验证地址如下：https://%s/api/v1/user/register?hash=%s&token=%s&user=%s"
 	body := fmt.Sprintf(s, conf.BackEndHost, hash, token, service.UserName)
 	if err := utils.SendToMail(conf.SMTPUSERNAME, conf.SMTPPASSWORD, conf.SMTPHOST, service.Mail, "Ero 注册邮件", body, "html"); err != nil {
-		return &serializer.Response{
-			Status: 500,
-			Msg:    "邮件发送失败",
-			Error:  err.Error(),
-		}
+		return nil
 	}
 	//if err := smtp.SendMail(
 	//	conf.SMTPHOST,
@@ -85,7 +84,7 @@ func (service *RegisterService) SendMail() *serializer.Response {
 
 // EroAPI godoc
 // @Summary 用户注册
-// @Description
+// @Description 必须要先从/api/v1/verify 处获取验证码
 // @Tags user
 // @Accept html
 // @Produce json
@@ -96,8 +95,16 @@ func (service *RegisterService) SendMail() *serializer.Response {
 // @Param password formData string true "密码"
 // @Param mail formData string true "邮箱"
 // @Param password_confirm formData string true "重复一遍密码用于验证"
+// @Param verify_code formData string true "验证码"
+// @Param verify_id formData string true "验证码ID"
 // @Router /api/v1/user/register [post]
 func (service *RegisterService) Register() (model.User, *serializer.Response) {
+	if res := utils.VerfiyCaptcha(service.VerifyCodeId, service.VerifyCode); res == false {
+		return model.User{}, &serializer.Response{
+			Status: 403,
+			Msg:    "验证码错误",
+		}
+	}
 	user := model.User{
 		Nickname: service.Nickname,
 		UserName: service.UserName,

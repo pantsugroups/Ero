@@ -1,5 +1,12 @@
 basePath: /api/v1
 definitions:
+  api.Verify:
+    properties:
+      code_id:
+        type: string
+      data:
+        type: string
+    type: object
   serializer.Archive:
     properties:
       author:
@@ -774,12 +781,30 @@ paths:
     get:
       consumes:
       - text/html
-      description: 获取单个评论的详细信息
       parameters:
-      - description: 评论ID
+      - description: 回复者ID
         in: path
         name: id
-        required: true
+        type: integer
+      - description: 类型：1为文章，2为小说
+        in: formData
+        name: type
+        type: integer
+      - description: Pages
+        in: formData
+        name: page
+        type: integer
+      - description: Limit
+        in: formData
+        name: limit
+        type: integer
+      - description: Offset
+        in: formData
+        name: offset
+        type: integer
+      - description: PageSize default is 10
+        in: formData
+        name: page_size
         type: integer
       produces:
       - application/json
@@ -787,12 +812,12 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/serializer.CommentResponse'
+            $ref: '#/definitions/serializer.CommentListResponse'
         "500":
           description: Internal Server Error
           schema:
             $ref: '#/definitions/serializer.Response'
-      summary: 获取评论详细
+      summary: 评论列表
       tags:
       - comment
     post:
@@ -912,51 +937,11 @@ paths:
     get:
       consumes:
       - text/html
-      description: 必须登陆
+      description: 接收者必须为自己或者权限必须为管理员
       parameters:
-      - description: Pages
-        in: formData
-        name: page
-        type: integer
-      - description: Limit
-        in: formData
-        name: limit
-        type: integer
-      - description: Offset
-        in: formData
-        name: offset
-        type: integer
-      - description: PageSize default is 10
-        in: formData
-        name: page_size
-        type: integer
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/serializer.MessageListResponse'
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/serializer.Response'
-      summary: 分类列表
-      tags:
-      - message
-    post:
-      consumes:
-      - text/html
-      description: 有这个接口的实现，但是暂未启用.jpg
-      parameters:
-      - description: 消息内容
-        in: formData
-        name: title
-        required: true
-        type: string
-      - description: 回复用户 ID
-        in: formData
-        name: recv
+      - description: 消息ID
+        in: path
+        name: id
         required: true
         type: integer
       produces:
@@ -972,9 +957,42 @@ paths:
             $ref: '#/definitions/serializer.Response'
       security:
       - ApiKeyAuth: []
-      summary: 创建消息
+      summary: 获取消息详细
       tags:
       - message
+    post:
+      consumes:
+      - text/html
+      description: 必须为管理员
+      parameters:
+      - description: 小说ID
+        in: formData
+        name: novel
+        required: true
+        type: integer
+      - description: 分类ID
+        in: formData
+        name: category
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/serializer.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/serializer.Response'
+      security:
+      - ApiKeyAuth: []
+      summary: 添加小说分类关联
+      tags:
+      - novel
+      - category
+      - admin
     put:
       consumes:
       - text/html
@@ -1348,6 +1366,7 @@ paths:
     post:
       consumes:
       - text/html
+      description: 必须要先从/api/v1/verify 处获取验证码
       parameters:
       - description: 用户名
         in: formData
@@ -1374,6 +1393,16 @@ paths:
         name: password_confirm
         required: true
         type: string
+      - description: 验证码
+        in: formData
+        name: verify_code
+        required: true
+        type: string
+      - description: 验证码ID
+        in: formData
+        name: verify_code_id
+        required: true
+        type: string
       produces:
       - application/json
       responses:
@@ -1386,6 +1415,21 @@ paths:
           schema:
             $ref: '#/definitions/serializer.Response'
       summary: 用户注册
+      tags:
+      - user
+  /api/v1/user/verify:
+    get:
+      consumes:
+      - text/html
+      description: 必须要先从/api/v1/verify 处获取验证码
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/api.Verify'
+      summary: 验证码获取
       tags:
       - user
   /api/v1/volume/:

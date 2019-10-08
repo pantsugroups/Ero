@@ -35,11 +35,13 @@ func NewRouter() *echo.Echo {
 	g := e.Group("/api/v1")
 	{
 		//普通等级路由
+		g.GET("/verify", api.Captcha).Name = "验证码获取"
+
 		g.POST("/user/login", api.UserLogin).Name = "用户登陆"
 
 		g.POST("/user/register", api.UserRegister).Name = "用户注册"
 
-		g.GET("/user/register", api.VeruftMail).Name = "用户邮箱验证"
+		g.GET("/user/register", api.VerifyMail).Name = "用户邮箱验证"
 
 		var SearchNovel search.NovelListService
 		g.POST("/search/novel/", api.List(&SearchNovel)).Name = "小说搜索"
@@ -80,6 +82,8 @@ func NewRouter() *echo.Echo {
 
 			r.POST("/upload/", api.Upload).Name = "上传文件"
 			r.GET("/download", api.Download).Name = "下载小说"
+			r.GET("/user/sendmail", api.SendMail).Name = "发送验证邮件"
+
 			var UserGet user.GetService
 			r.GET("/user/:id", api.Get(&UserGet)).Name = "查看用户信息"
 

@@ -87,9 +87,9 @@ func Upload(c echo.Context) error {
 // @Tags file,volume
 // @Accept html
 // @Produce json
-// @Param token formData string true "从/api/v1/novel/volume/:id得来"
-// @Param filename formData string true "从/api/v1/novel/volume/:id得来"
-// @Param hash formData string true "从/api/v1/novel/volume/:id得来"
+// @Param token query string true "从/api/v1/novel/volume/:id得来"
+// @Param filename query string true "从/api/v1/novel/volume/:id得来"
+// @Param hash query string true "从/api/v1/novel/volume/:id得来"
 // @Success 200 {object} serializer.FileResponse
 // @Failure 500 {object} serializer.Response
 // @Router /api/v1/download/ [get]

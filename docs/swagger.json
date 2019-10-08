@@ -562,7 +562,6 @@
         },
         "/api/v1/comment/": {
             "get": {
-                "description": "获取单个评论的详细信息",
                 "consumes": [
                     "text/html"
                 ],
@@ -572,21 +571,50 @@
                 "tags": [
                     "comment"
                 ],
-                "summary": "获取评论详细",
+                "summary": "评论列表",
                 "parameters": [
                     {
                         "type": "integer",
-                        "description": "评论ID",
+                        "description": "回复者ID",
                         "name": "id",
-                        "in": "path",
-                        "required": true
+                        "in": "path"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "类型：1为文章，2为小说",
+                        "name": "type",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Pages",
+                        "name": "page",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Limit",
+                        "name": "limit",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Offset",
+                        "name": "offset",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "PageSize default is 10",
+                        "name": "page_size",
+                        "in": "formData"
                     }
                 ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/serializer.CommentResponse"
+                            "$ref": "#/definitions/serializer.CommentListResponse"
                         }
                     },
                     "500": {
@@ -773,7 +801,12 @@
         },
         "/api/v1/message/": {
             "get": {
-                "description": "必须登陆",
+                "security": [
+                    {
+                        "ApiKeyAuth": []
+                    }
+                ],
+                "description": "接收者必须为自己或者权限必须为管理员",
                 "consumes": [
                     "text/html"
                 ],
@@ -783,38 +816,21 @@
                 "tags": [
                     "message"
                 ],
-                "summary": "分类列表",
+                "summary": "获取消息详细",
                 "parameters": [
                     {
                         "type": "integer",
-                        "description": "Pages",
-                        "name": "page",
-                        "in": "formData"
-                    },
-                    {
-                        "type": "integer",
-                        "description": "Limit",
-                        "name": "limit",
-                        "in": "formData"
-                    },
-                    {
-                        "type": "integer",
-                        "description": "Offset",
-                        "name": "offset",
-                        "in": "formData"
-                    },
-                    {
-                        "type": "integer",
-                        "description": "PageSize default is 10",
-                        "name": "page_size",
-                        "in": "formData"
+                        "description": "消息ID",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
                     }
                 ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/serializer.MessageListResponse"
+                            "$ref": "#/definitions/serializer.MessageResponse"
                         }
                     },
                     "500": {
@@ -878,7 +894,7 @@
                         "ApiKeyAuth": []
                     }
                 ],
-                "description": "有这个接口的实现，但是暂未启用.jpg",
+                "description": "必须为管理员",
                 "consumes": [
                     "text/html"
                 ],
@@ -886,21 +902,23 @@
                     "application/json"
                 ],
                 "tags": [
-                    "message"
+                    "novel",
+                    "category",
+                    "admin"
                 ],
-                "summary": "创建消息",
+                "summary": "添加小说分类关联",
                 "parameters": [
                     {
-                        "type": "string",
-                        "description": "消息内容",
-                        "name": "title",
+                        "type": "integer",
+                        "description": "小说ID",
+                        "name": "novel",
                         "in": "formData",
                         "required": true
                     },
                     {
                         "type": "integer",
-                        "description": "回复用户 ID",
-                        "name": "recv",
+                        "description": "分类ID",
+                        "name": "category",
                         "in": "formData",
                         "required": true
                     }
@@ -909,7 +927,7 @@
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/serializer.MessageResponse"
+                            "$ref": "#/definitions/serializer.Response"
                         }
                     },
                     "500": {
@@ -1483,6 +1501,7 @@
         },
         "/api/v1/user/register": {
             "post": {
+                "description": "必须要先从/api/v1/verify 处获取验证码",
                 "consumes": [
                     "text/html"
                 ],
@@ -1528,6 +1547,20 @@
                         "name": "password_confirm",
                         "in": "formData",
                         "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "验证码",
+                        "name": "verify_code",
+                        "in": "formData",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "验证码ID",
+                        "name": "verify_code_id",
+                        "in": "formData",
+                        "required": true
                     }
                 ],
                 "responses": {
@@ -1541,6 +1574,29 @@
                         "description": "Internal Server Error",
                         "schema": {
                             "$ref": "#/definitions/serializer.Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/user/verify": {
+            "get": {
+                "description": "必须要先从/api/v1/verify 处获取验证码",
+                "consumes": [
+                    "text/html"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "user"
+                ],
+                "summary": "验证码获取",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/api.Verify"
                         }
                     }
                 }
@@ -1761,6 +1817,17 @@
         }
     },
     "definitions": {
+        "api.Verify": {
+            "type": "object",
+            "properties": {
+                "code_id": {
+                    "type": "string"
+                },
+                "data": {
+                    "type": "string"
+                }
+            }
+        },
         "serializer.Archive": {
             "type": "object",
             "properties": {
