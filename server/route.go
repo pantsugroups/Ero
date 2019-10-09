@@ -85,8 +85,11 @@ func NewRouter() *echo.Echo {
 			r.GET("/download", api.Download).Name = "下载小说"
 			r.GET("/user/sendmail", api.SendMail).Name = "发送验证邮件"
 
-			var UserBook user.ListService
+			var UserBook user.SubscribeListService
 			r.GET("/user/book", api.List(&UserBook)).Name = "用户书架列表"
+
+			var UserComments user.CommentListService
+			r.GET("/user/comments", api.List(&UserComments)).Name = "用户发送的评论列表"
 
 			var UserGet user.GetService
 			r.GET("/user/:id", api.Get(&UserGet)).Name = "查看用户信息"

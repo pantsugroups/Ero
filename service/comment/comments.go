@@ -57,7 +57,7 @@ func (service *ListService) Pages() (int, *serializer.Response) {
 // @Success 200 {object} serializer.CommentListResponse
 // @Failure 500 {object} serializer.Response
 // @Router /api/v1/comment/ [get]
-// @Param id path integer false "回复者ID"
+// @Param id path integer false "回复对象ID"
 // @Param type formData integer false "类型：1为文章，2为小说"
 // @Param page formData integer false "Pages"
 // @Param limit formData integer false "Limit"

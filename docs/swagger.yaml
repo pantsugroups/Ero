@@ -202,7 +202,7 @@ definitions:
     type: object
   serializer.Message:
     properties:
-      create_:
+      create_time:
         type: string
       id:
         type: integer
@@ -496,36 +496,17 @@ paths:
     post:
       consumes:
       - text/html
-      description: 必须要登陆
+      description: 必须要登陆，文件ID就是在这里去拿的，图片等静态 文件可以直接访问/img/*获得，novel必须要经过/download
       parameters:
-      - description: 标题
+      - description: 类型，分为novel,img两个，如果是img则可以直接去静态文件请求
         in: formData
-        name: title
+        name: type
         required: true
         type: string
-      - description: 日文标题
+      - description: 文件
         in: formData
-        name: japanese_title
-        type: string
-      - description: 作者
-        in: formData
-        name: author
-        type: string
-      - description: 文章内容
-        in: formData
-        name: content
-        type: string
-      - description: 隐藏内容
-        in: formData
-        name: primary_content
-        type: string
-      - description: 封面，这个是个url地址
-        in: formData
-        name: cover
-        type: string
-      - description: '标签，推荐使用/分割，例如 纯爱/治愈/等等 '
-        in: formData
-        name: tag
+        name: file
+        required: true
         type: string
       produces:
       - application/json
@@ -533,16 +514,17 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/serializer.ArchiveResponse'
+            $ref: '#/definitions/serializer.FileResponse'
         "500":
           description: Internal Server Error
           schema:
             $ref: '#/definitions/serializer.Response'
       security:
       - ApiKeyAuth: []
-      summary: 创建文章
+      summary: 上传文件
       tags:
-      - archive
+      - file
+      - volume
     put:
       consumes:
       - text/html
@@ -781,30 +763,12 @@ paths:
     get:
       consumes:
       - text/html
+      description: 获取单个评论的详细信息
       parameters:
-      - description: 回复者ID
+      - description: 评论ID
         in: path
         name: id
-        type: integer
-      - description: 类型：1为文章，2为小说
-        in: formData
-        name: type
-        type: integer
-      - description: Pages
-        in: formData
-        name: page
-        type: integer
-      - description: Limit
-        in: formData
-        name: limit
-        type: integer
-      - description: Offset
-        in: formData
-        name: offset
-        type: integer
-      - description: PageSize default is 10
-        in: formData
-        name: page_size
+        required: true
         type: integer
       produces:
       - application/json
@@ -812,12 +776,12 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/serializer.CommentListResponse'
+            $ref: '#/definitions/serializer.CommentResponse'
         "500":
           description: Internal Server Error
           schema:
             $ref: '#/definitions/serializer.Response'
-      summary: 评论列表
+      summary: 获取评论详细
       tags:
       - comment
     post:
@@ -876,17 +840,17 @@ paths:
       description: 必须要登陆，文件ID就是在这里去拿的，图片等静态 文件可以直接访问/img/获得，novel必须要经过/download
       parameters:
       - description: 从/api/v1/novel/volume/:id得来
-        in: formData
+        in: query
         name: token
         required: true
         type: string
       - description: 从/api/v1/novel/volume/:id得来
-        in: formData
+        in: query
         name: filename
         required: true
         type: string
       - description: 从/api/v1/novel/volume/:id得来
-        in: formData
+        in: query
         name: hash
         required: true
         type: string
@@ -937,12 +901,23 @@ paths:
     get:
       consumes:
       - text/html
-      description: 接收者必须为自己或者权限必须为管理员
+      description: 必须登陆
       parameters:
-      - description: 消息ID
-        in: path
-        name: id
-        required: true
+      - description: Pages
+        in: formData
+        name: page
+        type: integer
+      - description: Limit
+        in: formData
+        name: limit
+        type: integer
+      - description: Offset
+        in: formData
+        name: offset
+        type: integer
+      - description: PageSize default is 10
+        in: formData
+        name: page_size
         type: integer
       produces:
       - application/json
@@ -950,14 +925,12 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/serializer.MessageResponse'
+            $ref: '#/definitions/serializer.MessageListResponse'
         "500":
           description: Internal Server Error
           schema:
             $ref: '#/definitions/serializer.Response'
-      security:
-      - ApiKeyAuth: []
-      summary: 获取消息详细
+      summary: 分类列表
       tags:
       - message
     post:
@@ -1027,16 +1000,11 @@ paths:
     delete:
       consumes:
       - text/html
-      description: 接收者必须为自己管理员
+      description: 接收者必须为自己或者用户权限为管理员
       parameters:
       - description: 小说ID
-        in: formData
-        name: novel
-        required: true
-        type: integer
-      - description: 分类ID
-        in: formData
-        name: category
+        in: path
+        name: id
         required: true
         type: integer
       produces:
@@ -1052,19 +1020,28 @@ paths:
             $ref: '#/definitions/serializer.Response'
       security:
       - ApiKeyAuth: []
-      summary: 删除小说分类关联
+      summary: 删除小说
       tags:
       - novel
-      - category
-      - admin
     get:
       consumes:
       - text/html
       parameters:
-      - description: 小说ID
-        in: path
-        name: id
-        required: true
+      - description: Pages
+        in: formData
+        name: page
+        type: integer
+      - description: Limit
+        in: formData
+        name: limit
+        type: integer
+      - description: Offset
+        in: formData
+        name: offset
+        type: integer
+      - description: PageSize default is 10
+        in: formData
+        name: page_size
         type: integer
       produces:
       - application/json
@@ -1072,12 +1049,12 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/serializer.NovelResponse'
+            $ref: '#/definitions/serializer.NovelListResponse'
         "500":
           description: Internal Server Error
           schema:
             $ref: '#/definitions/serializer.Response'
-      summary: 获取小说详细
+      summary: 小说列表
       tags:
       - novel
     put:
@@ -1122,6 +1099,59 @@ paths:
       security:
       - ApiKeyAuth: []
       summary: 更新小说
+      tags:
+      - novel
+  /api/v1/novel/subscribe/:
+    delete:
+      consumes:
+      - text/html
+      description: 必须登陆
+      parameters:
+      - description: 小说id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/serializer.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/serializer.Response'
+      security:
+      - ApiKeyAuth: []
+      summary: 取消订阅小说
+      tags:
+      - novel
+    get:
+      consumes:
+      - text/html
+      description: 必须登陆
+      parameters:
+      - description: 小说id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/serializer.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/serializer.Response'
+      security:
+      - ApiKeyAuth: []
+      summary: 订阅小说
       tags:
       - novel
   /api/v1/novel/volume/:
@@ -1333,6 +1363,78 @@ paths:
       summary: 更新用户信息
       tags:
       - user
+  /api/v1/user/book:
+    get:
+      consumes:
+      - text/html
+      parameters:
+      - description: Pages
+        in: formData
+        name: page
+        type: integer
+      - description: Limit
+        in: formData
+        name: limit
+        type: integer
+      - description: Offset
+        in: formData
+        name: offset
+        type: integer
+      - description: PageSize default is 10
+        in: formData
+        name: page_size
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/serializer.NovelListResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/serializer.Response'
+      summary: 书架列表
+      tags:
+      - user
+      - novel
+  /api/v1/user/comments/:
+    get:
+      consumes:
+      - text/html
+      parameters:
+      - description: Pages
+        in: formData
+        name: page
+        type: integer
+      - description: Limit
+        in: formData
+        name: limit
+        type: integer
+      - description: Offset
+        in: formData
+        name: offset
+        type: integer
+      - description: PageSize default is 10
+        in: formData
+        name: page_size
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/serializer.CommentListResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/serializer.Response'
+      summary: 获取用户发送的评论列表
+      tags:
+      - comment
+      - user
   /api/v1/user/login:
     get:
       consumes:
@@ -1400,7 +1502,7 @@ paths:
         type: string
       - description: 验证码ID
         in: formData
-        name: verify_code_id
+        name: verify_id
         required: true
         type: string
       produces:
@@ -1415,6 +1517,36 @@ paths:
           schema:
             $ref: '#/definitions/serializer.Response'
       summary: 用户注册
+      tags:
+      - user
+  /api/v1/user/sendmail:
+    get:
+      consumes:
+      - text/html
+      description: 必须要先从/api/v1/verify 处获取验证码
+      parameters:
+      - description: 验证码
+        in: query
+        name: verify_code
+        required: true
+        type: string
+      - description: 验证码ID
+        in: query
+        name: verify_id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/serializer.Response'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/serializer.Response'
+      summary: 发送用户验证邮件
       tags:
       - user
   /api/v1/user/verify:
