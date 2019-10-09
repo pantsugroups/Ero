@@ -34,13 +34,7 @@ func (service *ListService) HaveNextOrLast() (next bool, last bool) {
 // 返回查询结果总页数,是按照当前请求的结果的数量除以总数得出的
 func (service *ListService) Pages() (int, *serializer.Response) {
 
-	if err := models.DB.Model(&models.Novel{}).Count(&service.All).Error; err != nil {
-		return 0, &serializer.Response{
-			Status: 500,
-			Msg:    "查询总数失败",
-		}
-	}
-	if int(service.Count) == 0 {
+	if int(service.Count) == 0 || int(service.All) == 0 {
 		return 0, nil
 	}
 	return int(service.All / service.Count), nil
@@ -101,6 +95,12 @@ func (service *ListService) Pull(create uint) *serializer.Response {
 	}
 
 	service.result = novel
+	if err := models.DB.Model(&models.NovelSubscribe{}).Where("user_id = ?", create).Count(&service.All).Error; err != nil {
+		return &serializer.Response{
+			Status: 500,
+			Msg:    "查询总数失败",
+		}
+	}
 	return nil
 }
 func (service *ListService) Counts() int {

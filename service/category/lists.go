@@ -34,7 +34,7 @@ func (service *ListService) HaveNextOrLast() (next bool, last bool) {
 // 返回查询结果总页数,是按照当前请求的结果的数量除以总数得出的
 func (service *ListService) Pages() (int, *serializer.Response) {
 
-	if err := models.DB.Model(&models.Novel{}).Count(&service.All).Error; err != nil {
+	if err := models.DB.Model(&models.Category{}).Count(&service.All).Error; err != nil {
 		return 0, &serializer.Response{
 			Status: 40005,
 			Msg:    "查询总数失败",
