@@ -19,7 +19,7 @@ func CodeCaptchaCreate() (idKey string, base64str string) {
 	base64stringD := base64Captcha.CaptchaWriteToBase64Encoding(capD)
 	return idKeyD, base64stringD
 }
-func VerfiyCaptcha(idkey, verifyValue string) bool {
+func VerifyCaptcha(idkey, verifyValue string) bool {
 	verifyResult := base64Captcha.VerifyCaptcha(idkey, verifyValue)
 	if verifyResult {
 		return true

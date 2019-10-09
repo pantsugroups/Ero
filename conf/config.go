@@ -13,11 +13,11 @@ const (
 	DataBaseName     string = "ero"
 	DataBasePassword string = "bakabie"
 	DataBaseUser     string = "root"
-	//DttaBasePort     string = "3306"
+	//DataBasePort     string = "3306"
 
 	// 邮箱配置
-	SMTPHOST     = ""
-	SMTPSENDER   = ""
+	SMTPHOST = ""
+	//SMTPSENDER   = ""
 	SMTPUSERNAME = ""
 	SMTPPASSWORD = ""
 

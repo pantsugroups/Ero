@@ -15,7 +15,7 @@ func List(service _interface.ListInterface) echo.HandlerFunc {
 	return func(c echo.Context) (err error) {
 
 		if err := utils.Bind(service, c); err == nil {
-			uid := utils.GetAutherID(c)
+			uid := utils.GetAuthorID(c)
 			if err := service.Pull(uid); err != nil {
 				return c.JSON(200, err)
 			} else {
@@ -38,7 +38,7 @@ func Create(service _interface.CreateInterface) echo.HandlerFunc {
 	return func(c echo.Context) (err error) {
 
 		if err := utils.Bind(service, c); err == nil {
-			uid := utils.GetAutherID(c)
+			uid := utils.GetAuthorID(c)
 			if err := service.Create(uid); err != nil {
 				return c.JSON(200, err)
 			} else {
@@ -60,7 +60,7 @@ func Create(service _interface.CreateInterface) echo.HandlerFunc {
 func Get(service _interface.GetInterface) echo.HandlerFunc {
 
 	return func(c echo.Context) (err error) {
-		uid := utils.GetAutherID(c)
+		uid := utils.GetAuthorID(c)
 		if err := utils.Bind(service, c); err == nil {
 			if err := service.Get(uid); err != nil {
 				return c.JSON(200, err)
@@ -81,7 +81,7 @@ func Get(service _interface.GetInterface) echo.HandlerFunc {
 //更新
 func Update(service _interface.UpdateInterface) echo.HandlerFunc {
 	return func(c echo.Context) (err error) {
-		uid := utils.GetAutherID(c)
+		uid := utils.GetAuthorID(c)
 		if err := utils.Bind(service, c); err == nil {
 			if err := service.Update(uid); err != nil {
 				return c.JSON(200, err)
@@ -103,7 +103,7 @@ func Update(service _interface.UpdateInterface) echo.HandlerFunc {
 func Delete(service _interface.DeleteInterface) echo.HandlerFunc {
 	return func(c echo.Context) (err error) {
 		if err := utils.Bind(service, c); err == nil {
-			uid := utils.GetAutherID(c)
+			uid := utils.GetAuthorID(c)
 			if err := service.Delete(uid); err != nil {
 				return c.JSON(200, err)
 			} else {

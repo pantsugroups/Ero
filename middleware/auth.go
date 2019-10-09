@@ -13,7 +13,7 @@ import (
 func BaseRequired(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
 		fmt.Println(c.Path())
-		uid := utils.GetAutherID(c)
+		uid := utils.GetAuthorID(c)
 		u, err := models.GetUser(uid)
 		if err != nil {
 
@@ -34,7 +34,7 @@ func BaseRequired(next echo.HandlerFunc) echo.HandlerFunc {
 }
 func AuthRequired(next echo.HandlerFunc) echo.HandlerFunc {
 	return func(c echo.Context) error {
-		uid := utils.GetAutherID(c)
+		uid := utils.GetAuthorID(c)
 		u, err := models.GetUser(uid)
 		if err != nil {
 

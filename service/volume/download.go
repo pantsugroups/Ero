@@ -64,13 +64,7 @@ func (service *GetService) Get(create uint) *serializer.Response {
 			Error:  err.Error(),
 		}
 	}
-	//if err := models.DB.Where("ID = ?", service.ID).First(&f).Error; err != nil {
-	//	return &serializer.Response{
-	//		Status: 40003,
-	//		Msg:    "获取失败",
-	//		Error:  err.Error(),
-	//	}
-	//}
+
 	file := serializer.BuildFile(f)
 	file.Hash = utils.Generate(file.FileName)
 	file.Token = utils.RandStringRunes(16)

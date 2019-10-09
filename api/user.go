@@ -67,13 +67,13 @@ func UserLogin(c echo.Context) (err error) {
 func SendMail(c echo.Context) error {
 	verifyID := c.QueryParam("verify_id")
 	verifyCode := c.QueryParam("verify_code")
-	if res := utils.VerfiyCaptcha(verifyID, verifyCode); res == false {
+	if res := utils.VerifyCaptcha(verifyID, verifyCode); res == false {
 		return c.JSON(200, &serializer.Response{
 			Status: 403,
 			Msg:    "验证码错误",
 		})
 	}
-	uid := utils.GetAutherID(c)
+	uid := utils.GetAuthorID(c)
 	u, err := models.GetUser(uid)
 	if err != nil {
 		return c.JSON(200, &serializer.Response{

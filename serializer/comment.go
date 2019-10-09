@@ -55,10 +55,10 @@ func BuildCommentResponse(comment models.Comment) CommentResponse {
 	}
 }
 
-func BuildCommentListResponse(commments []models.Comment, count int, next bool, last bool, pages int) CommentListResponse {
+func BuildCommentListResponse(comments []models.Comment, count int, next bool, last bool, pages int) CommentListResponse {
 	return CommentListResponse{
 		Count: count,
-		Data:  BuildCommentList(commments),
+		Data:  BuildCommentList(comments),
 		Next:  next,
 		Last:  last,
 		Pages: pages,

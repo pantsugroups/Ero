@@ -12,7 +12,7 @@ type ListService struct {
 	PageSize int `json:"page_count" form:"page_Size" query:"page_Size"`
 	Count    int // 查询结果请求
 	All      int //总数
-	result   []models.Volume
+	result   []models.Category
 }
 
 // 判断是否有上一页或者下一页
@@ -60,7 +60,7 @@ func (service *ListService) Pages() (int, *serializer.Response) {
 // @Param offset formData integer false "Offset"
 // @Param page_size formData integer false "PageSize default is 10"
 func (service *ListService) Pull(create uint) *serializer.Response {
-	var volume []models.Volume
+	var category []models.Category
 	//var count int
 	if service.PageSize == 0 {
 		service.PageSize = 10
@@ -79,14 +79,14 @@ func (service *ListService) Pull(create uint) *serializer.Response {
 	//	}
 	//}
 
-	if err := DB.Find(&volume).Count(&service.Count).Error; err != nil {
+	if err := DB.Find(&category).Count(&service.Count).Error; err != nil {
 		return &serializer.Response{
 			Status: 500,
 			Msg:    "获取失败",
 		}
 	}
 
-	service.result = volume
+	service.result = category
 	return nil
 }
 func (service *ListService) Counts() int {
@@ -99,5 +99,5 @@ func (service *ListService) Response() interface{} {
 	if pages, err = service.Pages(); err != nil {
 		return err
 	}
-	return serializer.BuildVolumeListResponse(service.result, service.Count, next, last, pages)
+	return serializer.BuildCategoryListResponse(service.result, service.Count, next, last, pages)
 }

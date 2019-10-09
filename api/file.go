@@ -26,7 +26,7 @@ import (
 func Upload(c echo.Context) error {
 	var dir string
 	var i int
-	uid := utils.GetAutherID(c)
+	uid := utils.GetAuthorID(c)
 	user, _ := models.GetUser(uid)
 	types := c.FormValue("type")
 

@@ -12,7 +12,7 @@ type Message struct {
 	SendID   uint      `json:"send_id"`
 	RecvName string    `json:"recv_name"`
 	RecvID   uint      `json:"recv_id"`
-	CareteAt time.Time `json:"create_"`
+	CreateAt time.Time `json:"create_time"`
 	Read     bool      `json:"is_read"`
 }
 
@@ -38,7 +38,7 @@ func BuildMessage(message models.Message) Message {
 		SendName: message.Send.Nickname,
 		RecvID:   message.Recv.ID,
 		RecvName: message.Recv.Nickname,
-		CareteAt: message.CreatedAt,
+		CreateAt: message.CreatedAt,
 		Read:     message.Read,
 	}
 }

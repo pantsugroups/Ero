@@ -99,7 +99,7 @@ func (service *RegisterService) SendMail() *serializer.Response {
 // @Param verify_id formData string true "验证码ID"
 // @Router /api/v1/user/register [post]
 func (service *RegisterService) Register() (model.User, *serializer.Response) {
-	if res := utils.VerfiyCaptcha(service.VerifyCodeId, service.VerifyCode); res == false {
+	if res := utils.VerifyCaptcha(service.VerifyCodeId, service.VerifyCode); res == false {
 		return model.User{}, &serializer.Response{
 			Status: 403,
 			Msg:    "验证码错误",

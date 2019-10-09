@@ -31,7 +31,7 @@ func CreateToken(user models.User) (string, error) {
 
 }
 
-func GetAutherID(c echo.Context) uint {
+func GetAuthorID(c echo.Context) uint {
 	user := c.Get("user")
 	if user == nil || user == "" {
 		return 0

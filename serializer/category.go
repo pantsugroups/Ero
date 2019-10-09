@@ -32,9 +32,9 @@ func BuildCategory(category models.Category) Category {
 	}
 }
 
-func BuildCategoryList(categorys []models.Category) []Category {
+func BuildCategoryList(categoryies []models.Category) []Category {
 	var categoryList []Category
-	for _, a := range categorys {
+	for _, a := range categoryies {
 		i := BuildCategory(a)
 		categoryList = append(categoryList, i)
 	}
@@ -47,10 +47,10 @@ func BuildCategoryResponse(category models.Category) CategoryResponse {
 	}
 }
 
-func BuildCategoryListResponse(categorys []models.Category, count int, next bool, last bool, pages int) CategoryListResponse {
+func BuildCategoryListResponse(categories []models.Category, count int, next bool, last bool, pages int) CategoryListResponse {
 	return CategoryListResponse{
 		Count: count,
-		Data:  BuildCategoryList(categorys),
+		Data:  BuildCategoryList(categories),
 		Next:  next,
 		Last:  last,
 		Pages: pages,
