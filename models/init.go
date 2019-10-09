@@ -16,11 +16,11 @@ var DB *gorm.DB
 // Database 初始化mysql链接
 func Database(connString string) {
 	db, err := gorm.Open("mysql", connString)
-	db.LogMode(true)
-	// Error
 	if err != nil {
 		panic(err)
 	}
+	db.LogMode(true)
+
 	//设置连接池
 	//空闲
 	db.DB().SetMaxIdleConns(20)
@@ -32,7 +32,7 @@ func Database(connString string) {
 	DB = db
 
 	DB.Debug().AutoMigrate(&User{}, &Archive{}, &Novel{}, &Volume{}, &Comment{}, &Category{},
-		&Message{}, &File{}, &NovelCategory{})
+		&Message{}, &File{}, &NovelCategory{}, NovelSubscribe{})
 	// 初始化
 	var count int
 	if err := DB.Model(&Category{}).Count(&count).Error; err != nil {

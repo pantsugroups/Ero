@@ -25,7 +25,7 @@ func (service *GetService) Get(create uint) *serializer.Response {
 	var message models.Message
 	if err := models.DB.Where("ID = ?", service.ID).First(&message).Error; err != nil {
 		return &serializer.Response{
-			Status: 40003,
+			Status: 500,
 			Msg:    "获取失败",
 			Error:  err.Error(),
 		}

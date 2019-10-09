@@ -34,7 +34,7 @@ func (service *SuperUpdateService) Update(create uint) *serializer.Response {
 	var user models.User
 	if err := models.DB.Where("ID = ?", service.ID).First(&user).Error; err != nil {
 		return &serializer.Response{
-			Status: 40005,
+			Status: 500,
 			Msg:    "获取失败",
 		}
 	}
@@ -48,7 +48,7 @@ func (service *SuperUpdateService) Update(create uint) *serializer.Response {
 	u.CheckAvatar()
 	if err := models.DB.Model(&user).Update(u); err != nil {
 		return &serializer.Response{
-			Status: 40005,
+			Status: 500,
 			Msg:    "获取失败",
 		}
 	}

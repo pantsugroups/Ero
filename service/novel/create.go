@@ -46,7 +46,7 @@ func (service *CreateService) Create(create uint) *serializer.Response {
 	novel.CheckCover()
 	if err := models.DB.Create(&novel).Error; err != nil {
 		return &serializer.Response{
-			Status: 40007,
+			Status: 500,
 			Msg:    "创建失败",
 			Error:  err.Error(),
 		}

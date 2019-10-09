@@ -59,7 +59,7 @@ func (service *CreateService) Create(create uint) *serializer.Response {
 	}
 	if err := models.DB.Create(&archive).Error; err != nil {
 		return &serializer.Response{
-			Status: 40004,
+			Status: 500,
 			Msg:    "创建失败",
 		}
 	}

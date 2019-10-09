@@ -24,13 +24,13 @@ func (service *DeleteService) Delete(create uint) *serializer.Response {
 	var category models.Category
 	if err := models.DB.Where("ID = ?", service.ID).First(&category).Error; err != nil {
 		return &serializer.Response{
-			Status: 40005,
+			Status: 404,
 			Msg:    "寻找匹配ID失败",
 		}
 	}
 	if err := models.DB.Delete(&category).Error; err != nil {
 		return &serializer.Response{
-			Status: 40005,
+			Status: 500,
 			Msg:    "删除失败",
 		}
 	}

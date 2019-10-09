@@ -37,7 +37,7 @@ func (service *ArchiveListService) Pages() (int, *serializer.Response) {
 
 	if err := models.DB.Model(&models.Archive{}).Count(&service.All).Error; err != nil {
 		return 0, &serializer.Response{
-			Status: 40005,
+			Status: 500,
 			Msg:    "查询总数失败",
 		}
 	}

@@ -24,7 +24,7 @@ func (service *GetService) Get(create uint) *serializer.Response {
 	var archive models.Archive
 	if err := models.DB.Where("ID = ?", service.ID).First(&archive).Error; err != nil {
 		return &serializer.Response{
-			Status: 40003,
+			Status: 500,
 			Msg:    "获取失败",
 			Error:  err.Error(),
 		}

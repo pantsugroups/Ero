@@ -30,7 +30,7 @@ func (service *UpdateService) Update(create uint) *serializer.Response {
 	var user models.User
 	if err := models.DB.Where("ID = ?", service.ID).First(&user).Error; err != nil {
 		return &serializer.Response{
-			Status: 40005,
+			Status: 500,
 			Msg:    "获取失败",
 		}
 	}

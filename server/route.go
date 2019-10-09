@@ -29,7 +29,8 @@ func NewRouter() *echo.Echo {
 	e.Use(middleware.Logger())
 
 	e.Use(middleware.Recover())
-	e.GET("/swagger/*", echoSwagger.WrapHandler)
+	e.GET("/swagger/*", echoSwagger.WrapHandler).Name = "API"
+	e.File("/routes.json", "routes.json").Name = "路由表"
 	e.Static("/img", path.Join(conf.StaticPath, "img")).Name = "静态图片文件"
 	e.Static("/other", path.Join(conf.StaticPath, "other")).Name = "静态文件"
 	g := e.Group("/api/v1")
@@ -84,6 +85,9 @@ func NewRouter() *echo.Echo {
 			r.GET("/download", api.Download).Name = "下载小说"
 			r.GET("/user/sendmail", api.SendMail).Name = "发送验证邮件"
 
+			var UserBook user.ListService
+			r.GET("/user/book", api.List(&UserBook)).Name = "用户书架列表"
+
 			var UserGet user.GetService
 			r.GET("/user/:id", api.Get(&UserGet)).Name = "查看用户信息"
 
@@ -102,15 +106,21 @@ func NewRouter() *echo.Echo {
 			var VolumeList volume.ListService
 			r.GET("/novel/volume/:id", api.List(&VolumeList)).Name = "查看小说分卷"
 
+			var NovelSubscribe novel.SubscribeService
+			r.GET("/novel/subscribe/:id", api.Create(&NovelSubscribe)).Name = "订阅小说"
+
+			var NovelDeSubscribe novel.SubscribeService
+			r.DELETE("/novel/subscribe/:id", api.Delete(&NovelDeSubscribe)).Name = "取消订阅小说"
+
 			a := r.Group("")
 			{
 				// 需要特殊权限(自己为创建者或管理员)
 				// todo:鉴权
 				var MessageList message.ListService
-				a.GET("/message/", api.List(&MessageList)).Name = "查看消息"
+				a.GET("/message/", api.List(&MessageList)).Name = "查看消息列表"
 
 				var MessageUpdate message.UpdateService
-				a.GET("/message/:id", api.Update(&MessageUpdate))
+				a.GET("/message/:id", api.Update(&MessageUpdate)).Name = "查看单个消息"
 
 				var VolumeDown volume.GetService
 				a.GET("/volume/:id", api.Get(&VolumeDown)).Name = "分卷下载"
@@ -168,7 +178,6 @@ func NewRouter() *echo.Echo {
 					var VolumeDelete volume.DeleteService
 					a.DELETE("/volume/:id", api.Delete(&VolumeDelete)).Name = "删除小说分卷"
 
-					a.File("/routes.json", "routes.json")
 				}
 			}
 		}

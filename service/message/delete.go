@@ -24,7 +24,7 @@ func (service *DeleteService) Delete(create uint) *serializer.Response {
 	var msg models.Message
 	if err := models.DB.Where("ID = ?", service.ID).First(&msg).Error; err != nil {
 		return &serializer.Response{
-			Status: 40005,
+			Status: 404,
 			Msg:    "寻找匹配ID失败",
 			Error:  err.Error(),
 		}
@@ -47,7 +47,7 @@ func (service *DeleteService) Delete(create uint) *serializer.Response {
 	}
 	if err := models.DB.Delete(&msg).Error; err != nil {
 		return &serializer.Response{
-			Status: 40005,
+			Status: 500,
 			Msg:    "删除失败",
 			Error:  err.Error(),
 		}

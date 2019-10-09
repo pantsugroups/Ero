@@ -35,7 +35,7 @@ func (service *UpdateService) Update(create uint) *serializer.Response {
 	var novel models.Novel
 	if err := models.DB.Where("ID = ?", service.ID).First(&volume).Error; err != nil {
 		return &serializer.Response{
-			Status: 40005,
+			Status: 500,
 			Msg:    "获取失败",
 		}
 	}
@@ -43,7 +43,7 @@ func (service *UpdateService) Update(create uint) *serializer.Response {
 		f, err := models.GetFile(service.File)
 		if err != nil {
 			return &serializer.Response{
-				Status: 40005,
+				Status: 404,
 				Msg:    "找不到ID",
 			}
 		}
@@ -53,7 +53,7 @@ func (service *UpdateService) Update(create uint) *serializer.Response {
 		n, err := models.GetNovel(service.Novel)
 		if err != nil {
 			return &serializer.Response{
-				Status: 40005,
+				Status: 404,
 				Msg:    "找不到ID",
 			}
 		}
@@ -66,7 +66,7 @@ func (service *UpdateService) Update(create uint) *serializer.Response {
 		Novel: novel,
 	}); err != nil {
 		return &serializer.Response{
-			Status: 40005,
+			Status: 500,
 			Msg:    "获取失败",
 		}
 	}

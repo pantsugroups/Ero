@@ -38,14 +38,14 @@ func (service *UpdateService) Update(create uint) *serializer.Response {
 	var archive models.Archive
 	if err := models.DB.Where("ID = ?", service.ID).First(&archive).Error; err != nil {
 		return &serializer.Response{
-			Status: 40005,
+			Status: 500,
 			Msg:    "获取失败",
 		}
 	}
 	user, err := models.GetUser(create)
 	if err != nil {
 		return &serializer.Response{
-			Status: 500,
+			Status: 404,
 			Msg:    "找不到用户",
 			Error:  err.Error(),
 		}

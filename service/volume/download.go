@@ -51,7 +51,7 @@ func (service *GetService) Get(create uint) *serializer.Response {
 	v, err := models.GetVolume(service.ID)
 	if err != nil {
 		return &serializer.Response{
-			Status: 40003,
+			Status: 500,
 			Msg:    "获取失败",
 			Error:  err.Error(),
 		}
@@ -59,7 +59,7 @@ func (service *GetService) Get(create uint) *serializer.Response {
 	f, err = models.GetFile(v.FileID)
 	if err != nil {
 		return &serializer.Response{
-			Status: 40003,
+			Status: 500,
 			Msg:    "获取失败",
 			Error:  err.Error(),
 		}

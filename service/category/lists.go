@@ -81,7 +81,7 @@ func (service *ListService) Pull(create uint) *serializer.Response {
 
 	if err := DB.Find(&volume).Count(&service.Count).Error; err != nil {
 		return &serializer.Response{
-			Status: 40005,
+			Status: 500,
 			Msg:    "获取失败",
 		}
 	}

@@ -27,7 +27,7 @@ func (service *UpdateService) Update(create uint) *serializer.Response {
 	var category models.Category
 	if err := models.DB.Where("ID = ?", service.ID).First(&category).Error; err != nil {
 		return &serializer.Response{
-			Status: 40005,
+			Status: 500,
 			Msg:    "获取失败",
 		}
 	}
@@ -35,7 +35,7 @@ func (service *UpdateService) Update(create uint) *serializer.Response {
 		Title: service.Title,
 	}); err != nil {
 		return &serializer.Response{
-			Status: 40005,
+			Status: 500,
 			Msg:    "获取失败",
 		}
 	}

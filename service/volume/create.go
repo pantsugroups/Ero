@@ -33,7 +33,7 @@ func (service *CreateService) Create(create uint) *serializer.Response {
 	n, err := models.GetNovel(service.ID)
 	if err != nil {
 		return &serializer.Response{
-			Status: 40005,
+			Status: 404,
 			Msg:    "寻找匹配ID失败",
 		}
 	}
@@ -41,7 +41,7 @@ func (service *CreateService) Create(create uint) *serializer.Response {
 		f, err := models.GetFile(service.File)
 		if err != nil {
 			return &serializer.Response{
-				Status: 40005,
+				Status: 404,
 				Msg:    "寻找匹配ID失败",
 			}
 		}
@@ -55,7 +55,7 @@ func (service *CreateService) Create(create uint) *serializer.Response {
 	}
 	if err := models.DB.Create(&volume).Error; err != nil {
 		return &serializer.Response{
-			Status: 40004,
+			Status: 500,
 			Msg:    "创建失败",
 		}
 	}

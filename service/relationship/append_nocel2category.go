@@ -27,14 +27,14 @@ func (service *AppendN2CService) Create(create uint) *serializer.Response {
 	n, err := models.GetNovel(service.Novel)
 	if err != nil {
 		return &serializer.Response{
-			Status: 40007,
+			Status: 404,
 			Msg:    "找不到Novel ID",
 		}
 	}
 	c, err := models.GetCategory(service.Category)
 	if err != nil {
 		return &serializer.Response{
-			Status: 40007,
+			Status: 404,
 			Msg:    "找不到Novel ID",
 		}
 	}
@@ -44,7 +44,7 @@ func (service *AppendN2CService) Create(create uint) *serializer.Response {
 	}
 	if err := models.DB.Create(&relationship).Error; err != nil {
 		return &serializer.Response{
-			Status: 40007,
+			Status: 500,
 			Msg:    "创建失败",
 		}
 	}

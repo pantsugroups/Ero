@@ -37,7 +37,7 @@ func (service *NovelListService) Pages() (int, *serializer.Response) {
 
 	if err := models.DB.Model(&models.Novel{}).Count(&service.All).Error; err != nil {
 		return 0, &serializer.Response{
-			Status: 40005,
+			Status: 500,
 			Msg:    "查询总数失败",
 		}
 	}
