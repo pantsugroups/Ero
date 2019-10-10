@@ -25,7 +25,12 @@ import "github.com/swaggo/echo-swagger"
 
 func NewRouter() *echo.Echo {
 	e := echo.New()
-	e.Use(middleware.CORS())
+	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
+		AllowOrigins: []string{"http://127.0.0.1:444"},
+		AllowHeaders: []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept,echo.HeaderAuthorization},
+		AllowCredentials: true,
+		AllowMethods: []string{echo.GET, echo.HEAD, echo.PUT, echo.PATCH, echo.POST, echo.DELETE},
+	}))
 	e.Use(middleware.Logger())
 
 	e.Use(middleware.Recover())
@@ -91,6 +96,9 @@ func NewRouter() *echo.Echo {
 			var UserComments user.CommentListService
 			r.GET("/user/comments", api.List(&UserComments)).Name = "用户发送的评论列表"
 
+			var UserSelf user.GetService
+			r.GET("/user/", api.Get(&UserSelf)).Name = "查看用户自己信息"
+
 			var UserGet user.GetService
 			r.GET("/user/:id", api.Get(&UserGet)).Name = "查看用户信息"
 
@@ -141,7 +149,7 @@ func NewRouter() *echo.Echo {
 				a.PUT("/novel/:id", api.Update(&NovelUpdate)).Name = "更新小说"
 
 				var UserUpdate user.UpdateService
-				a.PUT("/user/:id", api.Update(&UserUpdate)).Name = "更新用户信息"
+				a.PUT("/user/", api.Update(&UserUpdate)).Name = "更新用户信息"
 
 				s := a.Group("")
 				{

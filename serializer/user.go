@@ -12,6 +12,9 @@ type User struct {
 	Avatar    string `json:"avatar"`
 	CreatedAt int64  `json:"created_at"`
 	Point     int    `json:"point"`
+	Bio       string `json:"bio"`
+	Hito      string `json:"hito"`
+	Website   string `json:"website"`
 }
 
 // UserResponse 单个用户序列化
@@ -31,6 +34,9 @@ func BuildUser(user model.User) User {
 		Mail:      user.Mail,
 		CreatedAt: user.CreatedAt.Unix(),
 		Point:     user.Point,
+		Bio:       user.Bio,
+		Hito:      user.Hito,
+		Website:   user.Hito,
 	}
 }
 

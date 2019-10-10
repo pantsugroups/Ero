@@ -34,12 +34,6 @@ func (service *CommentListService) HaveNextOrLast() (next bool, last bool) {
 // 返回查询结果总页数,是按照当前请求的结果的数量除以总数得出的
 func (service *CommentListService) Pages() (int, *serializer.Response) {
 
-	if err := models.DB.Model(&models.Comment{}).Count(&service.All).Error; err != nil {
-		return 0, &serializer.Response{
-			Status: 500,
-			Msg:    "查询总数失败",
-		}
-	}
 	if int(service.Count) == 0 {
 		return 0, nil
 	}
@@ -95,6 +89,12 @@ func (service *CommentListService) Pull(create uint) *serializer.Response {
 
 	}
 	service.result = comments
+	if err := models.DB.Model(&models.Comment{}).Where("author_id = ?", create).Count(&service.All).Error; err != nil {
+		return &serializer.Response{
+			Status: 500,
+			Msg:    "查询总数失败",
+		}
+	}
 	return nil
 }
 func (service *CommentListService) Counts() int {

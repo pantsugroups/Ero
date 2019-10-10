@@ -6,13 +6,13 @@ import (
 )
 
 type GetService struct {
-	ID     uint `json:"id" form:"id" param:"id" null:"false"`
+	ID     uint `json:"id" form:"id" param:"id"`
 	result models.User
 }
 
 // EroAPI godoc
 // @Summary 获取用户详细
-// @Description
+// @Description 如果ID为0就是查看自己
 // @Tags user
 // @Accept html
 // @Produce json
@@ -22,6 +22,9 @@ type GetService struct {
 // @Router /api/v1/user/:id [get]
 func (service *GetService) Get(create uint) *serializer.Response {
 	var user models.User
+	if service.ID == 0 {
+		service.ID = create
+	}
 	if err := models.DB.Where("ID = ?", service.ID).First(&user).Error; err != nil {
 		return &serializer.Response{
 			Status: 500,

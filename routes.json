@@ -1,73 +1,18 @@
 [
   {
-    "method": "PUT",
-    "path": "/api/v1/*",
-    "name": "github.com/labstack/echo.glob..func1"
-  },
-  {
-    "method": "REPORT",
-    "path": "/api/v1/*",
-    "name": "github.com/labstack/echo.glob..func1"
-  },
-  {
-    "method": "PATCH",
-    "path": "/api/v1",
-    "name": "github.com/labstack/echo.glob..func1"
-  },
-  {
-    "method": "REPORT",
-    "path": "/api/v1",
-    "name": "github.com/labstack/echo.glob..func1"
+    "method": "GET",
+    "path": "/img/*",
+    "name": "静态图片文件"
   },
   {
     "method": "GET",
-    "path": "/api/v1/volume/:id",
-    "name": "分卷下载"
-  },
-  {
-    "method": "PUT",
-    "path": "/api/v1/novel/:id",
-    "name": "更新小说"
+    "path": "/other/*",
+    "name": "静态文件"
   },
   {
     "method": "GET",
-    "path": "/routes.json",
-    "name": "路由表"
-  },
-  {
-    "method": "GET",
-    "path": "/api/v1",
-    "name": "github.com/labstack/echo.glob..func1"
-  },
-  {
-    "method": "GET",
-    "path": "/api/v1/comment/:id",
-    "name": "评论查看"
-  },
-  {
-    "method": "PROPFIND",
-    "path": "/api/v1",
-    "name": "github.com/labstack/echo.glob..func1"
-  },
-  {
-    "method": "PUT",
-    "path": "/api/v1/volume/:id",
-    "name": "更新小说分卷信息"
-  },
-  {
-    "method": "POST",
-    "path": "/api/v1/search/novel/",
-    "name": "小说搜索"
-  },
-  {
-    "method": "GET",
-    "path": "/api/v1/archive/:id",
-    "name": "文章查看"
-  },
-  {
-    "method": "CONNECT",
-    "path": "/api/v1/*",
-    "name": "github.com/labstack/echo.glob..func1"
+    "path": "/api/v1/download",
+    "name": "下载小说"
   },
   {
     "method": "GET",
@@ -75,13 +20,68 @@
     "name": "查看消息列表"
   },
   {
-    "method": "CONNECT",
+    "method": "HEAD",
     "path": "/api/v1",
     "name": "github.com/labstack/echo.glob..func1"
   },
   {
+    "method": "PUT",
+    "path": "/api/v1/*",
+    "name": "github.com/labstack/echo.glob..func1"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/user/sendmail",
+    "name": "发送验证邮件"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/v1/admin/user/:id",
+    "name": "eroauz/api.Update.func1"
+  },
+  {
+    "method": "HEAD",
+    "path": "/api/v1/*",
+    "name": "github.com/labstack/echo.glob..func1"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/comment/",
+    "name": "创建评论"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/v1/archive/:id",
+    "name": "更新文章"
+  },
+  {
     "method": "DELETE",
-    "path": "/api/v1",
+    "path": "/api/v1/novel/:id",
+    "name": "删除小说"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/archive/",
+    "name": "创建文章"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/novel/",
+    "name": "创建小说"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/v1/category/:id",
+    "name": "删除分类"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/search/novel/",
+    "name": "小说搜索"
+  },
+  {
+    "method": "TRACE",
+    "path": "/api/v1/*",
     "name": "github.com/labstack/echo.glob..func1"
   },
   {
@@ -96,13 +96,73 @@
   },
   {
     "method": "DELETE",
-    "path": "/api/v1/user/:id",
-    "name": "删除用户"
+    "path": "/api/v1/category/",
+    "name": "取消分类关联"
   },
   {
     "method": "GET",
-    "path": "/other/*",
-    "name": "静态文件"
+    "path": "/api/v1/verify",
+    "name": "验证码获取"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/v1/user/",
+    "name": "更新用户信息"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/search/archive/",
+    "name": "文章搜索"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/user/:id",
+    "name": "查看用户信息"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/category/",
+    "name": "创建分类"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/v1/volume/:id",
+    "name": "删除小说分卷"
+  },
+  {
+    "method": "GET",
+    "path": "/swagger/*",
+    "name": "API"
+  },
+  {
+    "method": "CONNECT",
+    "path": "/api/v1",
+    "name": "github.com/labstack/echo.glob..func1"
+  },
+  {
+    "method": "TRACE",
+    "path": "/api/v1",
+    "name": "github.com/labstack/echo.glob..func1"
+  },
+  {
+    "method": "PROPFIND",
+    "path": "/api/v1/*",
+    "name": "github.com/labstack/echo.glob..func1"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/user/book",
+    "name": "用户书架列表"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/user/",
+    "name": "查看用户自己信息"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/v1/volume/:id",
+    "name": "更新小说分卷信息"
   },
   {
     "method": "GET",
@@ -116,53 +176,23 @@
   },
   {
     "method": "GET",
-    "path": "/api/v1/user/book",
-    "name": "用户书架列表"
+    "path": "/api/v1/novel/:id",
+    "name": "小说查看"
   },
   {
-    "method": "GET",
-    "path": "/api/v1/user/:id",
-    "name": "查看用户信息"
-  },
-  {
-    "method": "GET",
-    "path": "/swagger/*",
-    "name": "API"
-  },
-  {
-    "method": "GET",
-    "path": "/api/v1/novel/",
-    "name": "小说列表"
-  },
-  {
-    "method": "GET",
-    "path": "/api/v1/verify",
-    "name": "验证码获取"
-  },
-  {
-    "method": "POST",
-    "path": "/api/v1/novel/",
-    "name": "创建小说"
-  },
-  {
-    "method": "DELETE",
-    "path": "/api/v1/novel/subscribe/:id",
-    "name": "取消订阅小说"
+    "method": "PROPFIND",
+    "path": "/api/v1",
+    "name": "github.com/labstack/echo.glob..func1"
   },
   {
     "method": "PUT",
-    "path": "/api/v1/archive/:id",
-    "name": "更新文章"
+    "path": "/api/v1",
+    "name": "github.com/labstack/echo.glob..func1"
   },
   {
-    "method": "DELETE",
-    "path": "/api/v1/category/:id",
-    "name": "删除分类"
-  },
-  {
-    "method": "POST",
-    "path": "/api/v1/search/archive/",
-    "name": "文章搜索"
+    "method": "CONNECT",
+    "path": "/api/v1/*",
+    "name": "github.com/labstack/echo.glob..func1"
   },
   {
     "method": "GET",
@@ -171,116 +201,21 @@
   },
   {
     "method": "GET",
-    "path": "/api/v1/download",
-    "name": "下载小说"
+    "path": "/routes.json",
+    "name": "路由表"
   },
   {
     "method": "POST",
-    "path": "/api/v1/comment/",
-    "name": "创建评论"
+    "path": "/api/v1/user/register",
+    "name": "用户注册"
   },
   {
     "method": "GET",
-    "path": "/api/v1/novel/subscribe/:id",
-    "name": "订阅小说"
+    "path": "/api/v1/comment/:id",
+    "name": "评论查看"
   },
   {
-    "method": "PUT",
-    "path": "/api/v1/admin/user/:id",
-    "name": "eroauz/api.Update.func1"
-  },
-  {
-    "method": "OPTIONS",
-    "path": "/api/v1/*",
-    "name": "github.com/labstack/echo.glob..func1"
-  },
-  {
-    "method": "TRACE",
-    "path": "/api/v1/*",
-    "name": "github.com/labstack/echo.glob..func1"
-  },
-  {
-    "method": "POST",
-    "path": "/api/v1/category/",
-    "name": "创建分类"
-  },
-  {
-    "method": "POST",
-    "path": "/api/v1/volume/:id",
-    "name": "创建小说分卷"
-  },
-  {
-    "method": "POST",
-    "path": "/api/v1/user/login",
-    "name": "用户登陆"
-  },
-  {
-    "method": "GET",
-    "path": "/api/v1/comments/:type/:id",
-    "name": "评论列表"
-  },
-  {
-    "method": "HEAD",
-    "path": "/api/v1/*",
-    "name": "github.com/labstack/echo.glob..func1"
-  },
-  {
-    "method": "POST",
-    "path": "/api/v1/upload/",
-    "name": "上传文件"
-  },
-  {
-    "method": "POST",
-    "path": "/api/v1",
-    "name": "github.com/labstack/echo.glob..func1"
-  },
-  {
-    "method": "DELETE",
-    "path": "/api/v1/*",
-    "name": "github.com/labstack/echo.glob..func1"
-  },
-  {
-    "method": "POST",
-    "path": "/api/v1/*",
-    "name": "github.com/labstack/echo.glob..func1"
-  },
-  {
-    "method": "PROPFIND",
-    "path": "/api/v1/*",
-    "name": "github.com/labstack/echo.glob..func1"
-  },
-  {
-    "method": "DELETE",
-    "path": "/api/v1/message/:id",
-    "name": "删除消息"
-  },
-  {
-    "method": "DELETE",
-    "path": "/api/v1/category/",
-    "name": "取消分类关联"
-  },
-  {
-    "method": "GET",
-    "path": "/img/*",
-    "name": "静态图片文件"
-  },
-  {
-    "method": "HEAD",
-    "path": "/api/v1",
-    "name": "github.com/labstack/echo.glob..func1"
-  },
-  {
-    "method": "GET",
-    "path": "/api/v1/user/sendmail",
-    "name": "发送验证邮件"
-  },
-  {
-    "method": "DELETE",
-    "path": "/api/v1/archive/:id",
-    "name": "删除文章"
-  },
-  {
-    "method": "PUT",
+    "method": "PATCH",
     "path": "/api/v1",
     "name": "github.com/labstack/echo.glob..func1"
   },
@@ -290,14 +225,34 @@
     "name": "github.com/labstack/echo.glob..func1"
   },
   {
-    "method": "TRACE",
+    "method": "POST",
+    "path": "/api/v1/*",
+    "name": "github.com/labstack/echo.glob..func1"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/v1/user/:id",
+    "name": "删除用户"
+  },
+  {
+    "method": "REPORT",
     "path": "/api/v1",
     "name": "github.com/labstack/echo.glob..func1"
   },
   {
+    "method": "REPORT",
+    "path": "/api/v1/*",
+    "name": "github.com/labstack/echo.glob..func1"
+  },
+  {
     "method": "POST",
-    "path": "/api/v1/archive/",
-    "name": "创建文章"
+    "path": "/api/v1/upload/",
+    "name": "上传文件"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/volume/:id",
+    "name": "分卷下载"
   },
   {
     "method": "DELETE",
@@ -305,34 +260,14 @@
     "name": "删除评论"
   },
   {
+    "method": "PUT",
+    "path": "/api/v1/novel/:id",
+    "name": "更新小说"
+  },
+  {
     "method": "POST",
-    "path": "/api/v1/user/register",
-    "name": "用户注册"
-  },
-  {
-    "method": "GET",
-    "path": "/api/v1/novel/:id",
-    "name": "小说查看"
-  },
-  {
-    "method": "DELETE",
-    "path": "/api/v1/novel/:id",
-    "name": "删除小说"
-  },
-  {
-    "method": "GET",
-    "path": "/api/v1/archive/",
-    "name": "文章列表"
-  },
-  {
-    "method": "OPTIONS",
-    "path": "/api/v1",
-    "name": "github.com/labstack/echo.glob..func1"
-  },
-  {
-    "method": "DELETE",
     "path": "/api/v1/volume/:id",
-    "name": "删除小说分卷"
+    "name": "创建小说分卷"
   },
   {
     "method": "GET",
@@ -340,8 +275,83 @@
     "name": "用户邮箱验证"
   },
   {
-    "method": "PUT",
-    "path": "/api/v1/user/:id",
-    "name": "更新用户信息"
+    "method": "GET",
+    "path": "/api/v1/comments/:type/:id",
+    "name": "评论列表"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/archive/:id",
+    "name": "文章查看"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/v1",
+    "name": "github.com/labstack/echo.glob..func1"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1",
+    "name": "github.com/labstack/echo.glob..func1"
+  },
+  {
+    "method": "OPTIONS",
+    "path": "/api/v1",
+    "name": "github.com/labstack/echo.glob..func1"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/novel/",
+    "name": "小说列表"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/v1/*",
+    "name": "github.com/labstack/echo.glob..func1"
+  },
+  {
+    "method": "OPTIONS",
+    "path": "/api/v1/*",
+    "name": "github.com/labstack/echo.glob..func1"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/user/comments",
+    "name": "用户发送的评论列表"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/v1/message/:id",
+    "name": "删除消息"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/v1/archive/:id",
+    "name": "删除文章"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/user/login",
+    "name": "用户登陆"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/archive/",
+    "name": "文章列表"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1",
+    "name": "github.com/labstack/echo.glob..func1"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/novel/subscribe/:id",
+    "name": "订阅小说"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/v1/novel/subscribe/:id",
+    "name": "取消订阅小说"
   }
 ]

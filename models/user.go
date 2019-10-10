@@ -16,6 +16,9 @@ type User struct {
 	Status         string
 	Avatar         string `gorm:"size:1000"`
 	Point          int
+	Bio            string
+	Hito           string
+	Website        string
 }
 
 const (

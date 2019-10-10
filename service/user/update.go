@@ -6,11 +6,12 @@ import (
 )
 
 type UpdateService struct {
-	ID       uint   `json:"id" form:"id" param:"id" null:"false"`
 	Nickname string `json:"nickname" form:"nickname"`
 	Avatar   string `json:"avatar" form:"avatar"`
-
-	result models.User
+	Hito     string `json:"hito" form:"hito"`
+	Bio      string `json:"bio" form:"bio"`
+	Website  string `json:"website" form:"website"`
+	result   models.User
 }
 
 // EroAPI godoc
@@ -21,31 +22,27 @@ type UpdateService struct {
 // @Produce json
 // @Success 200 {object} serializer.UserResponse
 // @Failure 500 {object} serializer.Response
-// @Param id path int false "用户ID"
 // @Param nickname formData string false "昵称"
 // @Param avatar formData string false "用户头像"
-// @Router /api/v1/user/:id [put]
+// @Router /api/v1/user/ [put]
 // @Security ApiKeyAuth
 func (service *UpdateService) Update(create uint) *serializer.Response {
 	var user models.User
-	if err := models.DB.Where("ID = ?", service.ID).First(&user).Error; err != nil {
+	if err := models.DB.Where("ID = ?", create).First(&user).Error; err != nil {
 		return &serializer.Response{
 			Status: 500,
 			Msg:    "获取失败",
 		}
 	}
-	if create != service.ID {
-		return &serializer.Response{
-			Status: 403,
-			Msg:    "没有权限",
-		}
-	}
 	if err := models.DB.Model(&user).Update(models.User{
 		Nickname: service.Nickname,
 		Avatar:   service.Avatar,
-	}); err != nil {
+		Hito:     service.Hito,
+		Website:  service.Website,
+		Bio:      service.Bio,
+	}).Error; err != nil {
 		return &serializer.Response{
-			Status: 40005,
+			Status: 500,
 			Msg:    "获取失败",
 		}
 	}
