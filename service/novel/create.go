@@ -12,6 +12,7 @@ type CreateService struct {
 	Description string `json:"description" form:"description"`
 	Ended       bool   `json:"ended" form:"ended"`
 	Level       int    `json:"level" form:"level"`
+	Tags        string `json:"tags" form:"tags"`
 	result      models.Novel
 }
 
@@ -28,6 +29,7 @@ type CreateService struct {
 // @Param cover formData string false "小说封面，URL，如果封面为空的话泽会自动替换。默认封面请检查conf.DefaultCover字段"
 // @Param description formData integer false "小说简介"
 // @Param ended formData boolean true "是否完结"
+// @Param tags formData integer true "tags 推荐使用/分割"
 // @Param level formData integer true "目标等级：还未实现"
 // @Router /api/v1/comment/ [post]
 // @Security ApiKeyAuth
@@ -42,6 +44,7 @@ func (service *CreateService) Create(create uint) *serializer.Response {
 		Level:       service.Level,
 		Subscribed:  0,
 		Create:      u,
+		Tags:        service.Tags,
 	}
 	novel.CheckCover()
 	if err := models.DB.Create(&novel).Error; err != nil {

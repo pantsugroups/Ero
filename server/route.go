@@ -26,10 +26,10 @@ import "github.com/swaggo/echo-swagger"
 func NewRouter() *echo.Echo {
 	e := echo.New()
 	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
-		AllowOrigins: []string{"http://127.0.0.1:444"},
-		AllowHeaders: []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept,echo.HeaderAuthorization},
+		AllowOrigins:     []string{"http://127.0.0.1:444"},
+		AllowHeaders:     []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept, echo.HeaderAuthorization},
 		AllowCredentials: true,
-		AllowMethods: []string{echo.GET, echo.HEAD, echo.PUT, echo.PATCH, echo.POST, echo.DELETE},
+		AllowMethods:     []string{echo.GET, echo.HEAD, echo.PUT, echo.PATCH, echo.POST, echo.DELETE},
 	}))
 	e.Use(middleware.Logger())
 
@@ -145,7 +145,7 @@ func NewRouter() *echo.Echo {
 				var ArchiveUpdate archive.UpdateService
 				a.PUT("/archive/:id", api.Update(&ArchiveUpdate)).Name = "更新文章"
 
-				var NovelUpdate archive.UpdateService
+				var NovelUpdate novel.UpdateService
 				a.PUT("/novel/:id", api.Update(&NovelUpdate)).Name = "更新小说"
 
 				var UserUpdate user.UpdateService

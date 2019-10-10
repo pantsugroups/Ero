@@ -42,6 +42,11 @@ func (service *SubscribeService) Create(create uint) *serializer.Response {
 			Error:  err.Error(),
 		}
 	}
+	if err := models.DB.Model(&novel).Update(models.Novel{
+		Subscribed: novel.Subscribed + 1,
+	}).Error; err != nil {
+		return nil
+	}
 	return nil
 }
 func (service *SubscribeService) Response() interface{} {
@@ -64,6 +69,7 @@ func (service *SubscribeService) Response() interface{} {
 // @Security ApiKeyAuth
 func (service *SubscribeService) Delete(create uint) *serializer.Response {
 	var s models.NovelSubscribe
+
 	if err := models.DB.Where("user_id = ?", create).Where("novel_id = ?", service.ID).First(&s).Error; err != nil {
 		return &serializer.Response{
 			Status: 404,
@@ -71,11 +77,19 @@ func (service *SubscribeService) Delete(create uint) *serializer.Response {
 			Error:  err.Error(),
 		}
 	}
+
+	n, err := models.GetNovel(s.NovelID)
+	if err == nil {
+		models.DB.Model(&n).Update(models.Novel{
+			Subscribed: n.Subscribed - 1,
+		})
+	}
 	if err := models.DB.Delete(&s).Error; err != nil {
 		return &serializer.Response{
 			Status: 500,
 			Msg:    "删除失败",
 		}
 	}
+
 	return nil
 }

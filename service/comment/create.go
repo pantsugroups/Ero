@@ -8,8 +8,8 @@ import (
 
 type CreateService struct {
 	Title  string `json:"title" form:"title"`
-	Type   int    `json:"type" form:"type"`
-	RId    uint   `json:"raw"  form:"raw"`
+	Type   int    `json:"type" form:"type" null:"false"`
+	RId    uint   `json:"raw"  form:"raw" null:"false"`
 	RCid   uint   `json:"reply" form:"reply"`
 	result models.Comment
 }

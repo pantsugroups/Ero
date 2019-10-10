@@ -2,16 +2,19 @@ package serializer
 
 import (
 	"eroauz/models"
+	"time"
 )
 
 type Comment struct {
-	ID         uint   `json:"id"`
-	Title      string `json:"title"`
-	AuthorID   uint   `json:"author_id"`
-	AuthorName string `json:"author_name"`
-	Type       int    `json:"type"`
-	RId        uint   `json:"raw"`
-	RCid       uint   `json:"reply"`
+	ID         uint      `json:"id"`
+	Title      string    `json:"title"`
+	AuthorID   uint      `json:"author_id"`
+	AuthorName string    `json:"author_name"`
+	Type       int       `json:"type"`
+	RId        uint      `json:"raw"`
+	RTitle     string    `json:"raw_title"`
+	RCid       uint      `json:"reply"`
+	CreateAt   time.Time `json:"time"`
 }
 
 type CommentResponse struct {
@@ -29,7 +32,7 @@ type CommentListResponse struct {
 }
 
 func BuildComment(comment models.Comment) Comment {
-	return Comment{
+	c := Comment{
 		ID:         comment.ID,
 		Title:      comment.Title,
 		AuthorID:   comment.Author.ID,
@@ -37,7 +40,24 @@ func BuildComment(comment models.Comment) Comment {
 		Type:       comment.Type,
 		RId:        comment.RId,
 		RCid:       comment.RCid,
+		CreateAt:   comment.CreatedAt,
 	}
+	if c.Type == models.Archive_ {
+		a, err := models.GetArchive(c.RId)
+		if err != nil {
+			c.RTitle = "被删除文章"
+		} else {
+			c.RTitle = a.Title
+		}
+	} else {
+		n, err := models.GetNovel(c.RId)
+		if err != nil {
+			c.RTitle = "被删除小说"
+		} else {
+			c.RTitle = n.Title
+		}
+	}
+	return c
 }
 
 func BuildCommentList(comments []models.Comment) []Comment {

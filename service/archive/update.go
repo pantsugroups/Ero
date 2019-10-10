@@ -50,7 +50,7 @@ func (service *UpdateService) Update(create uint) *serializer.Response {
 			Error:  err.Error(),
 		}
 	} else {
-		if user.ID != archive.CreateID {
+		if user.Status != models.Admin || user.ID != archive.CreateID {
 			return &serializer.Response{
 				Status: 403,
 				Msg:    "没有权限",
@@ -64,10 +64,10 @@ func (service *UpdateService) Update(create uint) *serializer.Response {
 		Content:        service.Content,
 		Author:         service.Author,
 		PrimaryContent: service.PrimaryContent,
-	}); err != nil {
+	}).Error; err != nil {
 		return &serializer.Response{
-			Status: 40005,
-			Msg:    "获取失败",
+			Status: 500,
+			Msg:    "更新失败",
 		}
 	}
 	service.result = archive

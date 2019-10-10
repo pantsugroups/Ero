@@ -25,7 +25,7 @@ func List(service _interface.ListInterface) echo.HandlerFunc {
 			}
 		} else {
 			return c.JSON(200, &serializer.Response{
-				Status: 40001,
+				Status: 500,
 				Msg:    "参数错误",
 				Error:  fmt.Sprint(err),
 			})
@@ -47,7 +47,7 @@ func Create(service _interface.CreateInterface) echo.HandlerFunc {
 			}
 		} else {
 			return c.JSON(200, &serializer.Response{
-				Status: 40001,
+				Status: 500,
 				Msg:    "参数错误",
 				Error:  fmt.Sprint(err),
 			})
@@ -70,7 +70,7 @@ func Get(service _interface.GetInterface) echo.HandlerFunc {
 			}
 		} else {
 			return c.JSON(200, &serializer.Response{
-				Status: 40001,
+				Status: 500,
 				Msg:    "参数错误",
 				Error:  fmt.Sprint(err),
 			})
@@ -91,7 +91,7 @@ func Update(service _interface.UpdateInterface) echo.HandlerFunc {
 			}
 		} else {
 			return c.JSON(200, &serializer.Response{
-				Status: 40001,
+				Status: 500,
 				Msg:    "参数错误",
 				Error:  fmt.Sprint(err),
 			})
@@ -112,7 +112,7 @@ func Delete(service _interface.DeleteInterface) echo.HandlerFunc {
 			}
 		} else {
 			return c.JSON(200, &serializer.Response{
-				Status: 40001,
+				Status: 500,
 				Msg:    "参数错误",
 				Error:  fmt.Sprint(err),
 			})

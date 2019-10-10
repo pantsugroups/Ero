@@ -16,6 +16,7 @@ type Novel struct {
 	Level       int
 	Create      User `gorm:"ForeignKey:CreateID;"`
 	CreateID    uint
+	Tags        string
 }
 
 const (

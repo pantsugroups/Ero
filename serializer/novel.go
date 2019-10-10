@@ -12,6 +12,7 @@ type Novel struct {
 	Subscribed int    `json:"subscribed"`
 	Ended      bool   `json:"ended"`
 	Level      int    `json:"level"`
+	Tags       string `json:"tags"`
 }
 
 type NovelResponse struct {
@@ -37,6 +38,7 @@ func BuildNovel(novel models.Novel) Novel {
 		Subscribed: novel.Subscribed,
 		Ended:      novel.Ended,
 		Level:      novel.Level,
+		Tags:       novel.Tags,
 	}
 }
 
