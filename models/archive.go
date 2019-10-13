@@ -8,9 +8,9 @@ type Archive struct {
 	Title          string
 	JapTitle       string
 	Author         string
-	Content        string
-	PrimaryContent string
-	Create         User `gorm:"ForeignKey:CreateID;"`
+	Content        string `gorm:"type:text"`
+	PrimaryContent string `gorm:"type:text"`
+	Create         User   `gorm:"ForeignKey:CreateID;"`
 	CreateID       uint
 	Tag            string
 }

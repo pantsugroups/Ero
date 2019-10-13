@@ -50,7 +50,7 @@ func (service *UpdateService) Update(create uint) *serializer.Response {
 			Error:  err.Error(),
 		}
 	} else {
-		if user.Status != models.Admin || user.ID != archive.CreateID {
+		if user.Status != models.Admin && user.ID != archive.CreateID {
 			return &serializer.Response{
 				Status: 403,
 				Msg:    "没有权限",

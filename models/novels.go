@@ -10,7 +10,7 @@ type Novel struct {
 	Title       string
 	Author      string
 	Cover       string
-	Description string
+	Description string `gorm:"type:text"`
 	Subscribed  int
 	Ended       bool //是否完结
 	Level       int
