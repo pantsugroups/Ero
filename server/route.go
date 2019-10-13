@@ -26,7 +26,7 @@ import "github.com/swaggo/echo-swagger"
 func NewRouter() *echo.Echo {
 	e := echo.New()
 	e.Use(middleware.CORSWithConfig(middleware.CORSConfig{
-		AllowOrigins:     []string{"http://127.0.0.1:444"},
+		AllowOrigins:     []string{"*"},
 		AllowHeaders:     []string{echo.HeaderOrigin, echo.HeaderContentType, echo.HeaderAccept, echo.HeaderAuthorization},
 		AllowCredentials: true,
 		AllowMethods:     []string{echo.GET, echo.HEAD, echo.PUT, echo.PATCH, echo.POST, echo.DELETE},
@@ -112,7 +112,10 @@ func NewRouter() *echo.Echo {
 			r.POST("/comment/", api.Create(&CommentCreate)).Name = "创建评论"
 
 			var Novel2Category relationship.AppendN2CService
-			r.POST("/category/", api.Create(&Novel2Category)).Name = "关联分类"
+			r.POST("/category/novel/", api.Create(&Novel2Category)).Name = "关联小说分类"
+
+			var Archive2Category relationship.AppendA2CService
+			r.POST("/category/archive/", api.Create(&Archive2Category)).Name = "关联文章分类"
 
 			var VolumeList volume.ListService
 			r.GET("/novel/volume/:id", api.List(&VolumeList)).Name = "查看小说分卷"
@@ -174,14 +177,17 @@ func NewRouter() *echo.Echo {
 					var UserDelete user.DeleteService
 					s.DELETE("/user/:id", api.Delete(&UserDelete)).Name = "删除用户"
 
-					var SupterUserUpdate user.SuperUpdateService
-					s.PUT("/admin/user/:id", api.Update(&SupterUserUpdate))
+					var SuperUserUpdate user.SuperUpdateService
+					s.PUT("/admin/user/:id", api.Update(&SuperUserUpdate))
 
 					var CategoryDelete category.DeleteService
 					a.DELETE("/category/:id", api.Delete(&CategoryDelete)).Name = "删除分类"
 
 					var Novel2CategoryDelete relationship.DeleteN2CService
-					a.DELETE("/category/", api.Delete(&Novel2CategoryDelete)).Name = "取消分类关联"
+					a.DELETE("/category/novel/", api.Delete(&Novel2CategoryDelete)).Name = "取消小说分类关联"
+
+					var Archive2CategoryDelete relationship.DeleteA2CService
+					a.DELETE("/category/archive/", api.Delete(&Archive2CategoryDelete)).Name = "取消文章分类关联"
 
 					var NovelDelete novel.DeleteService
 					a.DELETE("/novel/:id", api.Delete(&NovelDelete)).Name = "删除小说"

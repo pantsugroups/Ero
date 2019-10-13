@@ -5,6 +5,9 @@
       <w>godoc</w>
       <w>gorm</w>
       <w>hito</w>
+      <w>smtphost</w>
+      <w>smtppassword</w>
+      <w>smtpusername</w>
     </words>
   </dictionary>
 </component>

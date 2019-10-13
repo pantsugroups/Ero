@@ -7,6 +7,7 @@ import (
 
 type CreateService struct {
 	Title  string `json:"title" form:"title" null:"false"`
+	Type   int    `json:"type" form:"ine" null:"false"`
 	result models.Category
 }
 
@@ -19,11 +20,13 @@ type CreateService struct {
 // @Success 200 {object} serializer.CategoryResponse
 // @Failure 500 {object} serializer.Response
 // @Param title formData string true "分类标题"
+// @Param type formData integer true "类型1为文章。2为小说"
 // @Router /api/v1/category/ [post]
 // @Security ApiKeyAuth
 func (service *CreateService) Create(create uint) *serializer.Response {
 	category := models.Category{
 		Title: service.Title,
+		Type:  service.Type,
 		Count: 0,
 	}
 	if err := models.DB.Create(&category).Error; err != nil {

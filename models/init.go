@@ -1,6 +1,7 @@
 package models
 
 import (
+	"eroauz/conf"
 	"time"
 
 	"github.com/jinzhu/gorm"
@@ -32,7 +33,7 @@ func Database(connString string) {
 	DB = db
 
 	DB.Debug().AutoMigrate(&User{}, &Archive{}, &Novel{}, &Volume{}, &Comment{}, &Category{},
-		&Message{}, &File{}, &NovelCategory{}, NovelSubscribe{})
+		&Message{}, &File{}, &NovelCategory{}, NovelSubscribe{}, ArchiveCategory{})
 	// 初始化
 	var count int
 	if err := DB.Model(&Category{}).Count(&count).Error; err != nil {
@@ -41,9 +42,35 @@ func Database(connString string) {
 	if count == 0 {
 		category := Category{
 			Title: "Default",
+			Type:  1,
 			Count: 0,
 		}
 		if err := DB.Create(&category).Error; err != nil {
+			panic(err)
+		}
+		category = Category{
+			Title: "Default",
+			Type:  2,
+			Count: 0,
+		}
+		if err := DB.Create(&category).Error; err != nil {
+			panic(err)
+		}
+	}
+	count = 0
+	DB.Model(&User{}).Where("user_name = ?", "admin").Count(&count)
+	if count == 0 { // 管理员不存在
+		user := User{
+			Nickname: "admin",
+			UserName: "admin",
+			Status:   Admin,
+			Point:    250,
+			Avatar:   conf.DefaultAvatar,
+		}
+		if err := user.SetPassword("qwq123"); err != nil {
+			panic(err)
+		}
+		if err := DB.Create(&user).Error; err != nil {
 			panic(err)
 		}
 	}

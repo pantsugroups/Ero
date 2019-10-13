@@ -16,8 +16,7 @@ const (
 	//DataBasePort     string = "3306"
 
 	// 邮箱配置
-	SMTPHOST = ""
-	//SMTPSENDER   = ""
+	SMTPHOST     = ""
 	SMTPUSERNAME = ""
 	SMTPPASSWORD = ""
 

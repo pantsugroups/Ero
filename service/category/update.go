@@ -8,6 +8,7 @@ import (
 type UpdateService struct {
 	ID     uint   `json:"id" form:"id" param:"id" null:"false"`
 	Title  string `json:"title" form:"title"`
+	Type   int    `json:"type" form:"type"`
 	result models.Category
 }
 
@@ -21,6 +22,7 @@ type UpdateService struct {
 // @Failure 500 {object} serializer.Response
 // @Param id path int false "分类ID"
 // @Param title formData string true "分类标题"
+// @Param type formData integer true "类型，1为文章2为小说"
 // @Router /api/v1/category/:id [put]
 // @Security ApiKeyAuth
 func (service *UpdateService) Update(create uint) *serializer.Response {
@@ -31,8 +33,9 @@ func (service *UpdateService) Update(create uint) *serializer.Response {
 			Msg:    "获取失败",
 		}
 	}
-	if err := models.DB.Model(&category).Update(models.Novel{
+	if err := models.DB.Model(&category).Update(models.Category{
 		Title: service.Title,
+		Type:  service.Type,
 	}); err != nil {
 		return &serializer.Response{
 			Status: 500,

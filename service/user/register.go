@@ -51,13 +51,6 @@ func (service *RegisterService) Valid() *serializer.Response {
 
 // SendMail 发送电子邮件
 func (service *RegisterService) SendMail() *serializer.Response {
-	//auth := smtp.PlainAuth(
-	//	"",
-	//	conf.SMTPUSERNAME,
-	//	conf.SMTPPASSWORD,
-	//	conf.SMTPHOST,
-	//)
-
 	hash := utils.Generate(service.UserName)
 	token := utils.RandStringRunes(16)
 	s := "您的验证地址如下：https://%s/api/v1/user/register?hash=%s&token=%s&user=%s"
@@ -65,19 +58,6 @@ func (service *RegisterService) SendMail() *serializer.Response {
 	if err := utils.SendToMail(conf.SMTPUSERNAME, conf.SMTPPASSWORD, conf.SMTPHOST, service.Mail, "Ero 注册邮件", body, "html"); err != nil {
 		return nil
 	}
-	//if err := smtp.SendMail(
-	//	conf.SMTPHOST,
-	//	auth,
-	//	conf.SMTPSENDER,
-	//	[]string{service.Mail},
-	//	[]byte(fmt.Sprintf(body,conf.BackEndHost,hash,token,service.UserName)),
-	//);err != nil{
-	//	return  &serializer.Response{
-	//		Status: 500,
-	//		Msg:    "邮件发送失败",
-	//		Error:err.Error(),
-	//	}
-	//}
 
 	return nil
 }

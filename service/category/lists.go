@@ -6,6 +6,7 @@ import (
 )
 
 type ListService struct {
+	Type     int `json:"type" form:"type" query:"type"`
 	Page     int `json:"page" form:"page" query:"page"`
 	Limit    int `json:"limit" form:"limit" query:"limit"`
 	Offset   int `json:"offset" form:"offset" query:"offset"`
@@ -40,10 +41,10 @@ func (service *ListService) Pages() (int, *serializer.Response) {
 			Msg:    "查询总数失败",
 		}
 	}
-	if int(service.Count) == 0 {
+	if service.Count == 0 {
 		return 0, nil
 	}
-	return int(service.All / service.Count), nil
+	return service.All / service.Count, nil
 }
 
 // EroAPI godoc
@@ -55,6 +56,7 @@ func (service *ListService) Pages() (int, *serializer.Response) {
 // @Success 200 {object} serializer.CategoryListResponse
 // @Failure 500 {object} serializer.Response
 // @Router /api/v1/category/ [get]
+// @Param type formData integer false "类型。1为文章，2为小说"
 // @Param page formData integer false "Pages"
 // @Param limit formData integer false "Limit"
 // @Param offset formData integer false "Offset"
@@ -65,8 +67,10 @@ func (service *ListService) Pull(create uint) *serializer.Response {
 	if service.PageSize == 0 {
 		service.PageSize = 10
 	}
-
 	DB := models.DB
+	if service.Type != 0 {
+		DB.Where("type = ?", service.Type)
+	}
 
 	//if service.Page > 0 && service.PageSize > 0 {
 	//	DB = DB.Limit(service.Page).Offset((service.Page - 1) * service.PageSize)

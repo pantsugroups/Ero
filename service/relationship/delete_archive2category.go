@@ -5,30 +5,30 @@ import (
 	"eroauz/serializer"
 )
 
-type DeleteN2CService struct {
-	Novel    uint `json:"novel" form:"novel" null:"false"`
+type DeleteA2CService struct {
+	Archive  uint `json:"archive" form:"archive" null:"false"`
 	Category uint `json:"category" form:"category" null:"false"`
 }
 
 // EroAPI godoc
-// @Summary 删除小说分类关联
+// @Summary 删除文章分类关联
 // @Description 接收者必须为自己管理员
-// @Tags novel,category,admin
+// @Tags archive,category,admin
 // @Accept html
 // @Produce json
 // @Success 200 {object} serializer.Response
 // @Failure 500 {object} serializer.Response
 // @Param novel formData integer true "小说ID"
 // @Param category formData integer true "分类ID"
-// @Router /api/v1/category/novel/ [delete]
+// @Router /api/v1/category/archive/ [delete]
 // @Security ApiKeyAuth
-func (service *DeleteN2CService) Delete(create uint) *serializer.Response {
+func (service *DeleteA2CService) Delete(create uint) *serializer.Response {
 
-	n, err := models.GetNovel(service.Novel)
+	a, err := models.GetArchive(service.Archive)
 	if err != nil {
 		return &serializer.Response{
 			Status: 404,
-			Msg:    "找不到Novel ID",
+			Msg:    "找不到Archive ID",
 		}
 	}
 	c, err := models.GetCategory(service.Category)
@@ -38,8 +38,8 @@ func (service *DeleteN2CService) Delete(create uint) *serializer.Response {
 			Msg:    "找不到Category ID",
 		}
 	}
-	target := models.NovelCategory{
-		Novel:    n,
+	target := models.ArchiveCategory{
+		Archive:  a,
 		Category: c,
 	}
 	if err := models.DB.Delete(&target).Error; err != nil {
@@ -50,7 +50,7 @@ func (service *DeleteN2CService) Delete(create uint) *serializer.Response {
 	}
 	return nil
 }
-func (service *DeleteN2CService) Response() interface{} {
+func (service *DeleteA2CService) Response() interface{} {
 	return serializer.Response{
 		Status: 0,
 		Msg:    "成功",

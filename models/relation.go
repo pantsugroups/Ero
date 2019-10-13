@@ -16,3 +16,10 @@ type NovelCategory struct {
 	CategoryID uint
 	Category   Category `gorm:"ForeignKey:CategoryID"`
 }
+type ArchiveCategory struct {
+	gorm.Model
+	ArchiveID  uint
+	Archive    Archive `gorm:"ForeignKey:ArchiveID"`
+	CategoryID uint
+	Category   Category `gorm:"ForeignKey:CategoryID"`
+}

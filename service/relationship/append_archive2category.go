@@ -5,30 +5,30 @@ import (
 	"eroauz/serializer"
 )
 
-type AppendN2CService struct {
-	Novel    uint `json:"novel" form:"novel"  null:"false"`
+type AppendA2CService struct {
+	Archive  uint `json:"archive" form:"archive"  null:"false"`
 	Category uint `json:"category" form:"category"  null:"false"`
-	result   models.NovelCategory
+	result   models.ArchiveCategory
 }
 
 // EroAPI godoc
-// @Summary 添加小说分类关联
+// @Summary 添加文章分类关联
 // @Description 必须为管理员
-// @Tags novel,category,admin
+// @Tags archive,category,admin
 // @Accept html
 // @Produce json
 // @Success 200 {object} serializer.Response
 // @Failure 500 {object} serializer.Response
-// @Param novel formData integer true "小说ID"
+// @Param archive formData integer true "文章ID"
 // @Param category formData integer true "分类ID"
-// @Router /api/v1/category/novel/ [post]
+// @Router /api/v1/category/archive/ [post]
 // @Security ApiKeyAuth
-func (service *AppendN2CService) Create(create uint) *serializer.Response {
-	n, err := models.GetNovel(service.Novel)
+func (service *AppendA2CService) Create(create uint) *serializer.Response {
+	a, err := models.GetArchive(service.Archive)
 	if err != nil {
 		return &serializer.Response{
 			Status: 404,
-			Msg:    "找不到Novel ID",
+			Msg:    "找不到Archive ID",
 		}
 	}
 	c, err := models.GetCategory(service.Category)
@@ -38,14 +38,14 @@ func (service *AppendN2CService) Create(create uint) *serializer.Response {
 			Msg:    "找不到Novel ID",
 		}
 	}
-	if c.Type != models.Novel_ {
+	if c.Type != models.Archive_ {
 		return &serializer.Response{
 			Status: 500,
-			Msg:    "不能将小说添加到其他分区",
+			Msg:    "不能将文章添加到其他分区",
 		}
 	}
-	relationship := models.NovelCategory{
-		Novel:    n,
+	relationship := models.ArchiveCategory{
+		Archive:  a,
 		Category: c,
 	}
 	if err := models.DB.Create(&relationship).Error; err != nil {
@@ -59,7 +59,7 @@ func (service *AppendN2CService) Create(create uint) *serializer.Response {
 	service.result = relationship
 	return nil
 }
-func (service *AppendN2CService) Response() interface{} {
+func (service *AppendA2CService) Response() interface{} {
 	return serializer.Response{
 		Status: 0,
 		Msg:    "成功",

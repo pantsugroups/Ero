@@ -6,6 +6,7 @@ type Category struct {
 	gorm.Model
 	Title string
 	Count int
+	Type  int
 }
 
 func GetCategory(ID interface{}) (Category, error) {
