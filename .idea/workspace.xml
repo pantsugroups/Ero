@@ -2,26 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41c30afa-f5b2-41ab-a7fc-1fc604c5d40e" name="默认更改列表" comment="">
-      <change afterPath="$PROJECT_DIR$/service/relationship/append_archive2category.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/relationship/delete_archive2category.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dictionaries/BIE.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dictionaries/BIE.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/conf/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docs.go" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docs.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/swagger.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/swagger.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/swagger.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docs/swagger.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/category.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/category.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/init.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/relation.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/relation.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/routes.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/route.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/route.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/category/create.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/category/create.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/category/delete.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/category/delete.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/category/lists.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/category/lists.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/category/update.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/category/update.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/relationship/append_nocel2category.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/relationship/append_nocel2category.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/relationship/delete_novel2category.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/relationship/delete_novel2category.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/user/register.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/user/register.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -203,6 +186,7 @@
     <MESSAGE value="+ 添加了一个API&#10;！生成了swagger的代码" />
     <MESSAGE value="fix a little bug" />
     <MESSAGE value="日常微调" />
-    <option name="LAST_COMMIT_MESSAGE" value="日常微调" />
+    <MESSAGE value="添加文章分类，修复了一些bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加文章分类，修复了一些bug" />
   </component>
 </project>
