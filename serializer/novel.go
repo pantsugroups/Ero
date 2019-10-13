@@ -5,14 +5,15 @@ import (
 )
 
 type Novel struct {
-	ID         uint   `json:"id"`
-	Title      string `json:"title"`
-	Cover      string `json:"cover"`
-	Author     string `json:"author"`
-	Subscribed int    `json:"subscribed"`
-	Ended      bool   `json:"ended"`
-	Level      int    `json:"level"`
-	Tags       string `json:"tags"`
+	ID          uint   `json:"id"`
+	Title       string `json:"title"`
+	Cover       string `json:"cover"`
+	Author      string `json:"author"`
+	Description string `json:"description"`
+	Subscribed  int    `json:"subscribed"`
+	Ended       bool   `json:"ended"`
+	Level       int    `json:"level"`
+	Tags        string `json:"tags"`
 }
 
 type NovelResponse struct {
@@ -31,14 +32,15 @@ type NovelListResponse struct {
 
 func BuildNovel(novel models.Novel) Novel {
 	return Novel{
-		ID:         novel.ID,
-		Title:      novel.Title,
-		Cover:      novel.Cover,
-		Author:     novel.Author,
-		Subscribed: novel.Subscribed,
-		Ended:      novel.Ended,
-		Level:      novel.Level,
-		Tags:       novel.Tags,
+		ID:          novel.ID,
+		Title:       novel.Title,
+		Cover:       novel.Cover,
+		Author:      novel.Author,
+		Description: novel.Description,
+		Subscribed:  novel.Subscribed,
+		Ended:       novel.Ended,
+		Level:       novel.Level,
+		Tags:        novel.Tags,
 	}
 }
 

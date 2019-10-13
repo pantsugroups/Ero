@@ -63,7 +63,7 @@ func NewRouter() *echo.Echo {
 		g.GET("/novel/", api.List(&NovelList)).Name = "小说列表"
 
 		var CommentList comment.ListService
-		g.GET("/comments/:type/:id", api.List(&CommentList)).Name = "评论列表"
+		g.GET("/comments/:id", api.List(&CommentList)).Name = "评论列表"
 
 		var CategoryList category.ListService
 		g.GET("/category/", api.List(&CategoryList)).Name = "分类列表"

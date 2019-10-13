@@ -1004,12 +1004,7 @@
         },
         "/api/v1/message/": {
             "get": {
-                "security": [
-                    {
-                        "ApiKeyAuth": []
-                    }
-                ],
-                "description": "接收者必须为自己或者权限必须为管理员",
+                "description": "必须登陆",
                 "consumes": [
                     "text/html"
                 ],
@@ -1019,21 +1014,38 @@
                 "tags": [
                     "message"
                 ],
-                "summary": "获取消息详细",
+                "summary": "分类列表",
                 "parameters": [
                     {
                         "type": "integer",
-                        "description": "消息ID",
-                        "name": "id",
-                        "in": "path",
-                        "required": true
+                        "description": "Pages",
+                        "name": "page",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Limit",
+                        "name": "limit",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Offset",
+                        "name": "offset",
+                        "in": "formData"
+                    },
+                    {
+                        "type": "integer",
+                        "description": "PageSize default is 10",
+                        "name": "page_size",
+                        "in": "formData"
                     }
                 ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/serializer.MessageResponse"
+                            "$ref": "#/definitions/serializer.MessageListResponse"
                         }
                     },
                     "500": {

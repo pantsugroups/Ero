@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41c30afa-f5b2-41ab-a7fc-1fc604c5d40e" name="默认更改列表" comment="">
-      <change beforePath="$PROJECT_DIR$/api/file.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/file.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/conf/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/conf/config.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs.go" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docs.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/swagger.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/swagger.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/swagger.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docs/swagger.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/routes.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/serializer/novel.go" beforeDir="false" afterPath="$PROJECT_DIR$/serializer/novel.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/route.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/route.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/archive/update.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/archive/update.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -187,6 +195,7 @@
     <MESSAGE value="添加文章分类，修复了一些bug" />
     <MESSAGE value="add cors:option method" />
     <MESSAGE value="优化Upload" />
-    <option name="LAST_COMMIT_MESSAGE" value="优化Upload" />
+    <MESSAGE value="啊忘了" />
+    <option name="LAST_COMMIT_MESSAGE" value="啊忘了" />
   </component>
 </project>

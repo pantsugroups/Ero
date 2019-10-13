@@ -7,7 +7,7 @@ const (
 	// 后端地址，如果不填写验证邮件的URL可能会出问题
 	BackEndHost = "api.ero.ink"
 	// 上传路径配置
-	StaticPath string = ""
+	StaticPath string = "F:\\桌面"
 
 	// 数据库配置
 	DataBaseName     string = "ero"

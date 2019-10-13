@@ -74,6 +74,6 @@ func (service *UpdateService) Update(create uint) *serializer.Response {
 	return nil
 }
 func (service *UpdateService) Response() interface{} {
-	return service.result
+	return serializer.BuildArchiveResponse(service.result)
 
 }
