@@ -16,6 +16,10 @@ import (
 
 var letterRunes = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
+func UnixForString() string {
+	return strconv.FormatInt(time.Now().Unix(), 10)
+}
+
 func RandStringRunes(n int) string {
 	rand.Seed(time.Now().UnixNano())
 	b := make([]rune, n)

@@ -21,7 +21,7 @@ import (
 // @Param file formData string true "文件"
 // @Success 200 {object} serializer.FileResponse
 // @Failure 500 {object} serializer.Response
-// @Router /api/v1/archive/ [post]
+// @Router /api/v1/upload/ [post]
 // @Security ApiKeyAuth
 func Upload(c echo.Context) error {
 	var dir string
@@ -53,7 +53,7 @@ func Upload(c echo.Context) error {
 	}()
 
 	// Destination
-	s := path.Join(conf.StaticPath, dir, file.Filename)
+	s := path.Join(conf.StaticPath, dir, utils.UnixForString()+path.Ext(file.Filename))
 	dst, err := os.Create(s)
 	if err != nil {
 		return err
