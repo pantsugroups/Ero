@@ -53,7 +53,8 @@ func Upload(c echo.Context) error {
 	}()
 
 	// Destination
-	s := path.Join(conf.StaticPath, dir, utils.UnixForString()+path.Ext(file.Filename))
+	filename := utils.UnixForString() + path.Ext(file.Filename)
+	s := path.Join(conf.StaticPath, dir, filename)
 	dst, err := os.Create(s)
 	if err != nil {
 		return err
@@ -69,7 +70,7 @@ func Upload(c echo.Context) error {
 	f := models.File{
 		User:     user,
 		Path:     s,
-		FileName: file.Filename,
+		FileName: filename,
 		Type:     i,
 	}
 	if err := models.DB.Create(&f).Error; err != nil {
