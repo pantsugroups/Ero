@@ -31,9 +31,13 @@ definitions:
         type: string
       title:
         type: string
+      update_at:
+        type: integer
     type: object
   serializer.ArchiveListResponse:
     properties:
+      all:
+        type: integer
       count:
         type: integer
       data:
@@ -77,9 +81,13 @@ definitions:
         type: integer
       title:
         type: string
+      type:
+        type: integer
     type: object
   serializer.CategoryListResponse:
     properties:
+      all:
+        type: integer
       count:
         type: integer
       data:
@@ -138,6 +146,8 @@ definitions:
     type: object
   serializer.CommentListResponse:
     properties:
+      all:
+        type: integer
       count:
         type: integer
       data:
@@ -225,6 +235,8 @@ definitions:
     type: object
   serializer.MessageListResponse:
     properties:
+      all:
+        type: integer
       count:
         type: integer
       data:
@@ -266,6 +278,8 @@ definitions:
         type: string
       cover:
         type: string
+      description:
+        type: string
       ended:
         type: boolean
       id:
@@ -278,9 +292,13 @@ definitions:
         type: string
       title:
         type: string
+      update_at:
+        type: integer
     type: object
   serializer.NovelListResponse:
     properties:
+      all:
+        type: integer
       count:
         type: integer
       data:
@@ -967,38 +985,24 @@ paths:
       - text/html
       description: 必须登陆
       parameters:
-      - description: 小说标题
+      - description: 评论内容
         in: formData
         name: title
         required: true
         type: string
-      - description: 小说作者
+      - description: 评论类型。小说为：2 文章为：1 其余泽忽略
         in: formData
-        name: author
-        required: true
-        type: string
-      - description: 小说封面，URL，如果封面为空的话泽会自动替换。默认封面请检查conf.DefaultCover字段
-        in: formData
-        name: cover
-        type: string
-      - description: 小说简介
-        in: formData
-        name: description
-        type: integer
-      - description: 是否完结
-        in: formData
-        name: ended
-        required: true
-        type: boolean
-      - description: tags 推荐使用/分割
-        in: formData
-        name: tags
+        name: type
         required: true
         type: integer
-      - description: 目标等级：还未实现
+      - description: 如果type参数为1泽这是文章ID，如果type参数为2则是小说ID
         in: formData
-        name: level
+        name: raw
         required: true
+        type: integer
+      - description: 要返回用户的评论的id
+        in: formData
+        name: reply
         type: integer
       produces:
       - application/json
@@ -1006,16 +1010,16 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/serializer.NovelResponse'
+            $ref: '#/definitions/serializer.CommentResponse'
         "500":
           description: Internal Server Error
           schema:
             $ref: '#/definitions/serializer.Response'
       security:
       - ApiKeyAuth: []
-      summary: 创建小说
+      summary: 创建评论
       tags:
-      - novel
+      - comment
   /api/v1/download/:
     get:
       consumes:

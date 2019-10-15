@@ -71,6 +71,7 @@ func (service *ListService) Pages() (int, *serializer.Response) {
 func (service *ListService) Pull(create uint) *serializer.Response {
 	var archive []models.Archive
 	//var count int
+
 	if service.PageSize == 0 {
 		service.PageSize = 10
 	}

@@ -7,7 +7,7 @@ import (
 
 type CreateService struct {
 	Title  string `json:"title" form:"title" null:"false"`
-	Type   int    `json:"type" form:"ine" null:"false"`
+	Type   int    `json:"type" form:"type" null:"false"`
 	result models.Category
 }
 

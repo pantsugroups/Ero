@@ -7,6 +7,7 @@ import (
 type Category struct {
 	ID    uint   `json:"id"`
 	Title string `json:"title"`
+	Type  int    `json:"type"`
 	Count int    `json:"count"`
 }
 
@@ -29,13 +30,14 @@ func BuildCategory(category models.Category) Category {
 	return Category{
 		ID:    category.ID,
 		Title: category.Title,
+		Type:  category.Type,
 		Count: category.Count,
 	}
 }
 
-func BuildCategoryList(categoryies []models.Category) []Category {
+func BuildCategoryList(categories []models.Category) []Category {
 	var categoryList []Category
-	for _, a := range categoryies {
+	for _, a := range categories {
 		i := BuildCategory(a)
 		categoryList = append(categoryList, i)
 	}
