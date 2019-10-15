@@ -24,6 +24,7 @@ type MessageResponse struct {
 type MessageListResponse struct {
 	Response
 	Count int       `json:"count"`
+	All   int       `json:"all"`
 	Data  []Message `json:"data"`
 	Next  bool      `json:"have_next"`
 	Last  bool      `json:"have_last"`
@@ -58,9 +59,10 @@ func BuildMessageResponse(message models.Message) MessageResponse {
 	}
 }
 
-func BuildMessageListResponse(messages []models.Message, count int, next bool, last bool, pages int) MessageListResponse {
+func BuildMessageListResponse(messages []models.Message, all int, count int, next bool, last bool, pages int) MessageListResponse {
 	return MessageListResponse{
 		Count: count,
+		All:   all,
 		Data:  BuildMessageList(messages),
 		Next:  next,
 		Last:  last,

@@ -25,6 +25,7 @@ type CommentResponse struct {
 type CommentListResponse struct {
 	Response
 	Count int       `json:"count"`
+	All   int       `json:"all"`
 	Data  []Comment `json:"data"`
 	Next  bool      `json:"have_next"`
 	Last  bool      `json:"have_last"`
@@ -75,9 +76,10 @@ func BuildCommentResponse(comment models.Comment) CommentResponse {
 	}
 }
 
-func BuildCommentListResponse(comments []models.Comment, count int, next bool, last bool, pages int) CommentListResponse {
+func BuildCommentListResponse(comments []models.Comment, all int, count int, next bool, last bool, pages int) CommentListResponse {
 	return CommentListResponse{
 		Count: count,
+		All:   all,
 		Data:  BuildCommentList(comments),
 		Next:  next,
 		Last:  last,

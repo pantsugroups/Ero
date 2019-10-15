@@ -18,6 +18,7 @@ type CategoryResponse struct {
 type CategoryListResponse struct {
 	Response
 	Count int        `json:"count"`
+	All   int        `json:"all"`
 	Data  []Category `json:"data"`
 	Next  bool       `json:"have_next"`
 	Last  bool       `json:"have_last"`
@@ -47,9 +48,10 @@ func BuildCategoryResponse(category models.Category) CategoryResponse {
 	}
 }
 
-func BuildCategoryListResponse(categories []models.Category, count int, next bool, last bool, pages int) CategoryListResponse {
+func BuildCategoryListResponse(categories []models.Category, all int, count int, next bool, last bool, pages int) CategoryListResponse {
 	return CategoryListResponse{
 		Count: count,
+		All:   all,
 		Data:  BuildCategoryList(categories),
 		Next:  next,
 		Last:  last,

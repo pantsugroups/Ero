@@ -23,10 +23,12 @@ func (service *ListService) HaveNextOrLast() (next bool, last bool) {
 	} else {
 		last = true
 	}
-	if service.All-(service.Page+1)*service.PageSize < 0 {
-		next = false
-	} else {
+	if service.All-(service.Page+1)*service.PageSize >= 0 {
 		next = true
+	} else if -(service.All - (service.Page+1)*service.PageSize) <= service.PageSize {
+		next = true
+	} else {
+		next = false
 	}
 	return next, last
 
@@ -34,7 +36,7 @@ func (service *ListService) HaveNextOrLast() (next bool, last bool) {
 
 // 返回查询结果总页数,是按照当前请求的结果的数量除以总数得出的
 func (service *ListService) Pages() (int, *serializer.Response) {
-
+	var count int
 	if err := models.DB.Model(&models.Volume{}).Count(&service.All).Error; err != nil {
 		return 0, &serializer.Response{
 			Status: 500,
@@ -42,10 +44,14 @@ func (service *ListService) Pages() (int, *serializer.Response) {
 		}
 	}
 
-	if int(service.Count) == 0 {
+	if service.Count == 0 {
 		return 0, nil
 	}
-	return int(service.All / service.Count), nil
+	count = service.All / service.PageSize
+	if service.All%service.PageSize != 0 {
+		count += 1
+	}
+	return count, nil
 }
 
 // EroAPI godoc
@@ -73,7 +79,7 @@ func (service *ListService) Pull(create uint) *serializer.Response {
 	DB := models.DB.Where("novel_id = ?", service.ID)
 
 	if service.Page > 0 && service.PageSize > 0 {
-		DB = DB.Limit(service.Page).Offset((service.Page - 1) * service.PageSize)
+		DB = DB.Limit(service.PageSize).Offset((service.Page - 1) * service.PageSize)
 	} else {
 		if service.Limit != 0 {
 			DB.Limit(service.Limit)
@@ -82,12 +88,13 @@ func (service *ListService) Pull(create uint) *serializer.Response {
 			DB.Offset(service.Offset)
 		}
 	}
-	if err := DB.Find(&volume).Count(&service.Count).Error; err != nil {
+	if err := DB.Find(&volume).Error; err != nil {
 		return &serializer.Response{
 			Status: 500,
 			Msg:    "获取失败",
 		}
 	}
+	service.Count = len(volume)
 	for i := range volume {
 		if volume[i].NovelID != 0 {
 			volume[i].Novel, _ = models.GetNovel(volume[i].Novel)
@@ -110,5 +117,5 @@ func (service *ListService) Response() interface{} {
 	if pages, err = service.Pages(); err != nil {
 		return err
 	}
-	return serializer.BuildVolumeListResponse(service.result, service.Count, next, last, pages)
+	return serializer.BuildVolumeListResponse(service.result, service.All, service.Count, next, last, pages)
 }

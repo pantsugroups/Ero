@@ -14,6 +14,7 @@ type Novel struct {
 	Ended       bool   `json:"ended"`
 	Level       int    `json:"level"`
 	Tags        string `json:"tags"`
+	UpdateAt    int64  `json:"update_at"`
 }
 
 type NovelResponse struct {
@@ -24,6 +25,7 @@ type NovelResponse struct {
 type NovelListResponse struct {
 	Response
 	Count int     `json:"count"`
+	All   int     `json:"all"`
 	Data  []Novel `json:"data"`
 	Next  bool    `json:"have_next"`
 	Last  bool    `json:"have_last"`
@@ -41,6 +43,7 @@ func BuildNovel(novel models.Novel) Novel {
 		Ended:       novel.Ended,
 		Level:       novel.Level,
 		Tags:        novel.Tags,
+		UpdateAt:    novel.UpdatedAt.Unix(),
 	}
 }
 
@@ -59,9 +62,10 @@ func BuildNovelResponse(novel models.Novel) NovelResponse {
 	}
 }
 
-func BuildNovelListResponse(novels []models.Novel, count int, next bool, last bool, pages int) NovelListResponse {
+func BuildNovelListResponse(novels []models.Novel, all int, count int, next bool, last bool, pages int) NovelListResponse {
 	return NovelListResponse{
 		Count: count,
+		All:   all,
 		Data:  BuildNovelList(novels),
 		Next:  next,
 		Last:  last,

@@ -16,6 +16,7 @@ type Archive struct {
 	Author         string `json:"author"`
 	PrimaryContent string `json:"primary_content"`
 	CreatedAt      int64  `json:"created_at"`
+	UpdateAt       int64  `json:"update_at"`
 	CreateId       uint   `json:"create_id"`
 	CreateName     string `json:"create_name"`
 	Tag            string `json:"tag"`
@@ -31,6 +32,7 @@ type ArchiveResponse struct {
 type ArchiveListResponse struct {
 	Response
 	Count int       `json:"count"`
+	All   int       `json:"all"`
 	Data  []Archive `json:"data"`
 	Next  bool      `json:"have_next"`
 	Last  bool      `json:"have_last"`
@@ -49,6 +51,7 @@ func BuildArchive(archive models.Archive) Archive {
 		PrimaryContent: archive.PrimaryContent,
 		CreatedAt:      archive.CreatedAt.Unix(),
 		CreateId:       archive.Create.ID,
+		UpdateAt:       archive.UpdatedAt.Unix(),
 		CreateName:     archive.Create.Nickname,
 		Tag:            archive.Tag,
 	}
@@ -72,9 +75,10 @@ func BuildArchiveResponse(archive models.Archive) ArchiveResponse {
 }
 
 // BuildArchiveResponse 序列化文章列表响应
-func BuildArchiveListResponse(archives []models.Archive, count int, next bool, last bool, pages int) ArchiveListResponse {
+func BuildArchiveListResponse(archives []models.Archive, all int, count int, next bool, last bool, pages int) ArchiveListResponse {
 	return ArchiveListResponse{
 		Count: count,
+		All:   all,
 		Data:  BuildArchiveList(archives),
 		Next:  next,
 		Last:  last,

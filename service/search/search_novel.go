@@ -23,10 +23,12 @@ func (service *NovelListService) HaveNextOrLast() (next bool, last bool) {
 	} else {
 		last = true
 	}
-	if service.All-(service.Page+1)*service.PageSize < 0 {
-		next = false
-	} else {
+	if service.All-(service.Page+1)*service.PageSize >= 0 {
 		next = true
+	} else if -(service.All - (service.Page+1)*service.PageSize) <= service.PageSize {
+		next = true
+	} else {
+		next = false
 	}
 	return next, last
 
@@ -34,17 +36,21 @@ func (service *NovelListService) HaveNextOrLast() (next bool, last bool) {
 
 // 返回查询结果总页数,是按照当前请求的结果的数量除以总数得出的
 func (service *NovelListService) Pages() (int, *serializer.Response) {
-
+	var count int
 	if err := models.DB.Model(&models.Novel{}).Count(&service.All).Error; err != nil {
 		return 0, &serializer.Response{
 			Status: 500,
 			Msg:    "查询总数失败",
 		}
 	}
-	if int(service.Count) == 0 {
+	if service.Count == 0 {
 		return 0, nil
 	}
-	return int(service.All / service.Count), nil
+	count = service.All / service.PageSize
+	if service.All%service.PageSize != 0 {
+		count += 1
+	}
+	return count, nil
 }
 
 // EroAPI godoc
@@ -72,7 +78,7 @@ func (service *NovelListService) Pull(create uint) *serializer.Response {
 		"author LIKE ?", service.Keyword)
 
 	if service.Page > 0 && service.PageSize > 0 {
-		DB = DB.Limit(service.Page).Offset((service.Page - 1) * service.PageSize)
+		DB = DB.Limit(service.PageSize).Offset((service.Page - 1) * service.PageSize)
 	} else {
 		if service.Limit != 0 {
 			DB.Limit(service.Limit)
@@ -81,12 +87,13 @@ func (service *NovelListService) Pull(create uint) *serializer.Response {
 			DB.Offset(service.Offset)
 		}
 	}
-	if err := DB.Find(&novel).Count(&service.Count).Error; err != nil {
+	if err := DB.Find(&novel).Error; err != nil {
 		return &serializer.Response{
 			Status: 40005,
 			Msg:    "获取失败",
 		}
 	}
+	service.Count = len(novel)
 	for n := range novel {
 		var user models.User
 		u, err := models.GetUser(novel[n].Create)
@@ -110,5 +117,5 @@ func (service *NovelListService) Response() interface{} {
 	if pages, err = service.Pages(); err != nil {
 		return err
 	}
-	return serializer.BuildNovelListResponse(service.result, service.Count, next, last, pages)
+	return serializer.BuildNovelListResponse(service.result, service.All, service.Count, next, last, pages)
 }

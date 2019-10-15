@@ -3,10 +3,24 @@
   <component name="ChangeListManager">
     <list default="true" id="41c30afa-f5b2-41ab-a7fc-1fc604c5d40e" name="默认更改列表" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/archive.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/archive.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/novels.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/novels.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/routes.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/archive/update.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/archive/update.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/serializer/archive.go" beforeDir="false" afterPath="$PROJECT_DIR$/serializer/archive.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/serializer/category.go" beforeDir="false" afterPath="$PROJECT_DIR$/serializer/category.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/serializer/comment.go" beforeDir="false" afterPath="$PROJECT_DIR$/serializer/comment.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/serializer/message.go" beforeDir="false" afterPath="$PROJECT_DIR$/serializer/message.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/serializer/novel.go" beforeDir="false" afterPath="$PROJECT_DIR$/serializer/novel.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/serializer/volume.go" beforeDir="false" afterPath="$PROJECT_DIR$/serializer/volume.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/route.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/route.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/archive/archives.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/archive/archives.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/category/lists.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/category/lists.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/comment/comments.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/comment/comments.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/message/messages.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/message/messages.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/novel/novels.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/novel/novels.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/search/search_archive.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/search/search_archive.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/search/search_novel.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/search/search_novel.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/user/comments.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/user/comments.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/user/subscribe.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/user/subscribe.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/volume/volumes.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/volume/volumes.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,16 +48,6 @@
         <option value="Go File" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>Archive</find>
-      <find>json</find>
-      <find>没有权限</find>
-    </findStrings>
-    <replaceStrings>
-      <replace>Novel</replace>
-    </replaceStrings>
   </component>
   <component name="GOROOT" path="F:\Go" />
   <component name="Git.Settings">
@@ -193,6 +197,7 @@
     <MESSAGE value="优化Upload" />
     <MESSAGE value="啊忘了" />
     <MESSAGE value="生活不易BIEBIE叹气" />
-    <option name="LAST_COMMIT_MESSAGE" value="生活不易BIEBIE叹气" />
+    <MESSAGE value="fix some bugs" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix some bugs" />
   </component>
 </project>

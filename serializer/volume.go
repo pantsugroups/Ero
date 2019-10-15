@@ -21,6 +21,7 @@ type VolumeResponse struct {
 type VolumeListResponse struct {
 	Response
 	Count int      `json:"count"`
+	All   int      `json:"all"`
 	Data  []Volume `json:"data"`
 	Next  bool     `json:"have_next"`
 	Last  bool     `json:"have_last"`
@@ -54,9 +55,10 @@ func BuildVolumeResponse(volumes models.Volume) VolumeResponse {
 }
 
 // BuildArchiveResponse 序列化文章列表响应
-func BuildVolumeListResponse(volumes []models.Volume, count int, next bool, last bool, pages int) VolumeListResponse {
+func BuildVolumeListResponse(volumes []models.Volume, all int, count int, next bool, last bool, pages int) VolumeListResponse {
 	return VolumeListResponse{
 		Count: count,
+		All:   all,
 		Data:  BuildVolumeList(volumes),
 		Next:  next,
 		Last:  last,
