@@ -3,14 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="41c30afa-f5b2-41ab-a7fc-1fc604c5d40e" name="默认更改列表" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docs.go" beforeDir="false" afterPath="$PROJECT_DIR$/docs/docs.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/swagger.json" beforeDir="false" afterPath="$PROJECT_DIR$/docs/swagger.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/swagger.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/docs/swagger.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/routes.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serializer/category.go" beforeDir="false" afterPath="$PROJECT_DIR$/serializer/category.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/route.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/route.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/archive/archives.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/archive/archives.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/category/create.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/category/create.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -189,6 +181,7 @@
     <MESSAGE value="生活不易BIEBIE叹气" />
     <MESSAGE value="fix some bugs" />
     <MESSAGE value="修复分页问题" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复分页问题" />
+    <MESSAGE value="我太难了" />
+    <option name="LAST_COMMIT_MESSAGE" value="我太难了" />
   </component>
 </project>

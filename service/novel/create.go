@@ -7,7 +7,7 @@ import (
 
 type CreateService struct {
 	Title       string `json:"title" form:"title" null:"false"`
-	Author      string `json:"author" form:"title"`
+	Author      string `json:"author" form:"author"`
 	Cover       string `json:"cover" form:"cover"`
 	Description string `json:"description" form:"description"`
 	Ended       bool   `json:"ended" form:"ended"`
