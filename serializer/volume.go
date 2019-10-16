@@ -35,6 +35,7 @@ func BuildVolume(volume models.Volume) Volume {
 		Cover:     volume.Cover,
 		NovelID:   volume.Novel.ID,
 		NovelName: volume.Novel.Title,
+		FileID:    volume.FileID,
 	}
 }
 

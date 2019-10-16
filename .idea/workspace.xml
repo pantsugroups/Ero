@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="41c30afa-f5b2-41ab-a7fc-1fc604c5d40e" name="默认更改列表" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/routes.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/serializer/volume.go" beforeDir="false" afterPath="$PROJECT_DIR$/serializer/volume.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -172,7 +174,6 @@
     <MESSAGE value="执行了拼写检查" />
     <MESSAGE value="+ fix list bug" />
     <MESSAGE value="+ 添加了一个API&#10;！生成了swagger的代码" />
-    <MESSAGE value="fix a little bug" />
     <MESSAGE value="日常微调" />
     <MESSAGE value="添加文章分类，修复了一些bug" />
     <MESSAGE value="add cors:option method" />
@@ -182,6 +183,7 @@
     <MESSAGE value="fix some bugs" />
     <MESSAGE value="修复分页问题" />
     <MESSAGE value="我太难了" />
-    <option name="LAST_COMMIT_MESSAGE" value="我太难了" />
+    <MESSAGE value="fix a little bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix a little bug" />
   </component>
 </project>
