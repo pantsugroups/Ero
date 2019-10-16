@@ -77,6 +77,9 @@ func NewRouter() *echo.Echo {
 		var CommentGet comment.GetService
 		g.GET("/comment/:id", api.Get(&CommentGet)).Name = "评论查看"
 
+		var VolumeList volume.ListService
+		g.GET("/novel/volume/:id", api.List(&VolumeList)).Name = "查看小说分卷"
+
 		r := g.Group("")
 		{
 			// 需要登陆的
@@ -117,9 +120,6 @@ func NewRouter() *echo.Echo {
 
 			var Archive2Category relationship.AppendA2CService
 			r.POST("/category/archive/", api.Create(&Archive2Category)).Name = "关联文章分类"
-
-			var VolumeList volume.ListService
-			r.GET("/novel/volume/:id", api.List(&VolumeList)).Name = "查看小说分卷"
 
 			var NovelSubscribe novel.SubscribeService
 			r.GET("/novel/subscribe/:id", api.Create(&NovelSubscribe)).Name = "订阅小说"

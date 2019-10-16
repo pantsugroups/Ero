@@ -4,7 +4,7 @@
     <list default="true" id="41c30afa-f5b2-41ab-a7fc-1fc604c5d40e" name="默认更改列表" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/routes.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serializer/volume.go" beforeDir="false" afterPath="$PROJECT_DIR$/serializer/volume.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/route.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/route.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -184,6 +184,7 @@
     <MESSAGE value="修复分页问题" />
     <MESSAGE value="我太难了" />
     <MESSAGE value="fix a little bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix a little bug" />
+    <MESSAGE value="fix a little bug x2" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix a little bug x2" />
   </component>
 </project>
