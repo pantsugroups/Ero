@@ -1,6 +1,7 @@
 package volume
 
 import (
+	"eroauz/conf"
 	"eroauz/models"
 	"eroauz/serializer"
 )
@@ -46,6 +47,9 @@ func (service *CreateService) Create(create uint) *serializer.Response {
 			}
 		}
 		file = f
+	}
+	if service.Cover == "" {
+		service.Cover = conf.DefaultCover
 	}
 	volume := models.Volume{
 		Title: service.Title,

@@ -6,15 +6,17 @@ import (
 )
 
 type Comment struct {
-	ID         uint      `json:"id"`
-	Title      string    `json:"title"`
-	AuthorID   uint      `json:"author_id"`
-	AuthorName string    `json:"author_name"`
-	Type       int       `json:"type"`
-	RId        uint      `json:"raw"`
-	RTitle     string    `json:"raw_title"`
-	RCid       uint      `json:"reply"`
-	CreateAt   time.Time `json:"time"`
+	ID           uint      `json:"id"`
+	Title        string    `json:"title"`
+	AuthorID     uint      `json:"author_id"`
+	AuthorName   string    `json:"author_name"`
+	AuthorAvatar string    `json:"author_avatar"`
+	Type         int       `json:"type"`
+	RId          uint      `json:"raw"`
+	RTitle       string    `json:"raw_title"`
+	RCid         uint      `json:"reply"`
+	RCTitle      string    `json:"reply_title"`
+	CreateAt     time.Time `json:"time"`
 }
 
 type CommentResponse struct {
@@ -34,14 +36,21 @@ type CommentListResponse struct {
 
 func BuildComment(comment models.Comment) Comment {
 	c := Comment{
-		ID:         comment.ID,
-		Title:      comment.Title,
-		AuthorID:   comment.Author.ID,
-		AuthorName: comment.Author.Nickname,
-		Type:       comment.Type,
-		RId:        comment.RId,
-		RCid:       comment.RCid,
-		CreateAt:   comment.CreatedAt,
+		ID:           comment.ID,
+		Title:        comment.Title,
+		AuthorID:     comment.Author.ID,
+		AuthorName:   comment.Author.Nickname,
+		AuthorAvatar: comment.Author.Avatar,
+		Type:         comment.Type,
+		RId:          comment.RId,
+		RCid:         comment.RCid,
+		CreateAt:     comment.CreatedAt,
+	}
+	if c.RCid != 0 {
+		rc, err := models.GetComment(c.RCid)
+		if err == nil {
+			c.RCTitle = rc.Title
+		}
 	}
 	if c.Type == models.Archive_ {
 		a, err := models.GetArchive(c.RId)
@@ -58,6 +67,7 @@ func BuildComment(comment models.Comment) Comment {
 			c.RTitle = n.Title
 		}
 	}
+
 	return c
 }
 

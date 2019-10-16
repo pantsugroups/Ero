@@ -57,12 +57,7 @@ func (service *CreateService) Create(create uint) *serializer.Response {
 		RId:    service.RId,
 		RCid:   service.RCid,
 	}
-	if err := models.DB.Create(&archive).Error; err != nil {
-		return &serializer.Response{
-			Status: 500,
-			Msg:    "创建失败",
-		}
-	}
+
 	if service.RCid != 0 {
 		c, _ := models.GetComment(service.RCid)
 		if c.AuthorID != 0 {
@@ -74,7 +69,12 @@ func (service *CreateService) Create(create uint) *serializer.Response {
 				return err
 			}
 		}
-
+	}
+	if err := models.DB.Create(&archive).Error; err != nil {
+		return &serializer.Response{
+			Status: 500,
+			Msg:    "创建失败",
+		}
 	}
 	service.result = archive
 	return nil

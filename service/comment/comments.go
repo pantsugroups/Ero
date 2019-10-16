@@ -6,14 +6,14 @@ import (
 )
 
 type ListService struct {
-	ID       int    `json:"id"   form:"id" param:"id" query:"id" null:"false"`
-	Type     string `json:"type" param:"type" query:"type"`
-	Page     int    `json:"page" form:"page" query:"page"`
-	Limit    int    `json:"limit" form:"limit" query:"limit"`
-	Offset   int    `json:"offset" form:"offset" query:"offset"`
-	PageSize int    `json:"page_count" form:"page_Size" query:"page_Size"`
-	Count    int    // 查询结果请求
-	All      int    //总数
+	ID       int `json:"id"   form:"id" param:"id" query:"id" null:"false"`
+	Type     int `json:"type" query:"type" form:"type"`
+	Page     int `json:"page" form:"page" query:"page"`
+	Limit    int `json:"limit" form:"limit" query:"limit"`
+	Offset   int `json:"offset" form:"offset" query:"offset"`
+	PageSize int `json:"page_count" form:"page_Size" query:"page_Size"`
+	Count    int // 查询结果请求
+	All      int //总数
 	result   []models.Comment
 }
 
@@ -70,14 +70,14 @@ func (service *ListService) Pages() (int, *serializer.Response) {
 // @Param offset formData integer false "Offset"
 // @Param page_size formData integer false "PageSize default is 10"
 func (service *ListService) Pull(create uint) *serializer.Response {
-	Type := models.String2IntComment(service.Type)
+
 	var comments []models.Comment
 	//var count int
 	if service.PageSize == 0 {
 		service.PageSize = 10
 	}
 
-	DB := models.DB.Where("type = ?", Type).Where("r_id = ?", service.ID)
+	DB := models.DB.Where("type = ?", service.Type).Where("r_id = ?", service.ID)
 
 	if service.Page > 0 && service.PageSize > 0 {
 		DB = DB.Limit(service.PageSize).Offset((service.Page - 1) * service.PageSize)

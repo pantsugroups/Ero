@@ -4,7 +4,10 @@
     <list default="true" id="41c30afa-f5b2-41ab-a7fc-1fc604c5d40e" name="默认更改列表" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/routes.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/route.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/route.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/serializer/comment.go" beforeDir="false" afterPath="$PROJECT_DIR$/serializer/comment.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/comment/comments.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/comment/comments.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/comment/create.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/comment/create.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/volume/create.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/volume/create.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -160,7 +163,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/src/eroauz" />
     </ignored-roots>
-    <MESSAGE value="+ Novel/Archive 完成增上改查API" />
     <MESSAGE value="+ 完成 Comment" />
     <MESSAGE value="+ 完成 Category&#10;+ 完成 Message&#10;+ 完成了一大堆乱七八糟的东西反正我记不起来了&#10;希望写文档的时候我能记起来.jpg" />
     <MESSAGE value="+ 添加了volume表&#10;! 修正所有外键关联&#10;@ route鉴权部分需要注意&#10;@ utils判断null字段需要修复&#10;@ 还剩下文件类和用户关注类和首页类没完成&#10;@ 以及基本的配置文件信息待完成&#10;@ 文档还没写！！" />
@@ -185,6 +187,7 @@
     <MESSAGE value="我太难了" />
     <MESSAGE value="fix a little bug" />
     <MESSAGE value="fix a little bug x2" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix a little bug x2" />
+    <MESSAGE value="调整routes分支结构，没错我就在水commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="调整routes分支结构，没错我就在水commit" />
   </component>
 </project>
