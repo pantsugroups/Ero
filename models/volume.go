@@ -16,6 +16,8 @@ type Volume struct {
 
 	File   File `gorm:"ForeignKey:FileID"`
 	FileID uint
+
+	ZIndex int
 }
 
 func (volume *Volume) CheckCover() {

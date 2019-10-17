@@ -88,7 +88,7 @@ func (service *ListService) Pull(create uint) *serializer.Response {
 			DB.Offset(service.Offset)
 		}
 	}
-	if err := DB.Find(&volume).Error; err != nil {
+	if err := DB.Find(&volume).Order("z_index desc").Error; err != nil {
 		return &serializer.Response{
 			Status: 500,
 			Msg:    "获取失败",
