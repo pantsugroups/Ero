@@ -6,6 +6,11 @@ import (
 	"path"
 )
 
+const (
+	Locao_Volume  int = 0
+	Remote_Volume int = 1
+)
+
 type Volume struct {
 	gorm.Model
 	Title string
@@ -18,6 +23,8 @@ type Volume struct {
 	FileID uint
 
 	ZIndex int
+
+	Type int
 }
 
 func (volume *Volume) CheckCover() {

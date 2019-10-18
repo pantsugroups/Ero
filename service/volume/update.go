@@ -11,6 +11,8 @@ type UpdateService struct {
 	Cover  string `json:"cover" form:"cover"`
 	File   uint   `json:"file" form:"file"`
 	Novel  uint   `json:"novel" form:"novel"`
+	ZIndex int    `json:"z_index" form:"z_index"`
+	Type   int    `json:"type" form:"type"`
 	result models.Volume
 }
 
@@ -27,6 +29,7 @@ type UpdateService struct {
 // @Param cover formData string false "分卷封面，URL，如果封面为空的话泽会自动替换。默认封面请检查conf.DefaultCover字段"
 // @Param file formData integer false "文件ID"
 // @Param novel formData integer false "小说ID"
+// @Param z_index formData integer false "分卷顺序"
 // @Router /api/v1/volume/ [put]
 // @Security ApiKeyAuth
 func (service *UpdateService) Update(create uint) *serializer.Response {
@@ -60,10 +63,12 @@ func (service *UpdateService) Update(create uint) *serializer.Response {
 		novel = n
 	}
 	if err := models.DB.Model(&volume).Update(models.Volume{
-		Title: service.Title,
-		Cover: service.Title,
-		File:  file,
-		Novel: novel,
+		Title:  service.Title,
+		Cover:  service.Title,
+		File:   file,
+		Novel:  novel,
+		ZIndex: service.ZIndex,
+		Type:   service.Type,
 	}); err != nil {
 		return &serializer.Response{
 			Status: 500,

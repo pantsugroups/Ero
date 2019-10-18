@@ -12,6 +12,7 @@ type Volume struct {
 	NovelName string `json:"novel_name"`
 	FileID    uint   `json:"file_id"`
 	ZIndex    int    `json:"z_index"`
+	Type      int    `json:"type"`
 }
 
 type VolumeResponse struct {
@@ -38,6 +39,7 @@ func BuildVolume(volume models.Volume) Volume {
 		NovelName: volume.Novel.Title,
 		FileID:    volume.FileID,
 		ZIndex:    volume.ZIndex,
+		Type:      volume.Type,
 	}
 }
 

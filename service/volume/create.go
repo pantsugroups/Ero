@@ -12,6 +12,7 @@ type CreateService struct {
 	Cover  string `json:"cover" form:"cover" query:"cover"`
 	File   int    `json:"file" form:"file"  null:"false"`
 	ZIndex int    `json:"z_index" form:"z_index"`
+	Type   int    `json:"type" form:"type"`
 	result models.Volume
 }
 
@@ -28,6 +29,7 @@ type CreateService struct {
 // @Param cover formData string false "分卷封面，URL，如果封面为空的话泽会自动替换。默认封面请检查conf.DefaultCover字段"
 // @Param file formData integer false "文件ID"
 // @Param z_index formData integer false "分卷顺序"
+// @Param type formData integer false "类型，0为本地，1为远程"
 // @Router /api/v1/volume/ [post]
 // @Security ApiKeyAuth
 func (service *CreateService) Create(create uint) *serializer.Response {
@@ -59,6 +61,7 @@ func (service *CreateService) Create(create uint) *serializer.Response {
 		Novel:  n,
 		File:   file,
 		ZIndex: service.ZIndex,
+		Type:   service.Type,
 	}
 	if err := models.DB.Create(&volume).Error; err != nil {
 		return &serializer.Response{
