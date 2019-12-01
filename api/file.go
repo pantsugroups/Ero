@@ -96,6 +96,8 @@ func Upload(c echo.Context) error {
 // @Router /api/v1/download/ [get]
 // @Security ApiKeyAuth
 func Download(c echo.Context) error {
+
+	id:= c.QueryParam("id")
 	token := c.QueryParam("token")
 	file := c.QueryParam("filename")
 	hash := c.QueryParam("hash")
@@ -105,10 +107,8 @@ func Download(c echo.Context) error {
 			Msg:    "验证失败",
 		})
 	}
-	f := models.File{
-		FileName: file,
-	}
-	if err := models.DB.First(&f).Error; err != nil {
+	f,err := models.GetFile(id)
+	if  err != nil {
 		return c.JSON(200, serializer.Response{
 			Status: 404,
 			Msg:    "找不到文件",
