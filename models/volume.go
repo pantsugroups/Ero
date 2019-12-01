@@ -6,10 +6,7 @@ import (
 	"path"
 )
 
-const (
-	Locao_Volume  int = 0
-	Remote_Volume int = 1
-)
+
 
 type Volume struct {
 	gorm.Model

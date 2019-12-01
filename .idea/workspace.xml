@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="41c30afa-f5b2-41ab-a7fc-1fc604c5d40e" name="默认更改列表" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serializer/file.go" beforeDir="false" afterPath="$PROJECT_DIR$/serializer/file.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/route.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/route.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/file.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/file.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/file.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/file.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/volume.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/volume.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -160,7 +161,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/src/eroauz" />
     </ignored-roots>
-    <MESSAGE value="@ 理论上只差Search和测试了" />
     <MESSAGE value="+ 加入路由Map&#10;@ 准备写文档了" />
     <MESSAGE value="! 判断NULL值还没写&#10;！还有啥记不起来了" />
     <MESSAGE value="fix 一个小bug" />
@@ -185,6 +185,7 @@
     <MESSAGE value="修复评论列表拉取问题" />
     <MESSAGE value="添加分卷排序" />
     <MESSAGE value="添加远程分卷功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加远程分卷功能" />
+    <MESSAGE value="移动Download为最低级权限验证&#10;重新生成了下swagger" />
+    <option name="LAST_COMMIT_MESSAGE" value="移动Download为最低级权限验证&#10;重新生成了下swagger" />
   </component>
 </project>

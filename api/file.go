@@ -121,7 +121,7 @@ func Download(c echo.Context) error {
 			Msg:    "令牌错误",
 		})
 	} else {
-		if f.Type == models.Locao_Volume {
+		if f.Type != models.Remote_Volume_ {
 			return c.File(f.Path)
 		} else {
 			return c.HTML(302, `<script language="javascript" type="text/javascript">window.location.href=`+f.Path+`';</script>
