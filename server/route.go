@@ -44,6 +44,8 @@ func NewRouter() *echo.Echo {
 		//普通等级路由
 		g.GET("/verify", api.Captcha).Name = "验证码获取"
 
+		g.GET("/download", api.Download).Name = "下载小说"
+
 		g.POST("/user/login", api.UserLogin).Name = "用户登陆"
 
 		g.POST("/user/register", api.UserRegister).Name = "用户注册"
@@ -91,7 +93,7 @@ func NewRouter() *echo.Echo {
 			r.Use(m.BaseRequired)
 
 			r.POST("/upload/", api.Upload).Name = "上传文件"
-			r.GET("/download", api.Download).Name = "下载小说"
+
 			r.GET("/user/sendmail", api.SendMail).Name = "发送验证邮件"
 
 			var UserBook user.SubscribeListService

@@ -9,7 +9,7 @@ type File struct {
 	UserID   uint   `json:"user_id"`
 	UserName string `json:"username"`
 	Hash     string `json:"hash"`
-	Token    string `token:"token"`
+	Token    string `json:"token"`
 }
 type FileResponse struct {
 	Response
