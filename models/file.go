@@ -12,12 +12,11 @@ type File struct {
 }
 
 const (
+	Remote_ int = 0
 	Volume_ int = 1
 	Image_  int = 2
 	Other_  int = 3
-	Remote_Volume_ int = 4
-	Remote_Image_  int = 5
-	Remote_Other_  int = 6
+
 )
 
 func GetFile(ID interface{}) (File, error) {
