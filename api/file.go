@@ -97,7 +97,7 @@ func Upload(c echo.Context) error {
 // @Security ApiKeyAuth
 func Download(c echo.Context) error {
 
-	id:= c.QueryParam("id")
+	id := c.QueryParam("id")
 	token := c.QueryParam("token")
 	file := c.QueryParam("filename")
 	hash := c.QueryParam("hash")
@@ -107,8 +107,8 @@ func Download(c echo.Context) error {
 			Msg:    "验证失败",
 		})
 	}
-	f,err := models.GetFile(id)
-	if  err != nil {
+	f, err := models.GetFile(id)
+	if err != nil {
 		return c.JSON(200, serializer.Response{
 			Status: 404,
 			Msg:    "找不到文件",
@@ -122,7 +122,7 @@ func Download(c echo.Context) error {
 		})
 	} else {
 		if f.Type != models.Remote_ {
-			return c.File(f.Path)
+			return c.Attachment(f.Path, f.FileName)
 		} else {
 			return c.HTML(302, `<script language="javascript" type="text/javascript">window.location.href=`+f.Path+`';</script>
 `)

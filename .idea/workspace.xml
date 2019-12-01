@@ -4,6 +4,7 @@
     <list default="true" id="41c30afa-f5b2-41ab-a7fc-1fc604c5d40e" name="默认更改列表" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/api/file.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/file.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go_build_eroauz.exe" beforeDir="false" afterPath="$PROJECT_DIR$/go_build_eroauz.exe" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
