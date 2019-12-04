@@ -96,6 +96,8 @@ func NewRouter() *echo.Echo {
 
 			r.GET("/user/sendmail", api.SendMail).Name = "发送验证邮件"
 
+			r.GET("/CreateInciteCode/", api.CreateInviteCode).Name = "生成邀请码"
+
 			var UserBook user.SubscribeListService
 			r.GET("/user/book", api.List(&UserBook)).Name = "用户书架列表"
 
@@ -161,6 +163,8 @@ func NewRouter() *echo.Echo {
 				{
 					// 超级权限
 					s.Use(m.AuthRequired)
+
+					s.GET("/DerailRegister", api.DerailRegister).Name = "切换注册模式"
 
 					var VolumeCreate volume.CreateService
 					s.POST("/volume/:id", api.Create(&VolumeCreate)).Name = "创建小说分卷"

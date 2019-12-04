@@ -6,6 +6,8 @@ import (
 	"eroauz/serializer"
 	"eroauz/utils"
 	"fmt"
+	"github.com/jinzhu/gorm"
+	"time"
 )
 
 // UserRegisterService 管理用户注册服务
@@ -17,13 +19,49 @@ type RegisterService struct {
 	PasswordConfirm string `form:"password_confirm" json:"password_confirm" null:"false"`
 	VerifyCode      string `json:"verify_code" form:"verify_code" null:"false"`
 	VerifyCodeId    string `json:"verify_id" form:"verify_id" null:"false"`
+	InviteCode      string `json:"invite_code" form:"invite_code"`
 }
 
 // Valid 验证表单
 func (service *RegisterService) Valid() *serializer.Response {
+	var invite model.Invite
+	if conf.AllowRegister == false {
+		fmt.Println(service.InviteCode)
+		if service.InviteCode == "" {
+			return &serializer.Response{
+				Status: 500,
+				Msg:    "请输入邀请码",
+			}
+		}
+		if err := model.DB.Where(&model.Invite{Code: service.InviteCode}).First(&invite).Error; err != nil {
+			if err != gorm.ErrRecordNotFound {
+				return &serializer.Response{
+					Status: 500,
+					Msg:    "邀请码错误或者过期",
+				}
+			}
+			return &serializer.Response{
+				Status: 500,
+				Msg:    "数据库错误",
+			}
+		}
+		//if invite.Code == ""{
+		//	return &serializer.Response{
+		//		Status: 500,
+		//		Msg:    "邀请码错误或者过期",
+		//	}
+		//}
+		if time.Now().After(invite.TimeLimit) {
+			return &serializer.Response{
+				Status: 500,
+				Msg:    "邀请码错误或者过期",
+			}
+		}
+
+	}
 	if service.PasswordConfirm != service.Password {
 		return &serializer.Response{
-			Status: 40001,
+			Status: 500,
 			Msg:    "两次输入的密码不相同",
 		}
 	}
@@ -32,7 +70,7 @@ func (service *RegisterService) Valid() *serializer.Response {
 	model.DB.Model(&model.User{}).Where("nickname = ?", service.Nickname).Count(&count)
 	if count > 0 {
 		return &serializer.Response{
-			Status: 40001,
+			Status: 500,
 			Msg:    "昵称被占用",
 		}
 	}
@@ -41,7 +79,7 @@ func (service *RegisterService) Valid() *serializer.Response {
 	model.DB.Model(&model.User{}).Where("user_name = ?", service.UserName).Count(&count)
 	if count > 0 {
 		return &serializer.Response{
-			Status: 40001,
+			Status: 500,
 			Msg:    "用户名已经注册",
 		}
 	}

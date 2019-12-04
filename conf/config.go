@@ -2,10 +2,14 @@ package conf
 
 import "fmt"
 
+//是否允许注册，如果不允许（false）注册则必须要邀请码
+var AllowRegister bool = false
+
 const (
 	WebPort = ":8000"
 	// 后端地址，如果不填写验证邮件的URL可能会出问题
 	BackEndHost = "api.ero.ink"
+
 	// 上传路径配置
 	StaticPath string = ""
 

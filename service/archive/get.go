@@ -21,6 +21,7 @@ type GetService struct {
 // @Param id path integer true "文章ID"
 // @Router /api/v1/archive/:id [get]
 func (service *GetService) Get(create uint) *serializer.Response {
+
 	var archive models.Archive
 	if err := models.DB.Where("ID = ?", service.ID).First(&archive).Error; err != nil {
 		return &serializer.Response{
@@ -36,6 +37,9 @@ func (service *GetService) Get(create uint) *serializer.Response {
 		user.Nickname = "被删除用户"
 	}
 	archive.Create = user
+	if create == 0 {
+		archive.PrimaryContent = "你还未登陆，请登陆后查看"
+	}
 	service.result = archive
 	return nil
 }
