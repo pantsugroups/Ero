@@ -17,6 +17,7 @@ type Novel struct {
 	Create      User `gorm:"ForeignKey:CreateID;"`
 	CreateID    uint
 	Tags        string
+	Pass        bool
 }
 
 const (

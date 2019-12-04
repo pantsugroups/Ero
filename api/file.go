@@ -28,8 +28,19 @@ func Upload(c echo.Context) error {
 	var i int
 	uid := utils.GetAuthorID(c)
 	user, _ := models.GetUser(uid)
+	VerifyCode := c.FormValue("verify_code")
+	VerifyCodeId := c.FormValue("verify_id")
 	types := c.FormValue("type")
 
+	u, _ := models.GetUser(uid)
+	if u.Status != models.Admin {
+		if res := utils.VerifyCaptcha(VerifyCodeId, VerifyCode); res == false {
+			return c.JSON(200, &serializer.Response{
+				Status: 403,
+				Msg:    "验证码错误",
+			})
+		}
+	}
 	if types == "novel" {
 		dir = "novel"
 		i = models.Volume_

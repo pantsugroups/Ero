@@ -2,16 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41c30afa-f5b2-41ab-a7fc-1fc604c5d40e" name="默认更改列表" comment="">
-      <change afterPath="$PROJECT_DIR$/models/invite.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/tag.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/admin.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/conf/config.go" beforeDir="false" afterPath="$PROJECT_DIR$/conf/config.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go_build_eroauz.exe" beforeDir="false" afterPath="$PROJECT_DIR$/go_build_eroauz.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/init.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/routes.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/route.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/route.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/archive/get.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/archive/get.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/user/register.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/user/register.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api/file.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/file.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/archive.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/archive.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/novels.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/novels.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/archive/create.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/archive/create.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/novel/create.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/novel/create.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

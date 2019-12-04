@@ -3,17 +3,20 @@ package novel
 import (
 	"eroauz/models"
 	"eroauz/serializer"
+	"eroauz/utils"
 )
 
 type CreateService struct {
-	Title       string `json:"title" form:"title" null:"false"`
-	Author      string `json:"author" form:"author"`
-	Cover       string `json:"cover" form:"cover"`
-	Description string `json:"description" form:"description"`
-	Ended       bool   `json:"ended" form:"ended"`
-	Level       int    `json:"level" form:"level"`
-	Tags        string `json:"tags" form:"tags"`
-	result      models.Novel
+	Title        string `json:"title" form:"title" null:"false"`
+	Author       string `json:"author" form:"author"`
+	Cover        string `json:"cover" form:"cover"`
+	Description  string `json:"description" form:"description"`
+	Ended        bool   `json:"ended" form:"ended"`
+	Level        int    `json:"level" form:"level"`
+	Tags         string `json:"tags" form:"tags"`
+	VerifyCode   string `json:"verify_code" form:"verify_code" null:"false"`
+	VerifyCodeId string `json:"verify_id" form:"verify_id" null:"false"`
+	result       models.Novel
 }
 
 // EroAPI godoc
@@ -35,6 +38,14 @@ type CreateService struct {
 // @Security ApiKeyAuth
 func (service *CreateService) Create(create uint) *serializer.Response {
 	u, _ := models.GetUser(create)
+	if u.Status != models.Admin {
+		if res := utils.VerifyCaptcha(service.VerifyCodeId, service.VerifyCode); res == false {
+			return &serializer.Response{
+				Status: 403,
+				Msg:    "验证码错误",
+			}
+		}
+	}
 	novel := models.Novel{
 		Title:       service.Title,
 		Author:      service.Author,
@@ -45,6 +56,11 @@ func (service *CreateService) Create(create uint) *serializer.Response {
 		Subscribed:  0,
 		Create:      u,
 		Tags:        service.Tags,
+		Pass:        false,
+	}
+
+	if u.Status == models.Admin {
+		novel.Pass = true
 	}
 	novel.CheckCover()
 	if err := models.DB.Create(&novel).Error; err != nil {

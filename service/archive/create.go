@@ -3,6 +3,7 @@ package archive
 import (
 	"eroauz/models"
 	"eroauz/serializer"
+	"eroauz/utils"
 )
 
 type CreateService struct {
@@ -13,6 +14,8 @@ type CreateService struct {
 	PrimaryContent string `json:"primary_content" form:"primary_content"`
 	Cover          string `json:"cover" form:"cover"`
 	Tag            string `json:"tag" form:"tag"`
+	VerifyCode     string `json:"verify_code" form:"verify_code" null:"false"`
+	VerifyCodeId   string `json:"verify_id" form:"verify_id" null:"false"`
 	result         models.Archive
 }
 
@@ -35,6 +38,14 @@ type CreateService struct {
 // @Security ApiKeyAuth
 func (service *CreateService) Create(create uint) *serializer.Response {
 	user, _ := models.GetUser(create)
+	if user.Status != models.Admin {
+		if res := utils.VerifyCaptcha(service.VerifyCodeId, service.VerifyCode); res == false {
+			return &serializer.Response{
+				Status: 403,
+				Msg:    "验证码错误",
+			}
+		}
+	}
 	archive := models.Archive{
 		Title:          service.Title,
 		JapTitle:       service.JapTitle,
@@ -44,6 +55,11 @@ func (service *CreateService) Create(create uint) *serializer.Response {
 		Cover:          service.Cover,
 		Create:         user,
 		Tag:            service.Tag,
+		Pass:           false,
+	}
+
+	if user.Status == models.Admin {
+		archive.Pass = true
 	}
 	if err := models.DB.Create(&archive).Error; err != nil {
 		return &serializer.Response{
@@ -52,6 +68,7 @@ func (service *CreateService) Create(create uint) *serializer.Response {
 		}
 	}
 	service.result = archive
+
 	return nil
 }
 func (service *CreateService) Response() interface{} {

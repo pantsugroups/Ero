@@ -13,6 +13,7 @@ type Archive struct {
 	Create         User   `gorm:"ForeignKey:CreateID;"`
 	CreateID       uint
 	Tag            string
+	Pass           bool
 }
 
 func GetArchive(ID interface{}) (Archive, error) {
