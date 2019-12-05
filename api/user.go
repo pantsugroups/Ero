@@ -105,7 +105,7 @@ func SendMail(c echo.Context) error {
 		token := utils.RandStringRunes(16)
 		s := "您的验证地址如下：https://%s/api/v1/user/register?hash=%s&token=%s&user=%s"
 		body := fmt.Sprintf(s, conf.BackEndHost, hash, token, u.UserName)
-		if err := utils.SendToMail(conf.SMTPUSERNAME, conf.SMTPPASSWORD, conf.SMTPHOST, u.Mail, "Ero 注册邮件", body, "html"); err != nil {
+		if err := utils.SendToMail(conf.SMTPUSERNAME, conf.SMTPPASSWORD, conf.SMTPHOST, u.Mail, "Ero 注册邮件", body, "text"); err != nil {
 			return c.JSON(200, &serializer.Response{
 				Status: 500,
 				Msg:    "邮件发送失败",
