@@ -63,7 +63,7 @@ func CreateInviteCode(c echo.Context) error {
 	}
 
 	return c.JSON(200, serializer.Response{
-		Status: 200,
+		Status: 0,
 		Data:   invite,
 		Msg:    "",
 		Error:  "",
