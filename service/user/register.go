@@ -126,6 +126,7 @@ func (service *RegisterService) Register() (model.User, *serializer.Response) {
 	user := model.User{
 		Nickname: service.Nickname,
 		UserName: service.UserName,
+		Mail:     service.Mail,
 		Status:   model.Inactive,
 		Point:    250,
 		Avatar:   conf.DefaultAvatar,

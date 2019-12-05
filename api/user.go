@@ -68,14 +68,14 @@ func UserLogin(c echo.Context) (err error) {
 // @Router /api/v1/user/sendmail [get]
 func SendMail(c echo.Context) error {
 	var InviteMail models.InviteMail
-	verifyID := c.QueryParam("verify_id")
-	verifyCode := c.QueryParam("verify_code")
-	if res := utils.VerifyCaptcha(verifyID, verifyCode); res == false {
-		return c.JSON(200, &serializer.Response{
-			Status: 403,
-			Msg:    "验证码错误",
-		})
-	}
+	//verifyID := c.QueryParam("verify_id")
+	//verifyCode := c.QueryParam("verify_code")
+	//if res := utils.VerifyCaptcha(verifyID, verifyCode); res == false {
+	//	return c.JSON(200, &serializer.Response{
+	//		Status: 403,
+	//		Msg:    "验证码错误",
+	//	})
+	//}
 	uid := utils.GetAuthorID(c)
 	u, err := models.GetUser(uid)
 	if err != nil {
@@ -111,7 +111,7 @@ func SendMail(c echo.Context) error {
 				Msg:    "邮件发送失败",
 				Error:  err.Error()})
 		}
-		dd, _ := time.ParseDuration("24h")
+		dd, _ := time.ParseDuration("1m")
 		limit := time.Now().Add(dd)
 		InviteMail = models.InviteMail{
 			TimeLimit: limit,
