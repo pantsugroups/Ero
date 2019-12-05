@@ -7,7 +7,9 @@ import (
 	"eroauz/service/user"
 	"eroauz/utils"
 	"fmt"
+	"github.com/jinzhu/gorm"
 	"github.com/labstack/echo"
+	"time"
 )
 
 func UserRegister(c echo.Context) (err error) {
@@ -65,6 +67,7 @@ func UserLogin(c echo.Context) (err error) {
 // @Param verify_id query string true "验证码ID"
 // @Router /api/v1/user/sendmail [get]
 func SendMail(c echo.Context) error {
+	var InviteMail models.InviteMail
 	verifyID := c.QueryParam("verify_id")
 	verifyCode := c.QueryParam("verify_code")
 	if res := utils.VerifyCaptcha(verifyID, verifyCode); res == false {
@@ -81,6 +84,22 @@ func SendMail(c echo.Context) error {
 			Msg:    "没有找到该用户",
 			Error:  err.Error()})
 	}
+	if err := models.DB.Where(&models.InviteMail{User: u.ID}).First(&InviteMail).Error; err != nil {
+		if err != gorm.ErrRecordNotFound {
+			return c.JSON(200, &serializer.Response{
+				Status: 500,
+				Msg:    "数据库错误",
+				Error:  err.Error(),
+			})
+		} else {
+			if time.Now().Before(InviteMail.TimeLimit) {
+				return c.JSON(200, &serializer.Response{
+					Status: 500,
+					Msg:    "间隔太快",
+				})
+			}
+		}
+	}
 	if u.Status == models.Inactive {
 		hash := utils.Generate(u.UserName)
 		token := utils.RandStringRunes(16)
@@ -92,10 +111,28 @@ func SendMail(c echo.Context) error {
 				Msg:    "邮件发送失败",
 				Error:  err.Error()})
 		}
+		dd, _ := time.ParseDuration("24h")
+		limit := time.Now().Add(dd)
+		InviteMail = models.InviteMail{
+			TimeLimit: limit,
+			User:      u.ID,
+		}
+
+		if err := models.DB.Create(&InviteMail).Error; err != nil {
+			return c.JSON(200, &serializer.Response{
+				Status: 500,
+				Msg:    "邮件发送失败",
+				Error:  err.Error()})
+		}
+		return c.JSON(200, &serializer.Response{
+			Status: 0,
+			Msg:    "邮件发送成功"})
+	} else {
+		return c.JSON(200, &serializer.Response{
+			Status: 0,
+			Msg:    "您已经是会员，无需再次验证"})
 	}
-	return c.JSON(200, &serializer.Response{
-		Status: 0,
-		Msg:    "邮件发送成功"})
+
 }
 func VerifyMail(c echo.Context) error {
 	token := c.QueryParam("token")

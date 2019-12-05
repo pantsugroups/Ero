@@ -131,6 +131,9 @@ func NewRouter() *echo.Echo {
 			var NovelDeSubscribe novel.SubscribeService
 			r.DELETE("/novel/subscribe/:id", api.Delete(&NovelDeSubscribe)).Name = "取消订阅小说"
 
+			var VolumeCreate volume.CreateService
+			r.POST("/volume/:id", api.Create(&VolumeCreate)).Name = "创建小说分卷"
+
 			a := r.Group("")
 			{
 				// 需要特殊权限(自己为创建者或管理员)
@@ -166,11 +169,8 @@ func NewRouter() *echo.Echo {
 
 					s.GET("/DerailRegister", api.DerailRegister).Name = "切换注册模式"
 
-					var VolumeCreate volume.CreateService
-					s.POST("/volume/:id", api.Create(&VolumeCreate)).Name = "创建小说分卷"
-
 					var CategoryCreate category.CreateService
-					r.POST("/category/", api.Create(&CategoryCreate)).Name = "创建分类"
+					s.POST("/category/", api.Create(&CategoryCreate)).Name = "创建分类"
 
 					var VolumeUpdate volume.UpdateService
 					s.PUT("/volume/:id", api.Update(&VolumeUpdate)).Name = "更新小说分卷信息"

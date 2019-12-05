@@ -39,6 +39,11 @@ func (service *GetService) Get(create uint) *serializer.Response {
 	archive.Create = user
 	if create == 0 {
 		archive.PrimaryContent = "你还未登陆，请登陆后查看"
+	} else {
+		u, _ := models.GetUser(create)
+		if u.Status != models.Inactive {
+			archive.PrimaryContent = "你当前的用户等级无权查看该内容。请提升自己的用户等级。"
+		}
 	}
 	service.result = archive
 	return nil

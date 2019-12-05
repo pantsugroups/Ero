@@ -11,6 +11,11 @@ type Invite struct {
 	TimeLimit time.Time
 	Create    uint
 }
+type InviteMail struct {
+	gorm.Model
+	TimeLimit time.Time
+	User      uint
+}
 
 func GetInvite(ID interface{}) (Invite, error) {
 	var i Invite
