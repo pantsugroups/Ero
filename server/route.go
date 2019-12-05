@@ -95,6 +95,8 @@ func NewRouter() *echo.Echo {
 
 			r.POST("/upload/", api.Upload).Name = "上传文件"
 
+			r.GET("/archive/primary/:id", api.Get(&ArchiveGet)).Name = "文章查看"
+
 			r.GET("/CreateInciteCode/", api.CreateInviteCode).Name = "生成邀请码"
 
 			var UserBook user.SubscribeListService

@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="41c30afa-f5b2-41ab-a7fc-1fc604c5d40e" name="默认更改列表" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go_build_eroauz.exe" beforeDir="false" afterPath="$PROJECT_DIR$/go_build_eroauz.exe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/routes.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/user/register.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/user/register.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/utils.go" beforeDir="false" afterPath="$PROJECT_DIR$/utils/utils.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/route.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/route.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -163,7 +159,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/src/eroauz" />
     </ignored-roots>
-    <MESSAGE value="执行了拼写检查" />
     <MESSAGE value="+ fix list bug" />
     <MESSAGE value="+ 添加了一个API&#10;！生成了swagger的代码" />
     <MESSAGE value="日常微调" />
@@ -188,6 +183,7 @@
     <MESSAGE value="细微调整x2" />
     <MESSAGE value="细微调整x3" />
     <MESSAGE value="注册功能完成" />
-    <option name="LAST_COMMIT_MESSAGE" value="注册功能完成" />
+    <MESSAGE value="修复发送邮件被当垃圾的问题" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复发送邮件被当垃圾的问题" />
   </component>
 </project>
