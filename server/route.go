@@ -82,8 +82,6 @@ func NewRouter() *echo.Echo {
 		var VolumeList volume.ListService
 		g.GET("/novel/volume/:id", api.List(&VolumeList)).Name = "查看小说分卷"
 
-		g.GET("/user/sendmail", api.SendMail).Name = "发送验证邮件"
-
 		r := g.Group("")
 		{
 			// 需要登陆的
@@ -92,6 +90,7 @@ func NewRouter() *echo.Echo {
 				SigningKey: []byte(conf.Secret),
 			}
 			r.Use(middleware.JWTWithConfig(config))
+			r.GET("/user/sendmail", api.SendMail).Name = "发送验证邮件"
 			r.Use(m.BaseRequired)
 
 			r.POST("/upload/", api.Upload).Name = "上传文件"

@@ -33,7 +33,7 @@ func Database(connString string) {
 	DB = db
 
 	DB.Debug().AutoMigrate(&User{}, &Archive{}, &Novel{}, &Volume{}, &Comment{}, &Category{},
-		&Message{}, &File{}, &NovelCategory{}, NovelSubscribe{}, ArchiveCategory{}, Invite{})
+		&Message{}, &File{}, &NovelCategory{}, NovelSubscribe{}, ArchiveCategory{}, Invite{}, InviteMail{})
 	// 初始化
 	var count int
 	if err := DB.Model(&Category{}).Count(&count).Error; err != nil {
