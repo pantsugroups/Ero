@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41c30afa-f5b2-41ab-a7fc-1fc604c5d40e" name="默认更改列表" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/api/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/api/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/invite.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/invite.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/route.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/route.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/archive/get.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/archive/get.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -162,7 +158,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/src/eroauz" />
     </ignored-roots>
-    <MESSAGE value="fix 一个小bug" />
     <MESSAGE value="测试过几个基本API，基本完成" />
     <MESSAGE value="大功告成，就差对接了.jpg" />
     <MESSAGE value="+ 完成用户订阅&#10;@ 犹豫要不要写galgame的分类功能" />
@@ -187,6 +182,7 @@
     <MESSAGE value="移动Download为最低级权限验证&#10;重新生成了下swagger" />
     <MESSAGE value="fix download" />
     <MESSAGE value="修复状态码" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复状态码" />
+    <MESSAGE value="细微调整" />
+    <option name="LAST_COMMIT_MESSAGE" value="细微调整" />
   </component>
 </project>
