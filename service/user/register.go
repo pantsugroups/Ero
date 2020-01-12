@@ -65,7 +65,12 @@ func (service *RegisterService) Valid() *serializer.Response {
 			Msg:    "两次输入的密码不相同",
 		}
 	}
-
+	if len(service.Password) < 6 || len(service.Password) > 16 {
+		return &serializer.Response{
+			Status: 500,
+			Msg:    "密码格式错误，请大于6位且小于16位数",
+		}
+	}
 	count := 0
 	model.DB.Model(&model.User{}).Where("nickname = ?", service.Nickname).Count(&count)
 	if count > 0 {

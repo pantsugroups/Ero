@@ -52,6 +52,7 @@ func (user *User) CheckAvatar() {
 
 // SetPassword 设置密码
 func (user *User) SetPassword(password string) error {
+
 	bytes, err := bcrypt.GenerateFromPassword([]byte(password), PassWordCost)
 	if err != nil {
 		return err

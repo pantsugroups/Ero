@@ -168,10 +168,7 @@ func VerifyMail(c echo.Context) error {
 				Error:  err.Error(),
 			})
 		} else {
-			return c.JSON(200, serializer.Response{
-				Status: 0,
-				Msg:    "激活成功",
-			})
+			return c.Redirect(200, "https://login.ero.ink")
 		}
 
 	}

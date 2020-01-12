@@ -31,7 +31,7 @@ func Upload(c echo.Context) error {
 	VerifyCode := c.FormValue("verify_code")
 	VerifyCodeId := c.FormValue("verify_id")
 	types := c.FormValue("type")
-
+	file, err := c.FormFile("file")
 	u, _ := models.GetUser(uid)
 	if u.Status != models.Admin {
 		if res := utils.VerifyCaptcha(VerifyCodeId, VerifyCode); res == false {
@@ -51,7 +51,7 @@ func Upload(c echo.Context) error {
 		dir = "other"
 		i = models.Other_
 	}
-	file, err := c.FormFile("file")
+
 	if err != nil {
 		return err
 	}
