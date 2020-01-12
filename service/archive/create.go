@@ -14,8 +14,8 @@ type CreateService struct {
 	PrimaryContent string `json:"primary_content" form:"primary_content"`
 	Cover          string `json:"cover" form:"cover"`
 	Tag            string `json:"tag" form:"tag"`
-	VerifyCode     string `json:"verify_code" form:"verify_code" null:"false"`
-	VerifyCodeId   string `json:"verify_id" form:"verify_id" null:"false"`
+	VerifyCode     string `json:"verify_code" form:"verify_code"`
+	VerifyCodeId   string `json:"verify_id" form:"verify_id"`
 	result         models.Archive
 }
 
