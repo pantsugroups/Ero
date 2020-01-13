@@ -57,7 +57,6 @@ func (service *CreateService) Create(create uint) *serializer.Response {
 		Tag:            service.Tag,
 		Pass:           false,
 	}
-
 	if user.Status == models.Admin {
 		archive.Pass = true
 	}
@@ -65,13 +64,12 @@ func (service *CreateService) Create(create uint) *serializer.Response {
 		return &serializer.Response{
 			Status: 500,
 			Msg:    "创建失败",
+			Error:  err.Error(),
 		}
 	}
 	service.result = archive
-
 	return nil
 }
 func (service *CreateService) Response() interface{} {
 	return serializer.BuildArchiveResponse(service.result)
-
 }

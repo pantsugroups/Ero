@@ -79,7 +79,7 @@ func (service *ListService) Pull(create uint) *serializer.Response {
 	DB := models.DB
 
 	if service.Page > 0 && service.PageSize > 0 {
-		DB = DB.Limit(service.PageSize).Offset((service.Page-1)*service.PageSize).Where("pass = ?", true)
+		DB = DB.Limit(service.PageSize).Offset((service.Page-1)*service.PageSize).Where("pass = ?", true).Order("updated_at")
 	} else {
 		if service.Limit != 0 {
 			DB.Limit(service.Limit)

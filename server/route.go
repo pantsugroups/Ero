@@ -82,6 +82,9 @@ func NewRouter() *echo.Echo {
 		var VolumeList volume.ListService
 		g.GET("/novel/volume/:id", api.List(&VolumeList)).Name = "查看小说分卷"
 
+		var ArchiveCategoryList relationship.ArchiveListService
+		g.GET("/category/archive/:id", api.List(&ArchiveCategoryList)).Name = "获取分类下小说列表"
+
 		r := g.Group("")
 		{
 			// 需要登陆的

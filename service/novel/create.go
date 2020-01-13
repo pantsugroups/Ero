@@ -14,8 +14,8 @@ type CreateService struct {
 	Ended        bool   `json:"ended" form:"ended"`
 	Level        int    `json:"level" form:"level"`
 	Tags         string `json:"tags" form:"tags"`
-	VerifyCode   string `json:"verify_code" form:"verify_code" null:"false"`
-	VerifyCodeId string `json:"verify_id" form:"verify_id" null:"false"`
+	VerifyCode   string `json:"verify_code" form:"verify_code"`
+	VerifyCodeId string `json:"verify_id" form:"verify_id"`
 	result       models.Novel
 }
 

@@ -870,6 +870,45 @@ paths:
       - archive
       - category
       - admin
+  /api/v1/category/archives/:
+    get:
+      consumes:
+      - text/html
+      parameters:
+      - description: id
+        in: path
+        name: id
+        type: integer
+      - description: Pages
+        in: formData
+        name: page
+        type: integer
+      - description: Limit
+        in: formData
+        name: limit
+        type: integer
+      - description: Offset
+        in: formData
+        name: offset
+        type: integer
+      - description: PageSize default is 10
+        in: formData
+        name: page_size
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/serializer.ArchiveListResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/serializer.Response'
+      summary: 获取分类下的小说列表
+      tags:
+      - archive
   /api/v1/category/novel/:
     delete:
       consumes:
