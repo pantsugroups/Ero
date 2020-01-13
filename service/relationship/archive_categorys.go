@@ -71,6 +71,7 @@ func (service *ArchiveListService) Pages() (int, *serializer.Response) {
 // @Param offset formData integer false "Offset"
 // @Param page_size formData integer false "PageSize default is 10"
 func (service *ArchiveListService) Pull(create uint) *serializer.Response {
+	service.result = nil
 	var categories []models.ArchiveCategory
 	//var count int
 
