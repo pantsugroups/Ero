@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41c30afa-f5b2-41ab-a7fc-1fc604c5d40e" name="默认更改列表" comment="">
-      <change afterPath="$PROJECT_DIR$/service/relationship/archive_categorys.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/service/relationship/novel_categorys.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/route.go" beforeDir="false" afterPath="$PROJECT_DIR$/server/route.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/archive/archives.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/archive/archives.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/archive/create.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/archive/create.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/novel/create.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/novel/create.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/novel/novels.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/novel/novels.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -136,15 +129,6 @@
       </serviceView>
     </option>
   </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-  </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
@@ -165,7 +149,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/src/eroauz" />
     </ignored-roots>
-    <MESSAGE value="日常微调" />
     <MESSAGE value="添加文章分类，修复了一些bug" />
     <MESSAGE value="add cors:option method" />
     <MESSAGE value="优化Upload" />
@@ -190,6 +173,7 @@
     <MESSAGE value="修复发送邮件被当垃圾的问题" />
     <MESSAGE value="微调" />
     <MESSAGE value="微调x2" />
-    <option name="LAST_COMMIT_MESSAGE" value="微调x2" />
+    <MESSAGE value="添加了一个获取分类的API" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加了一个获取分类的API" />
   </component>
 </project>
